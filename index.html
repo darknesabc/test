@@ -60,10 +60,14 @@
                 $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
                     const rows = data.values;
                     let matchedData = [];
+                    let subheader = [];
 
                     // 데이터가 있는 경우 행을 순회하며 매칭 검사
-                    if (rows && rows.length > 0) {
-                        for (let i = 1; i < rows.length; i++) { // 첫 번째 행은 헤더라고 가정
+                    if (rows && rows.length > 1) {
+                        // 서브헤더를 2행으로 설정
+                        subheader = rows[1];
+
+                        for (let i = 2; i < rows.length; i++) { // 첫 번째 행은 헤더, 두 번째 행은 서브헤더
                             const row = rows[i];
                             if (row[0] === seatNumber && row[1] === name) { // 자리번호와 이름 매칭
                                 matchedData = row; // 매칭된 데이터를 배열에 저장
@@ -76,18 +80,14 @@
                     if (matchedData.length > 0) {
                         let html = '<table><tr class="subheader">';
                         
-                        // 서브헤더 추가 (헤더를 사용하지 않고 서브헤더로 표시)
-                        html += `<td>자리번호: ${matchedData[0]}</td>`;
-                        html += `<td>이름: ${matchedData[1]}</td>`;
-                        html += `<td>담임: ${matchedData[2]}</td>`;
-                        html += `<td>학년: ${matchedData[3]}</td>`;
-                        html += `<td>요일: ${matchedData[4]}</td>`;
-                        html += `<td>날짜: ${matchedData[5]}</td>`;
-                        html += '</tr>';
+                        // 서브헤더 추가
+                        subheader.forEach(header => {
+                            html += `<td>${header}</td>`;
+                        });
+                        html += '</tr><tr>';
                         
-                        // 나머지 매칭된 데이터 추가 (각 열의 값)
-                        html += '<tr>';
-                        for (let i = 6; i < matchedData.length; i++) {
+                        // 매칭된 데이터 추가
+                        for (let i = 0; i < matchedData.length; i++) {
                             html += `<td>${matchedData[i]}</td>`;
                         }
                         html += '</tr></table>';
