@@ -85,12 +85,11 @@
                         });
                         html += '</tr>';
 
-                        // 매칭된 데이터 추가 (1~8교시)
+                        // 매칭된 데이터 추가 (자리번호, 이름, 담임, 학년, 교시 데이터)
                         matchedRows.forEach(matchedData => {
                             html += '<tr>';
-                            const attendanceStatus = matchedData.slice(6); // 6번째 인덱스부터 1~8교시 데이터
-                            attendanceStatus.forEach(status => {
-                                html += `<td>${status}</td>`;
+                            matchedData.forEach(data => {
+                                html += `<td>${data}</td>`;
                             });
                             html += '</tr>';
                         });
