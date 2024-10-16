@@ -86,10 +86,11 @@
                         });
                         html += '</tr><tr>';
                         
-                        // 매칭된 데이터 추가
-                        for (let i = 0; i < matchedData.length; i++) {
-                            html += `<td>${matchedData[i]}</td>`;
-                        }
+                        // 매칭된 데이터 추가 (1~8교시)
+                        const attendanceStatus = matchedData.slice(6); // 6번째 인덱스부터 1~8교시 데이터가 저장되어 있다고 가정
+                        attendanceStatus.forEach(status => {
+                            html += `<td>${status}</td>`;
+                        });
                         html += '</tr></table>';
 
                         $('#data').html(html);
