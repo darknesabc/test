@@ -10,25 +10,31 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
-        .data-container {
+        table {
+            border-collapse: collapse;
+            width: 100%;
             margin-top: 20px;
         }
-        .data-row {
-            display: flex; /* Flexbox를 사용하여 한 줄로 배치 */
-            justify-content: flex-start; /* 항목을 왼쪽 정렬 */
-            margin-bottom: 10px; /* 각 데이터 행 간격 */
-            border: 1px solid #ccc; /* 경계선 추가 */
-            padding: 8px; /* 패딩 추가 */
-            background-color: #f9f9f9; /* 배경색 추가 */
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
         }
-        .data-item {
-            margin-right: 20px; /* 항목 간의 간격 */
+        th {
+            background-color: #f4f4f4;
+            display: none; /* 헤더 숨기기 */
         }
         .subheader {
             font-weight: bold;
             background-color: #e7e7e7;
-            padding: 8px; /* 패딩 추가 */
-            margin-bottom: 10px; /* 서브헤더와 데이터 간의 간격 */
+            text-align: center;
+        }
+        .data-row {
+            display: table-row; /* 표 형식으로 표시 */
+        }
+        .data-cell {
+            display: table-cell; /* 표 형식으로 표시 */
+            padding: 8px;
         }
     </style>
 </head>
@@ -42,7 +48,7 @@
     
     <button id="fetchData">데이터 불러오기</button>
     
-    <div id="data" class="data-container"></div>
+    <div id="data"></div>
 
     <script>
         const SHEET_ID = '199CxKW0EHGTVHMwDIEmNJ5LsOcPxyFUtQv52osl7jTY';
@@ -76,27 +82,29 @@
                         }
                     }
 
-                    // 매칭된 데이터를 표시
+                    // 매칭된 데이터를 테이블 형식으로 표시
                     $('#data').empty(); // 기존 데이터 초기화
 
                     if (matchedRows.length > 0) {
+                        let html = '<table><tr class="subheader">';
+                        
                         // 서브헤더 추가
-                        let subheaderHtml = '<div class="subheader">';
                         subheader.forEach(header => {
-                            subheaderHtml += `<span class="data-item">${header}</span>`;
+                            html += `<td class="data-cell">${header}</td>`;
                         });
-                        subheaderHtml += '</div>';
-                        $('#data').append(subheaderHtml);
+                        html += '</tr>';
 
                         // 매칭된 데이터 추가 (자리번호, 이름, 담임, 학년, 교시 데이터)
                         matchedRows.forEach(matchedData => {
-                            let rowHtml = '<div class="data-row">';
+                            html += '<tr class="data-row">';
                             matchedData.forEach(data => {
-                                rowHtml += `<span class="data-item">${data}</span>`;
+                                html += `<td class="data-cell">${data}</td>`;
                             });
-                            rowHtml += '</div>';
-                            $('#data').append(rowHtml);
+                            html += '</tr>';
                         });
+
+                        html += '</table>';
+                        $('#data').html(html);
                     } else {
                         $('#data').html('<p>매칭되는 데이터가 없습니다.</p>');
                     }
