@@ -53,21 +53,35 @@
 
                 $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
                     const rows = data.values;
-                    let matchedData = '';
+                    let matchedData = [];
 
                     // 데이터가 있는 경우 행을 순회하며 매칭 검사
                     if (rows && rows.length > 0) {
                         for (let i = 1; i < rows.length; i++) { // 첫 번째 행은 헤더라고 가정
                             const row = rows[i];
                             if (row[0] === seatNumber && row[1] === name) { // 자리번호와 이름 매칭
-                                matchedData = row.join(', '); // 한 줄로 표시
+                                matchedData = row; // 매칭된 데이터를 배열에 저장
                                 break;
                             }
                         }
                     }
 
-                    if (matchedData) {
-                        $('#data').html(`<p>${matchedData}</p>`);
+                    // 매칭된 데이터를 테이블 형식으로 표시
+                    if (matchedData.length > 0) {
+                        let html = '<table><tr>';
+                        // 테이블 헤더 추가
+                        rows[0].forEach(header => {
+                            html += `<th>${header}</th>`;
+                        });
+                        html += '</tr><tr>';
+                        
+                        // 매칭된 데이터 추가
+                        matchedData.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr></table>';
+
+                        $('#data').html(html);
                     } else {
                         $('#data').html('<p>매칭되는 데이터가 없습니다.</p>');
                     }
