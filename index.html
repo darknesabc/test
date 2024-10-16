@@ -59,7 +59,7 @@
 
                 $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
                     const rows = data.values;
-                    let matchedData = [];
+                    let matchedRows = []; // 매칭된 모든 데이터를 저장할 배열
                     let subheader = [];
 
                     // 데이터가 있는 경우 행을 순회하며 매칭 검사
@@ -70,29 +70,32 @@
                         for (let i = 2; i < rows.length; i++) { // 첫 번째 행은 헤더, 두 번째 행은 서브헤더
                             const row = rows[i];
                             if (row[0] === seatNumber && row[1] === name) { // 자리번호와 이름 매칭
-                                matchedData = row; // 매칭된 데이터를 배열에 저장
-                                break;
+                                matchedRows.push(row); // 매칭된 데이터를 배열에 저장
                             }
                         }
                     }
 
                     // 매칭된 데이터를 테이블 형식으로 표시
-                    if (matchedData.length > 0) {
+                    if (matchedRows.length > 0) {
                         let html = '<table><tr class="subheader">';
                         
                         // 서브헤더 추가
                         subheader.forEach(header => {
                             html += `<td>${header}</td>`;
                         });
-                        html += '</tr><tr>';
-                        
-                        // 매칭된 데이터 추가 (1~8교시)
-                        const attendanceStatus = matchedData.slice(6); // 6번째 인덱스부터 1~8교시 데이터가 저장되어 있다고 가정
-                        attendanceStatus.forEach(status => {
-                            html += `<td>${status}</td>`;
-                        });
-                        html += '</tr></table>';
+                        html += '</tr>';
 
+                        // 매칭된 데이터 추가 (1~8교시)
+                        matchedRows.forEach(matchedData => {
+                            html += '<tr>';
+                            const attendanceStatus = matchedData.slice(6); // 6번째 인덱스부터 1~8교시 데이터
+                            attendanceStatus.forEach(status => {
+                                html += `<td>${status}</td>`;
+                            });
+                            html += '</tr>';
+                        });
+
+                        html += '</table>';
                         $('#data').html(html);
                     } else {
                         $('#data').html('<p>매칭되는 데이터가 없습니다.</p>');
