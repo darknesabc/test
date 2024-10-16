@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>출결 데이터</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
     <h1>출결 데이터</h1>
+    <label for="seatNumber">자리번호:</label>
+    <input type="text" id="seatNumber" placeholder="자리번호 입력">
+    
+    <label for="name">이름:</label>
+    <input type="text" id="name" placeholder="이름 입력">
+    
+    <button id="fetchData">데이터 불러오기</button>
+    
     <div id="data"></div>
 
     <script>
@@ -15,27 +42,38 @@
         const API_KEY = 'AIzaSyDeS-WjQLmzG7yw1_GWu5Tw3HwFxG5hYbk';
 
         $(document).ready(function() {
-            $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
-                const rows = data.values;
-                let html = '<table border="1">';
-                
-                // 데이터가 있는 경우 테이블 생성
-                if (rows && rows.length > 0) {
-                    rows.forEach((row, index) => {
-                        html += '<tr>';
-                        row.forEach(cell => {
-                            html += `<td>${cell}</td>`;
-                        });
-                        html += '</tr>';
-                    });
-                } else {
-                    html = '<tr><td>데이터가 없습니다.</td></tr>';
+            $('#fetchData').click(function() {
+                const seatNumber = $('#seatNumber').val();
+                const name = $('#name').val();
+
+                if (!seatNumber || !name) {
+                    alert('자리번호와 이름을 모두 입력하세요.');
+                    return;
                 }
 
-                html += '</table>';
-                $('#data').html(html);
-            }).fail(function() {
-                $('#data').html('<p>데이터를 불러오는 데 실패했습니다.</p>');
+                $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
+                    const rows = data.values;
+                    let matchedData = '';
+
+                    // 데이터가 있는 경우 행을 순회하며 매칭 검사
+                    if (rows && rows.length > 0) {
+                        for (let i = 1; i < rows.length; i++) { // 첫 번째 행은 헤더라고 가정
+                            const row = rows[i];
+                            if (row[0] === seatNumber && row[1] === name) { // 자리번호와 이름 매칭
+                                matchedData = row.join(', '); // 한 줄로 표시
+                                break;
+                            }
+                        }
+                    }
+
+                    if (matchedData) {
+                        $('#data').html(`<p>${matchedData}</p>`);
+                    } else {
+                        $('#data').html('<p>매칭되는 데이터가 없습니다.</p>');
+                    }
+                }).fail(function() {
+                    $('#data').html('<p>데이터를 불러오는 데 실패했습니다.</p>');
+                });
             });
         });
     </script>
