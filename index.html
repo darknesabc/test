@@ -47,7 +47,7 @@
     <input type="text" id="name" placeholder="이름 입력">
     
     <label for="date">날짜:</label>
-    <input type="date" id="date">
+    <input type="text" id="date" placeholder="MM/DD 형식으로 입력">
 
     <button id="fetchData">데이터 불러오기</button>
     
@@ -61,7 +61,7 @@
             $('#fetchData').click(function() {
                 const seatNumber = $('#seatNumber').val();
                 const name = $('#name').val();
-                const selectedDate = $('#date').val();
+                const selectedDate = $('#date').val(); // 사용자가 입력한 날짜
 
                 if (!seatNumber || !name || !selectedDate) {
                     alert('자리번호, 이름, 날짜를 모두 입력하세요.');
@@ -80,8 +80,20 @@
 
                         for (let i = 2; i < rows.length; i++) { // 첫 번째 행은 헤더, 두 번째 행은 서브헤더
                             const row = rows[i];
-                            const dateColumnIndex = 5; // 날짜 열 인덱스 (예: G열에 위치할 경우 6-1)
-                            if (row[0] === seatNumber && row[1] === name && row[dateColumnIndex] === selectedDate) { // 자리번호, 이름, 날짜 매칭
+                            
+                            // 날짜 매칭을 위한 인덱스 설정 (G, I, K, M, O, Q, S)
+                            const dateColumns = [6, 8, 10, 12, 14, 16]; // 각 날짜 열의 인덱스
+                            let dateMatched = false;
+
+                            for (let j = 0; j < dateColumns.length; j++) {
+                                if (row[dateColumns[j]] === selectedDate) {
+                                    dateMatched = true;
+                                    break;
+                                }
+                            }
+
+                            // 자리번호와 이름 매칭
+                            if (row[0] === seatNumber && row[1] === name && dateMatched) { 
                                 matchedRows.push(row); // 매칭된 데이터를 배열에 저장
                             }
                         }
@@ -92,14 +104,14 @@
 
                     if (matchedRows.length > 0) {
                         let html = '<table><tr class="subheader">';
-                        
+
                         // 서브헤더 추가
                         subheader.forEach(header => {
                             html += `<td class="data-cell">${header}</td>`;
                         });
                         html += '</tr>';
 
-                        // 매칭된 데이터 추가 (자리번호, 이름, 담임, 학년, 교시 데이터)
+                        // 매칭된 데이터 추가
                         matchedRows.forEach(matchedData => {
                             html += '<tr class="data-row">';
                             matchedData.forEach(data => {
