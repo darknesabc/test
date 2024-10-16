@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출결 데이터</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>출결 데이터</h1>
+    <div id="data"></div>
+
+    <script>
+        const SHEET_ID = '199CxKW0EHGTVHMwDIEmNJ5LsOcPxyFUtQv52osl7jTY';
+        const API_KEY = 'AIzaSyDeS-WjQLmzG7yw1_GWu5Tw3HwFxG5hYbk';
+
+        $(document).ready(function() {
+            $.get(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/출결?key=${API_KEY}`, function(data) {
+                const rows = data.values;
+                let html = '<table border="1">';
+                
+                // 데이터가 있는 경우 테이블 생성
+                if (rows && rows.length > 0) {
+                    rows.forEach((row, index) => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                } else {
+                    html = '<tr><td>데이터가 없습니다.</td></tr>';
+                }
+
+                html += '</table>';
+                $('#data').html(html);
+            }).fail(function() {
+                $('#data').html('<p>데이터를 불러오는 데 실패했습니다.</p>');
+            });
+        });
+    </script>
+</body>
+</html>
