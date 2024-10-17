@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Sheets Data Fetch</title>
+    <title>반응형 디자인 및 출결 데이터</title>
     <style>
+        /* 기본 스타일 (PC 화면) */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .date-box {
+            display: inline-block;
+            margin: 20px 10px;
+        }
+
+        .date, .day {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            display: inline-block;
+        }
+
+        .date {
+            width: 150px;
+        }
+
+        .day {
+            width: 50px;
+        }
+
+        .date-picker {
+            margin-top: 20px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
@@ -18,26 +63,125 @@
 
         th {
             background-color: #f2f2f2;
-            font-weight: bold;
+        }
+
+        /* 모바일 (화면 너비가 600px 이하일 때 적용) */
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .date, .day {
+                font-size: 18px;
+                padding: 8px;
+            }
+
+            .date {
+                width: 120px;
+            }
+
+            .day {
+                width: 40px;
+            }
+        }
+
+        /* 태블릿 (화면 너비가 768px 이하일 때 적용) */
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .date, .day {
+                font-size: 20px;
+                padding: 9px;
+            }
+
+            .date {
+                width: 130px;
+            }
+
+            .day {
+                width: 45px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>출결 데이터</h1>
+        <!-- 날짜와 요일을 분리한 출력 -->
+        <div class="date-box">
+            <div class="date" id="currentDate"></div>
+        </div>
+        <div class="date-box">
+            <div class="day" id="currentDay"></div>
+        </div>
+
+        <!-- 날짜 선택기 -->
+        <div class="date-picker">
+            <input type="date" id="datePicker" />
+            <button id="resetButton">초기화</button>
+        </div>
+
+        <!-- 출결 데이터를 표시할 테이블 -->
         <table id="attendanceTable">
-            <!-- 테이블 데이터가 여기에 추가됩니다 -->
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>요일</th>
+                    <th>1교시</th>
+                    <th>2교시</th>
+                    <th>3교시</th>
+                    <th>4교시</th>
+                    <th>5교시</th>
+                    <th>6교시</th>
+                    <th>7교시</th>
+                    <th>8교시</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 출결 데이터가 여기에 추가됩니다 -->
+            </tbody>
         </table>
     </div>
 
     <script>
+        // 요일 배열
+        const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+
         // Google Sheets API 정보
         const sheetId = "199CxKW0EHGTVHMwDIEmNJ5LsOcPxyFUtQv52osl7jTY";
         const apiKey = "AIzaSyDeS-WjQLmzG7yw1_GWu5Tw3HwFxG5hYbk";
         const sheetName = "출결";
-        const range = "A1:S18"; // A열부터 S열까지 18행 데이터
+        const range = "A1:S18"; // A열부터 S열까지 18행
 
-        // Google Sheets API를 통해 데이터를 가져오는 함수
+        // 오늘 날짜를 가져오는 함수
+        function getTodayDate() {
+            const today = new Date();
+            return formatDate(today);
+        }
+
+        // 날짜 포맷을 "MM/DD" 형식으로 변환하고 요일도 반환하는 함수
+        function formatDate(dateObj) {
+            const month = dateObj.getMonth() + 1; // 월
+            const date = dateObj.getDate(); // 일
+            const day = dayNames[dateObj.getDay()]; // 요일 첫 글자만
+            return {
+                date: `${month}/${date}`,
+                day: day
+            };
+        }
+
+        // 날짜와 요일을 업데이트하는 함수
+        function updateDateDisplay(dateStr, dayStr) {
+            document.getElementById("currentDate").textContent = dateStr;
+            document.getElementById("currentDay").textContent = dayStr;
+        }
+
+        // 페이지 로드 시 오늘 날짜와 요일 출력
+        const today = getTodayDate();
+        updateDateDisplay(today.date, today.day);
+
+        // 출결 데이터를 API로 불러오는 함수
         function fetchSheetData() {
             const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}!${range}?key=${apiKey}`;
 
@@ -53,30 +197,38 @@
                 .catch(error => console.error("API 요청 중 오류 발생:", error));
         }
 
-        // 데이터를 HTML 테이블로 렌더링하는 함수
+        // 출결 데이터를 테이블에 렌더링하는 함수
         function renderTable(data) {
-            const table = document.getElementById("attendanceTable");
-            let tableHTML = "<tr>";
+            const tbody = document.querySelector("#attendanceTable tbody");
+            tbody.innerHTML = ""; // 기존 데이터 지우기
 
-            // 첫 번째 행은 헤더로 처리
-            data[0].forEach(header => {
-                tableHTML += `<th>${header}</th>`;
-            });
-            tableHTML += "</tr>";
-
-            // 나머지 행은 데이터로 처리
             data.slice(1).forEach(row => {
-                tableHTML += "<tr>";
+                let rowHTML = "<tr>";
                 row.forEach(cell => {
-                    tableHTML += `<td>${cell}</td>`;
+                    rowHTML += `<td>${cell}</td>`;
                 });
-                tableHTML += "</tr>";
+                rowHTML += "</tr>";
+                tbody.innerHTML += rowHTML;
             });
-
-            table.innerHTML = tableHTML;
         }
 
-        // 페이지 로드 시 데이터 불러오기
+        // 날짜 선택 시 이벤트
+        document.getElementById("datePicker").addEventListener("change", function () {
+            const selectedDate = new Date(this.value);
+            if (!isNaN(selectedDate)) { // 유효한 날짜인지 확인
+                const formattedDate = formatDate(selectedDate);
+                updateDateDisplay(formattedDate.date, formattedDate.day);
+            }
+        });
+
+        // 초기화 버튼 클릭 시 오늘 날짜로 리셋
+        document.getElementById("resetButton").addEventListener("click", function () {
+            const today = getTodayDate();
+            updateDateDisplay(today.date, today.day);
+            document.getElementById("datePicker").value = ""; // 날짜 선택기 초기화
+        });
+
+        // 페이지 로드 시 출결 데이터를 불러오기
         window.onload = fetchSheetData;
     </script>
 </body>
