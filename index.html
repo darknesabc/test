@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>반응형 디자인 및 날짜 표시</title>
+    <title>반응형 디자인 및 날짜 선택 기능</title>
     <style>
         /* 기본 스타일 (PC 화면) */
         body {
@@ -21,16 +21,37 @@
             text-align: center;
         }
 
+        .date-box {
+            display: inline-block;
+            margin: 20px 10px;
+        }
+
         .date {
             font-size: 24px;
             font-weight: bold;
             color: #333;
-            margin-top: 20px;
             padding: 10px;
             border: 2px solid #ddd;
             border-radius: 8px;
             background-color: #fff;
             display: inline-block;
+            width: 150px;
+        }
+
+        .day {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            display: inline-block;
+            width: 50px;
+        }
+
+        .date-picker {
+            margin-top: 20px;
         }
 
         /* 모바일 (화면 너비가 600px 이하일 때 적용) */
@@ -39,9 +60,17 @@
                 padding: 10px;
             }
 
-            .date {
+            .date, .day {
                 font-size: 18px;
                 padding: 8px;
+            }
+
+            .date {
+                width: 120px;
+            }
+
+            .day {
+                width: 40px;
             }
         }
 
@@ -51,31 +80,84 @@
                 padding: 15px;
             }
 
-            .date {
+            .date, .day {
                 font-size: 20px;
                 padding: 9px;
+            }
+
+            .date {
+                width: 130px;
+            }
+
+            .day {
+                width: 45px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="date" id="currentDate"></div>
+        <!-- 날짜와 요일을 분리한 출력 -->
+        <div class="date-box">
+            <div class="date" id="currentDate"></div>
+        </div>
+        <div class="date-box">
+            <div class="day" id="currentDay"></div>
+        </div>
+
+        <!-- 날짜 선택기 -->
+        <div class="date-picker">
+            <input type="date" id="datePicker" />
+            <button id="resetButton">초기화</button>
+        </div>
     </div>
 
     <script>
+        // 요일 배열
+        const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
+
+        // 오늘 날짜를 가져오는 함수
         function getTodayDate() {
             const today = new Date();
-            const dayNames = ["일", "월", "화", "수", "목", "금", "토"];
-            
-            const month = today.getMonth() + 1; // 월 (0부터 시작하므로 1을 더함)
-            const date = today.getDate(); // 일
-            const day = dayNames[today.getDay()]; // 요일
-
-            return `${month}/${date} (${day})`;
+            return formatDate(today);
         }
 
-        document.getElementById("currentDate").textContent = getTodayDate();
+        // 날짜 포맷을 "MM/DD" 형식으로 변환하고 요일도 반환하는 함수
+        function formatDate(dateObj) {
+            const month = dateObj.getMonth() + 1; // 월
+            const date = dateObj.getDate(); // 일
+            const day = dayNames[dateObj.getDay()]; // 요일 첫 글자만
+            return {
+                date: `${month}/${date}`,
+                day: day
+            };
+        }
+
+        // 날짜와 요일을 업데이트하는 함수
+        function updateDateDisplay(dateStr, dayStr) {
+            document.getElementById("currentDate").textContent = dateStr;
+            document.getElementById("currentDay").textContent = dayStr;
+        }
+
+        // 페이지 로드 시 오늘 날짜와 요일 출력
+        const today = getTodayDate();
+        updateDateDisplay(today.date, today.day);
+
+        // 날짜 선택 시 이벤트
+        document.getElementById("datePicker").addEventListener("change", function () {
+            const selectedDate = new Date(this.value);
+            if (!isNaN(selectedDate)) { // 유효한 날짜인지 확인
+                const formattedDate = formatDate(selectedDate);
+                updateDateDisplay(formattedDate.date, formattedDate.day);
+            }
+        });
+
+        // 초기화 버튼 클릭 시 오늘 날짜로 리셋
+        document.getElementById("resetButton").addEventListener("click", function () {
+            const today = getTodayDate();
+            updateDateDisplay(today.date, today.day);
+            document.getElementById("datePicker").value = ""; // 날짜 선택기 초기화
+        });
     </script>
 </body>
 </html>
