@@ -17,6 +17,117 @@
   button.check-answer:hover { background: #0056b3; }
 </style>
 </head>
+  <style>
+/* 기본 레이아웃 */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.question {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.qnum {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.problem {
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.choices label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+input[type="radio"] {
+  margin-right: 8px;
+  transform: scale(1.1);
+}
+
+button.check-answer {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.check-answer:hover {
+  background-color: #0056b3;
+}
+
+.answer {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .question {
+    padding: 16px;
+  }
+
+  .problem {
+    font-size: 0.95rem;
+  }
+
+  .choices label {
+    font-size: 0.9rem;
+  }
+
+  button.check-answer {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .qnum {
+    font-size: 1rem;
+  }
+
+  .problem {
+    font-size: 0.9rem;
+  }
+
+  .choices label {
+    font-size: 0.88rem;
+  }
+
+  button.check-answer {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
 <body>
 <h1>문제 목록 1~10 (인터랙티브)</h1>
 
@@ -121,8 +232,6 @@
     <div class="answer" id="answer-q5">정답: ⑤<br />
   </form>
 </div>
-
-
 
 <!-- 문제 6 -->
 <div class="question" id="q6">
