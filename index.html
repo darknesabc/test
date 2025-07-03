@@ -9,30 +9,17 @@
     font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 돋움, Dotum, sans-serif;
     max-width: 720px;
     margin: 0 auto;
-    padding: 20px 15px;
-    box-sizing: border-box;
+    padding: 20px;
   }
-
-  .toggle-buttons {
+  .toggle-buttons, .shuffle-controls {
     margin-bottom: 20px;
     text-align: center;
   }
-
-  .toggle-buttons button {
-    margin: 0 8px;
+  .toggle-buttons button, .shuffle-controls button {
+    margin: 0 10px;
     padding: 10px 18px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
-  }
-
-  .toggle-buttons button:hover,
-  .toggle-buttons button:focus {
-    background-color: #ddd;
-    outline: none;
   }
 
   #quiz-wrapper.scroll-mode .question {
@@ -53,7 +40,6 @@
     margin-bottom: 20px;
     border-radius: 6px;
     background-color: #f9f9f9;
-    box-sizing: border-box;
   }
 
   .qnum {
@@ -62,128 +48,63 @@
     margin-bottom: 10px;
   }
 
+  .passage {
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #555;
+  }
+
   .problem {
     margin-bottom: 12px;
-    font-size: 16px;
-    line-height: 1.5;
+    font-weight: 500;
   }
 
   .choices label {
     cursor: pointer;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
     font-size: 15px;
-    user-select: none;
-    padding-left: 30px;
-    position: relative;
-  }
-
-  /* 라디오 버튼 위치 조정 */
-  .choices input[type="radio"] {
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
   }
 
   button.check-answer {
     margin-top: 12px;
-    padding: 10px 16px;
-    font-size: 16px;
+    padding: 8px 14px;
+    font-size: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    background-color: #0078d7;
-    color: white;
-    transition: background-color 0.3s ease;
-  }
-
-  button.check-answer:hover,
-  button.check-answer:focus {
-    background-color: #005ea3;
-    outline: none;
   }
 
   .answer {
     margin-top: 10px;
     font-weight: bold;
     display: none;
-    word-break: keep-all;
   }
 
   #page-nav {
     margin: 20px 0;
     text-align: center;
-    display: none;
   }
 
   #page-nav button {
-    margin: 0 12px;
-    padding: 12px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid #0078d7;
-    background-color: #e6f0ff;
-    color: #0078d7;
-    transition: background-color 0.3s ease;
-  }
-
-  #page-nav button:disabled {
-    cursor: default;
-    opacity: 0.5;
-  }
-
-  #page-nav button:hover:not(:disabled),
-  #page-nav button:focus:not(:disabled) {
-    background-color: #c2d9ff;
-    outline: none;
-  }
-
-  #page-info {
+    margin: 0 10px;
+    padding: 8px 14px;
     font-size: 16px;
-    vertical-align: middle;
+    cursor: pointer;
   }
 
-  /* 반응형 : 화면 너비 480px 이하일 때 */
-  @media screen and (max-width: 480px) {
+  /* 반응형 */
+  @media (max-width: 600px) {
     body {
-      padding: 15px 10px;
+      padding: 10px;
     }
-    .toggle-buttons button {
-      padding: 8px 12px;
+    .toggle-buttons button, .shuffle-controls button, #page-nav button {
       font-size: 14px;
-      margin: 0 6px;
+      padding: 8px 12px;
+      margin: 5px 6px;
     }
     .qnum {
       font-size: 16px;
     }
-    .problem {
-      font-size: 14px;
-    }
-    .choices label {
-      font-size: 14px;
-      margin-bottom: 14px;
-      padding-left: 28px;
-    }
-    .choices input[type="radio"] {
-      width: 16px;
-      height: 16px;
-      left: 4px;
-    }
-    button.check-answer {
-      padding: 9px 14px;
-      font-size: 15px;
-    }
-    #page-nav button {
-      padding: 10px 14px;
-      font-size: 16px;
-      margin: 0 8px;
-    }
-    #page-info {
+    .problem, .choices label {
       font-size: 14px;
     }
   }
@@ -194,6 +115,11 @@
 <div class="toggle-buttons">
   <button id="scrollBtn" type="button">스크롤형 보기</button>
   <button id="pageBtn" type="button">페이지형 보기</button>
+</div>
+
+<div class="shuffle-controls">
+  <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
+  <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
 </div>
 
 <div id="quiz-wrapper" class="scroll-mode">
@@ -600,12 +526,10 @@
   </form>
 </div>
 
-</div>
+</div> <!-- quiz-wrapper 끝 -->
 
-<!-- 페이지네비게이션 -->
-<div id="page-nav">
+<div id="page-nav" style="display:none;">
   <button id="prevBtn" type="button">이전 문제</button>
-  <span id="page-info"></span>
   <button id="nextBtn" type="button">다음 문제</button>
 </div>
 
@@ -616,32 +540,23 @@
   const pageNav = document.getElementById('page-nav');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-  const pageInfo = document.getElementById('page-info');
-  const questions = document.querySelectorAll('.question');
-
   let currentIndex = 0;
 
-  function showQuestion(index) {
-    if (index < 0) index = 0;
-    if (index >= questions.length) index = questions.length - 1;
-    currentIndex = index;
-    questions.forEach((q, i) => {
-      q.classList.toggle('active', i === index);
-    });
-    updatePageNav();
-  }
+  const questions = () => Array.from(quizWrapper.querySelectorAll('.question'));
 
-  function updatePageNav() {
-    pageInfo.textContent = `${currentIndex + 1} / ${questions.length}번 문제`;
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex === questions.length - 1;
+  function showQuestion(index) {
+    const qs = questions();
+    if (index < 0) index = 0;
+    if (index >= qs.length) index = qs.length - 1;
+    currentIndex = index;
+    qs.forEach((q, i) => q.classList.toggle('active', i === index));
   }
 
   scrollBtn.addEventListener('click', () => {
     quizWrapper.classList.add('scroll-mode');
     quizWrapper.classList.remove('page-mode');
     pageNav.style.display = 'none';
-    questions.forEach(q => q.classList.remove('active'));
+    questions().forEach(q => q.classList.remove('active'));
   });
 
   pageBtn.addEventListener('click', () => {
@@ -652,15 +567,11 @@
   });
 
   prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      showQuestion(currentIndex - 1);
-    }
+    if (currentIndex > 0) showQuestion(currentIndex - 1);
   });
 
   nextBtn.addEventListener('click', () => {
-    if (currentIndex < questions.length - 1) {
-      showQuestion(currentIndex + 1);
-    }
+    if (currentIndex < questions().length - 1) showQuestion(currentIndex + 1);
   });
 
   // 단일 정답 확인 함수
@@ -717,6 +628,42 @@
     }
     answerDiv.style.display = 'block';
   }
+
+  // 배열 무작위 섞기 함수 (Fisher-Yates)
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  // 문제 섞기 함수
+  function shuffleQuestions() {
+    const qs = Array.from(quizWrapper.querySelectorAll('.question'));
+    shuffleArray(qs);
+    quizWrapper.innerHTML = '';
+    qs.forEach(q => quizWrapper.appendChild(q));
+    if (quizWrapper.classList.contains('page-mode')) {
+      showQuestion(0);
+    }
+  }
+
+  // 보기 섞기 함수
+  function shuffleChoices() {
+    const choiceBlocks = quizWrapper.querySelectorAll('.choices');
+    choiceBlocks.forEach(choiceBlock => {
+      const labels = Array.from(choiceBlock.querySelectorAll('label'));
+      shuffleArray(labels);
+      choiceBlock.innerHTML = '';
+      labels.forEach(label => choiceBlock.appendChild(label));
+    });
+  }
+
+  // 버튼 이벤트 연결
+  document.getElementById('shuffleQuestionsBtn').addEventListener('click', shuffleQuestions);
+  document.getElementById('shuffleChoicesBtn').addEventListener('click', shuffleChoices);
+
 </script>
 
 </body>
