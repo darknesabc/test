@@ -528,6 +528,11 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
+<button id="scrollBtn" type="button">스크롤 모드</button>
+<button id="pageBtn" type="button">페이지 모드</button>
+<button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
+<button id="shuffleChoicesBtn" type="button">보기 섞기</button>
+
 <div id="page-nav" style="display:none;">
   <button id="prevBtn" type="button">이전 문제</button>
   <button id="nextBtn" type="button">다음 문제</button>
@@ -555,11 +560,13 @@
       alert('보기를 선택해 주세요.');
       return;
     }
-    if (checked.value == correctNum) {
+    const correct = Number(correctNum);
+    const selected = Number(checked.value);
+    if (selected === correct) {
       answerDiv.textContent = '정답입니다!';
       answerDiv.style.color = 'green';
     } else {
-      answerDiv.textContent = `틀렸습니다. 정답은 ${correctNum}번입니다.`;
+      answerDiv.textContent = `틀렸습니다. 정답은 ${correct}번입니다.`;
       answerDiv.style.color = 'red';
     }
     answerDiv.style.display = 'block';
@@ -567,36 +574,35 @@
 
   // 보기 번호 업데이트 (①②③④⑤)
   function updateChoiceNumbers() {
-  const questionsArr = questions();
-  questionsArr.forEach(q => {
-    const labels = q.querySelectorAll('.choices label');
-    labels.forEach((label, i) => {
-      // input 태그는 놔두고 그 뒤 텍스트만 바꾸기
-      const input = label.querySelector('input');
-      if (!input) return;
-      // label의 텍스트 노드 찾기 (input 다음에 나오는 텍스트 노드)
-      // label.childNodes 중 input 다음 노드가 텍스트 노드인지 체크
-      let textNode = null;
-      for (let node of label.childNodes) {
-        if (node.nodeType === Node.TEXT_NODE) {
-          textNode = node;
-          break;
+    const questionsArr = questions();
+    questionsArr.forEach(q => {
+      const labels = q.querySelectorAll('.choices label');
+      labels.forEach((label, i) => {
+        const input = label.querySelector('input');
+        if (!input) return;
+
+        // input 다음 텍스트 노드를 정확히 찾기 (input 다음 형제)
+        let textNode = null;
+        for (let node of label.childNodes) {
+          if (node.nodeType === Node.TEXT_NODE && node.textContent.trim() !== '') {
+            textNode = node;
+            break;
+          }
         }
-      }
-      if (textNode) {
-        // 기존 번호(①~⑤) 및 공백 제거
-        textNode.textContent = textNode.textContent.replace(/^[①-⑤]\s*/, '');
-        // 새로운 번호 붙이기 (①=Unicode 9312)
-        const numChar = String.fromCharCode(9312 + i); 
-        textNode.textContent = ' ' + numChar + ' ' + textNode.textContent.trim();
-      } else {
-        // 텍스트 노드가 없으면 그냥 붙임
+
+        // 번호문자 (① = Unicode 9312)
         const numChar = String.fromCharCode(9312 + i);
-        label.appendChild(document.createTextNode(' ' + numChar + ' '));
-      }
+
+        if (textNode) {
+          // 기존 번호(①~⑤) 및 공백 제거 후 번호 교체
+          textNode.textContent = textNode.textContent.replace(/^[①-⑤]\s*/, '');
+          textNode.textContent = ' ' + numChar + ' ' + textNode.textContent.trim();
+        } else {
+          label.appendChild(document.createTextNode(' ' + numChar + ' '));
+        }
+      });
     });
-  });
-}
+  }
 
   // 문제 번호와 내부 속성 모두 바꾸는 함수
   function updateQuestionNumbers() {
@@ -612,7 +618,7 @@
       const qnumDiv = q.querySelector('.qnum');
       if (qnumDiv) qnumDiv.textContent = `문제 ${idx + 1}`;
 
-      // 라디오 name 바꾸기
+      // 라디오 name 바꾸기 + 체크 초기화
       const inputs = q.querySelectorAll('input[type=radio]');
       inputs.forEach(input => {
         input.name = newId;
@@ -624,11 +630,14 @@
       if (checkBtn) {
         const correct = checkBtn.getAttribute('data-correct');
         checkBtn.onclick = () => checkAnswer(newId, correct);
-        // 정답 보이기 영역 id도 변경 (answer-q1 등)
+
+        // 정답 보이기 영역 id 변경 및 초기화
         const answerDiv = q.querySelector('.answer');
-        if (answerDiv) answerDiv.id = 'answer-' + newId;
-        answerDiv.style.display = 'none';
-        answerDiv.textContent = ''; // 초기화
+        if (answerDiv) {
+          answerDiv.id = 'answer-' + newId;
+          answerDiv.style.display = 'none';
+          answerDiv.textContent = '';
+        }
       }
     });
   }
@@ -662,9 +671,7 @@
       const choicesDiv = q.querySelector('.choices');
       if (!choicesDiv) return;
 
-      // label + input 쌍 배열로
       const labels = Array.from(choicesDiv.querySelectorAll('label'));
-      // 각 label 내 input도 같이 포함되어 있으니 label 전체를 셔플
       shuffleArray(labels);
       choicesDiv.innerHTML = '';
       labels.forEach(label => choicesDiv.appendChild(label));
@@ -678,7 +685,6 @@
     quizWrapper.classList.add('scroll-mode');
     pageNav.style.display = 'none';
 
-    // 모든 문제 보이기
     questions().forEach(q => q.classList.add('active'));
   };
 
@@ -688,7 +694,6 @@
     quizWrapper.classList.add('page-mode');
     pageNav.style.display = 'block';
 
-    // 문제 모두 숨기고 첫 문제만 보이기
     questions().forEach(q => q.classList.remove('active'));
     currentIndex = 0;
     showQuestion(currentIndex);
@@ -698,11 +703,8 @@
   function showQuestion(idx) {
     const qs = questions();
     qs.forEach((q, i) => {
-      if (i === idx) {
-        q.classList.add('active');
-      } else {
-        q.classList.remove('active');
-      }
+      if (i === idx) q.classList.add('active');
+      else q.classList.remove('active');
     });
   }
 
