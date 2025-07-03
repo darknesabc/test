@@ -3,133 +3,96 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>문제 목록 1~10 (인터랙티브)</title>
+<title>2026학년도 수시모집 문제</title>
 <style>
-  body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f9f9f9; }
-  h1 { text-align: center; margin-bottom: 30px; }
-  .question { background: white; border-radius: 8px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-  .qnum { font-weight: bold; font-size: 1.2em; margin-bottom: 10px; }
-  .passage { margin-bottom: 10px; white-space: pre-line; }
-  .problem { margin-bottom: 10px; }
-  .choices { margin-bottom: 10px; padding-left: 20px; }
-  .answer { color: #d6336c; font-weight: bold; margin-top: 10px; display: none; }
-  button.check-answer { background: #007bff; color: white; border: none; padding: 7px 15px; border-radius: 5px; cursor: pointer; }
-  button.check-answer:hover { background: #0056b3; }
-</style>
-</head>
-  <style>
-/* 기본 레이아웃 */
-body {
-  font-family: 'Arial', sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 20px;
-  background-color: #f8f9fa;
-}
-
-.question {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.qnum {
-  font-weight: bold;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.problem {
-  font-size: 1rem;
-  margin-bottom: 15px;
-}
-
-.choices label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  line-height: 1.4;
-}
-
-input[type="radio"] {
-  margin-right: 8px;
-  transform: scale(1.1);
-}
-
-button.check-answer {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button.check-answer:hover {
-  background-color: #0056b3;
-}
-
-.answer {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #28a745;
-}
-
-/* 반응형 스타일 */
-@media (max-width: 768px) {
   body {
-    padding: 15px;
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 돋움, Dotum, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .toggle-buttons {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .toggle-buttons button {
+    margin: 0 10px;
+    padding: 10px 18px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #quiz-wrapper.scroll-mode .question {
+    display: block;
+  }
+
+  #quiz-wrapper.page-mode .question {
+    display: none;
+  }
+
+  #quiz-wrapper.page-mode .question.active {
+    display: block;
   }
 
   .question {
-    padding: 16px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
   }
 
-  .problem {
-    font-size: 0.95rem;
-  }
-
-  .choices label {
-    font-size: 0.9rem;
-  }
-
-  button.check-answer {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
   .qnum {
-    font-size: 1rem;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .problem {
-    font-size: 0.9rem;
+    margin-bottom: 12px;
   }
 
   .choices label {
-    font-size: 0.88rem;
+    cursor: pointer;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
   }
 
   button.check-answer {
-    font-size: 0.95rem;
+    margin-top: 12px;
+    padding: 8px 14px;
+    font-size: 15px;
+    cursor: pointer;
   }
-}
-</style>
 
+  .answer {
+    margin-top: 10px;
+    font-weight: bold;
+    display: none;
+  }
+
+  #page-nav {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  #page-nav button {
+    margin: 0 10px;
+    padding: 8px 14px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
 <body>
-<h1>문제 목록 1~10 (인터랙티브)</h1>
+
+<div class="toggle-buttons">
+  <button id="scrollBtn" type="button">스크롤형 보기</button>
+  <button id="pageBtn" type="button">페이지형 보기</button>
+</div>
+
+<div id="quiz-wrapper" class="scroll-mode">
 
 <!-- 문제 1 -->
 <div class="question" id="q1">
@@ -537,20 +500,103 @@ button.check-answer:hover {
 
 
 <script>
+  const quizWrapper = document.getElementById('quiz-wrapper');
+  const scrollBtn = document.getElementById('scrollBtn');
+  const pageBtn = document.getElementById('pageBtn');
+  const pageNav = document.getElementById('page-nav');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const questions = document.querySelectorAll('.question');
+
+  let currentIndex = 0;
+
+  function showQuestion(index) {
+    if (index < 0) index = 0;
+    if (index >= questions.length) index = questions.length - 1;
+    currentIndex = index;
+    questions.forEach((q, i) => {
+      q.classList.toggle('active', i === index);
+    });
+  }
+
+  scrollBtn.addEventListener('click', () => {
+    quizWrapper.classList.add('scroll-mode');
+    quizWrapper.classList.remove('page-mode');
+    pageNav.style.display = 'none';
+    questions.forEach(q => q.classList.remove('active'));
+  });
+
+  pageBtn.addEventListener('click', () => {
+    quizWrapper.classList.add('page-mode');
+    quizWrapper.classList.remove('scroll-mode');
+    pageNav.style.display = 'block';
+    showQuestion(0);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      showQuestion(currentIndex - 1);
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < questions.length - 1) {
+      showQuestion(currentIndex + 1);
+    }
+  });
+
+  // 단일 정답 확인 함수
   function checkAnswer(qid, correct) {
-    const form = document.querySelector(`#${qid} form`);
-    const selected = form.querySelector('input[type=radio]:checked');
+    const answers = document.getElementsByName(qid);
+    let selected = null;
+    for (const ans of answers) {
+      if (ans.checked) {
+        selected = ans.value;
+        break;
+      }
+    }
     const answerDiv = document.getElementById('answer-' + qid);
-    if (!selected) {
-      alert('답안을 선택해주세요!');
+    if (selected === null) {
+      alert('답을 선택해주세요.');
+      answerDiv.style.display = 'none';
       return;
     }
-    if (parseInt(selected.value) === correct) {
+    if (selected == correct) {
+      answerDiv.textContent = '정답: ' + correct + ' (맞았습니다!)';
       answerDiv.style.color = 'green';
-      answerDiv.textContent = '정답입니다! 정답: ' + correct;
     } else {
+      answerDiv.textContent = '정답: ' + correct + ' (틀렸습니다.)';
       answerDiv.style.color = 'red';
-      answerDiv.textContent = '틀렸습니다. 정답은 ' + correct + '번입니다.';
+    }
+    answerDiv.style.display = 'block';
+  }
+
+  // 다중 정답 확인 함수 (체크박스 문제용)
+  function checkAnswerMulti(qid, correctArray) {
+    const answers = document.getElementsByName(qid);
+    let selected = [];
+    for (const ans of answers) {
+      if (ans.checked) {
+        selected.push(ans.value);
+      }
+    }
+    const answerDiv = document.getElementById('answer-' + qid);
+    if (selected.length === 0) {
+      alert('답을 선택해주세요.');
+      answerDiv.style.display = 'none';
+      return;
+    }
+    // 정답 체크 (선택한 답이 정답 배열과 정확히 일치하는지)
+    selected.sort();
+    correctArray.sort();
+    const isCorrect = JSON.stringify(selected) === JSON.stringify(correctArray);
+
+    if (isCorrect) {
+      answerDiv.textContent = '정답: ' + correctArray.join(', ') + ' (맞았습니다!)';
+      answerDiv.style.color = 'green';
+    } else {
+      answerDiv.textContent = '정답: ' + correctArray.join(', ') + ' (틀렸습니다.)';
+      answerDiv.style.color = 'red';
     }
     answerDiv.style.display = 'block';
   }
