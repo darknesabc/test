@@ -98,34 +98,31 @@
 
 <!-- 문제 5 -->
 <div class="question" id="q5">
-  <h2>문제 5</h2>
+  <div class="qnum">문제 5</div>
   <div class="passage">
-    <p><strong>지문:</strong></p>
-    <p>
-      여 학생 : 선생님! 저는 정시만 생각하고 있습니다.<br>
-      고3 때 수리논술을 같이 준비했었는데 미적분이 너무 어려워서 모두 불합격했거든요.<br>
-      담임T : 그렇군요. 미적분이 취약하군요. 수리논술에서 미적분이 출제 범위에서 제외되는 대학이 있어요.<br>
-      여 학생 : 정말요? 어느 대학인데요?<br>
-      담임T : <strong>㉮대학, ㉯대학, ㉰대학</strong> 등이 미적분, 기하, 확통이 출제 범위에서 제외됩니다. 세 대학 모두 수능 이후 논술시험이 있으니 정시 위주로 공부하고 가채점 결과에 따라 응시 여부를 판단하면 좋겠어요.
-    </p>
+    여 학생 : 선생님! 저는 정시만 생각하고 있습니다.<br>
+    고3 때 수리논술을 같이 준비했었는데 미적분이 너무 어려워서 모두 불합격했거든요.<br>
+    담임T : 그렇군요. 미적분이 취약하군요. 수리논술에서 미적분이 출제 범위에서 제외되는 대학이 있어요.<br>
+    여 학생 : 정말요? 어느 대학인데요?<br>
+    담임T : <strong>㉮대학, ㉯대학, ㉰대학</strong> 등이 미적분, 기하, 확통이 출제 범위에서 제외됩니다. 세 대학 모두 수능 이후 논술시험이 있으니 정시 위주로 공부하고 가채점 결과에 따라 응시 여부를 판단하면 좋겠어요.
   </div>
-
-  <p><strong>문제:</strong> 2026학년도를 기준으로 맥락상 ‘㉮, ㉯, ㉰’에 해당하는 대학을 고르시오.</p>
-  
-  <div class="choices">
-    <label><input type="radio" name="q5" value="1"> ① 경기대, 서울여대, 성신여대</label>
-    <label><input type="radio" name="q5" value="2"> ② 경기대, 성신여대, 덕성여대(약학 제외)</label>
-    <label><input type="radio" name="q5" value="3"> ③ 가톨릭대(의예, 약학 제외), 동덕여대, 서울여대</label>
-    <label><input type="radio" name="q5" value="4"> ④ 동덕여대, 경기대, 서울여대</label>
-    <label><input type="radio" name="q5" value="5"> ⑤ 경기대, 덕성여대(약학 제외), 서울여대</label>
+  <div class="problem">
+    2026학년도를 기준으로 맥락상 ‘㉮, ㉯, ㉰’에 해당하는 대학을 고르시오.
   </div>
-  
-  <button onclick="checkAnswer(5, '5')">정답 확인</button>
-  <div id="result5" class="result"></div>
-  <div id="explanation5" class="explanation">
-    <p><strong>해설:</strong> </p>
-  </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q5" value="1" /> ① 경기대, 서울여대, 성신여대</label><br />
+      <label><input type="radio" name="q5" value="2" /> ② 경기대, 성신여대, 덕성여대(약학 제외)</label><br />
+      <label><input type="radio" name="q5" value="3" /> ③ 가톨릭대(의예, 약학 제외), 동덕여대, 서울여대</label><br />
+      <label><input type="radio" name="q5" value="4" /> ④ 동덕여대, 경기대, 서울여대</label><br />
+      <label><input type="radio" name="q5" value="5" /> ⑤ 경기대, 덕성여대(약학 제외), 서울여대</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q5', 5)">정답 확인</button>
+    <div class="answer" id="answer-q5">정답: ⑤<br />
+          </div>
+  </form>
 </div>
+
 
 
 <!-- 문제 6 -->
@@ -207,9 +204,9 @@
 
 <!-- 문제 10 -->
 <div class="question" id="q10">
-  <h2>문제 10</h2>
+  <div class="qnum">문제 10</div>
   <div class="passage">
-    <p><strong>지문:</strong> &lt;학생 A의 예상 수능 등급&gt;</p>
+    <strong>&lt;학생 A의 예상 수능 등급&gt;</strong><br />
     <table border="1" cellpadding="5" cellspacing="0">
       <thead>
         <tr>
@@ -233,23 +230,24 @@
       </tbody>
     </table>
   </div>
-
-  <p><strong>문제:</strong> 위 수능 성적 기준으로, 수리논술을 실시하는 논술전형에 지원하려는 학생 A가 <strong>지원할 수 없는 대학과 모집단위</strong>가 옳게 짝지어진 것을 고르시오.</p>
-
-  <div class="choices">
-    <label><input type="radio" name="q10" value="1"> ① 한양대 - 의예과</label>
-    <label><input type="radio" name="q10" value="2"> ② 동국대 - 약학과</label>
-    <label><input type="radio" name="q10" value="3"> ③ 경희대 - 한의예과</label>
-    <label><input type="radio" name="q10" value="4"> ④ 인하대 - 의예과</label>
-    <label><input type="radio" name="q10" value="5"> ⑤ 건국대 - 수의예과</label>
+  <div class="problem">
+    위 수능 성적 기준으로, 수리논술을 실시하는 논술전형에 지원하려는 학생 A가 <strong>지원할 수 없는 대학과 모집단위</strong>가 옳게 짝지어진 것을 고르시오.
   </div>
-
-  <button onclick="checkAnswer(10, '4')">정답 확인</button>
-  <div id="result10" class="result"></div>
-  <div id="explanation10" class="explanation">
-    <p><strong>해설:</strong> 인하대 의예과 논술전형은 수능 최저학력기준이 까다로우며 국어 2등급 이내 등의 조건이 있다. A학생은 국어가 3등급이라 지원 불가. 정답은 <strong>④번</strong>.</p>
-  </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q10" value="1" /> ① 한양대 - 의예과</label><br />
+      <label><input type="radio" name="q10" value="2" /> ② 동국대 - 약학과</label><br />
+      <label><input type="radio" name="q10" value="3" /> ③ 경희대 - 한의예과</label><br />
+      <label><input type="radio" name="q10" value="4" /> ④ 인하대 - 의예과</label><br />
+      <label><input type="radio" name="q10" value="5" /> ⑤ 건국대 - 수의예과</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q10', 4)">정답 확인</button>
+    <div class="answer" id="answer-q10">정답: ④<br />
+      <strong
+    </div>
+  </form>
 </div>
+
 
 <script>
   function checkAnswer(qid, correct) {
