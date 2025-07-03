@@ -11,12 +11,12 @@
     margin: 0 auto;
     padding: 20px;
   }
-  .toggle-buttons, .shuffle-controls {
+  .toggle-buttons {
     margin-bottom: 20px;
     text-align: center;
   }
-  .toggle-buttons button, .shuffle-controls button {
-    margin: 0 10px;
+  .toggle-buttons button {
+    margin: 0 6px 10px 6px;
     padding: 10px 18px;
     font-size: 16px;
     cursor: pointer;
@@ -50,13 +50,11 @@
 
   .passage {
     margin-bottom: 10px;
-    font-style: italic;
-    color: #555;
+    white-space: pre-line;
   }
 
   .problem {
     margin-bottom: 12px;
-    font-weight: 500;
   }
 
   .choices label {
@@ -92,20 +90,15 @@
   }
 
   /* 반응형 */
-  @media (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     body {
       padding: 10px;
+      max-width: 100%;
     }
-    .toggle-buttons button, .shuffle-controls button, #page-nav button {
+    .toggle-buttons button, #page-nav button {
       font-size: 14px;
-      padding: 8px 12px;
-      margin: 5px 6px;
-    }
-    .qnum {
-      font-size: 16px;
-    }
-    .problem, .choices label {
-      font-size: 14px;
+      padding: 8px 14px;
+      margin: 6px 4px;
     }
   }
 </style>
@@ -115,14 +108,23 @@
 <div class="toggle-buttons">
   <button id="scrollBtn" type="button">스크롤형 보기</button>
   <button id="pageBtn" type="button">페이지형 보기</button>
-</div>
-
-<div class="shuffle-controls">
-  <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
-  <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
+  <button id="shuffleBtn" type="button">문제 섞기</button>
+  <button id="resetBtn" type="button">원래 순서 보기</button>
 </div>
 
 <div id="quiz-wrapper" class="scroll-mode">
+  <!-- 문제들이 여기 동적으로 렌더링 됩니다 -->
+</div>
+
+<div id="page-nav" style="display:none;">
+  <button id="prevBtn" type="button">이전</button>
+  <span id="page-info">1 / 1</span>
+  <button id="nextBtn" type="button">다음</button>
+</div>
+
+<script>
+  // 문제 데이터: 문제 HTML 문자열을 배열로 저장 (필요시 문제 추가)
+  const originalQuestions = [
 
 <!-- 문제 1 -->
 <div class="question" id="q1">
@@ -527,142 +529,136 @@
 </div>
 
 </div> <!-- quiz-wrapper 끝 -->
+  // 더 문제 추가 시 여기에 계속 이어서 넣으면 됩니다.
+  ];
 
-<div id="page-nav" style="display:none;">
-  <button id="prevBtn" type="button">이전 문제</button>
-  <button id="nextBtn" type="button">다음 문제</button>
-</div>
+  let currentQuestions = [...originalQuestions];  // 현재 화면에 표시중인 문제 배열
 
-<script>
   const quizWrapper = document.getElementById('quiz-wrapper');
   const scrollBtn = document.getElementById('scrollBtn');
   const pageBtn = document.getElementById('pageBtn');
+  const shuffleBtn = document.getElementById('shuffleBtn');
+  const resetBtn = document.getElementById('resetBtn');
   const pageNav = document.getElementById('page-nav');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
+  const pageInfo = document.getElementById('page-info');
+
   let currentIndex = 0;
 
-  const questions = () => Array.from(quizWrapper.querySelectorAll('.question'));
-
-  function showQuestion(index) {
-    const qs = questions();
-    if (index < 0) index = 0;
-    if (index >= qs.length) index = qs.length - 1;
-    currentIndex = index;
-    qs.forEach((q, i) => q.classList.toggle('active', i === index));
+  // 문제들을 화면에 출력
+  function renderQuestions(questions) {
+    quizWrapper.innerHTML = questions.join('');
+    updatePageInfo();
   }
 
+  // 페이지 표시 업데이트
+  function updatePageInfo() {
+    pageInfo.textContent = `${currentIndex + 1} / ${currentQuestions.length}`;
+  }
+
+  // 단일 문제만 보이도록 설정 (페이지형 모드용)
+  function showQuestion(index) {
+    if (index < 0) index = 0;
+    if (index >= currentQuestions.length) index = currentQuestions.length -1;
+    currentIndex = index;
+
+    // 모든 문제 요소를 찾아서 클래스 조작
+    const questionElements = quizWrapper.querySelectorAll('.question');
+    questionElements.forEach((q, i) => {
+      q.classList.toggle('active', i === index);
+    });
+    updatePageInfo();
+  }
+
+  // 배열 섞기 (Fisher-Yates)
+  function shuffleArray(arr) {
+    const newArr = [...arr];
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
+  }
+
+  // 스크롤형 보기 버튼 클릭
   scrollBtn.addEventListener('click', () => {
     quizWrapper.classList.add('scroll-mode');
     quizWrapper.classList.remove('page-mode');
     pageNav.style.display = 'none';
-    questions().forEach(q => q.classList.remove('active'));
+    renderQuestions(currentQuestions);
+    // 페이지형일 때 active 클래스 제거
+    quizWrapper.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
   });
 
+  // 페이지형 보기 버튼 클릭
   pageBtn.addEventListener('click', () => {
     quizWrapper.classList.add('page-mode');
     quizWrapper.classList.remove('scroll-mode');
     pageNav.style.display = 'block';
-    showQuestion(0);
+    renderQuestions(currentQuestions);
+    showQuestion(currentIndex);
   });
 
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) showQuestion(currentIndex - 1);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < questions().length - 1) showQuestion(currentIndex + 1);
-  });
-
-  // 단일 정답 확인 함수
-  function checkAnswer(qid, correct) {
-    const answers = document.getElementsByName(qid);
-    let selected = null;
-    for (const ans of answers) {
-      if (ans.checked) {
-        selected = ans.value;
-        break;
-      }
-    }
-    const answerDiv = document.getElementById('answer-' + qid);
-    if (selected === null) {
-      alert('답을 선택해주세요.');
-      answerDiv.style.display = 'none';
-      return;
-    }
-    if (selected == correct) {
-      answerDiv.textContent = '정답: ' + correct + ' (맞았습니다!)';
-      answerDiv.style.color = 'green';
-    } else {
-      answerDiv.textContent = '정답: ' + correct + ' (틀렸습니다.)';
-      answerDiv.style.color = 'red';
-    }
-    answerDiv.style.display = 'block';
-  }
-
-  // 다중 정답 확인 함수 (체크박스 문제용)
-  function checkAnswerMulti(qid, correctArray) {
-    const answers = document.getElementsByName(qid);
-    let selected = [];
-    for (const ans of answers) {
-      if (ans.checked) {
-        selected.push(ans.value);
-      }
-    }
-    const answerDiv = document.getElementById('answer-' + qid);
-    if (selected.length === 0) {
-      alert('답을 선택해주세요.');
-      answerDiv.style.display = 'none';
-      return;
-    }
-    selected.sort();
-    correctArray.sort();
-    const isCorrect = JSON.stringify(selected) === JSON.stringify(correctArray);
-
-    if (isCorrect) {
-      answerDiv.textContent = '정답: ' + correctArray.join(', ') + ' (맞았습니다!)';
-      answerDiv.style.color = 'green';
-    } else {
-      answerDiv.textContent = '정답: ' + correctArray.join(', ') + ' (틀렸습니다.)';
-      answerDiv.style.color = 'red';
-    }
-    answerDiv.style.display = 'block';
-  }
-
-  // 배열 무작위 섞기 함수 (Fisher-Yates)
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  }
-
-  // 문제 섞기 함수
-  function shuffleQuestions() {
-    const qs = Array.from(quizWrapper.querySelectorAll('.question'));
-    shuffleArray(qs);
-    quizWrapper.innerHTML = '';
-    qs.forEach(q => quizWrapper.appendChild(q));
+  // 문제 섞기 버튼 클릭
+  shuffleBtn.addEventListener('click', () => {
+    currentQuestions = shuffleArray(currentQuestions);
     if (quizWrapper.classList.contains('page-mode')) {
+      renderQuestions(currentQuestions);
       showQuestion(0);
+    } else {
+      renderQuestions(currentQuestions);
     }
-  }
+  });
 
-  // 보기 섞기 함수
-  function shuffleChoices() {
-    const choiceBlocks = quizWrapper.querySelectorAll('.choices');
-    choiceBlocks.forEach(choiceBlock => {
-      const labels = Array.from(choiceBlock.querySelectorAll('label'));
-      shuffleArray(labels);
-      choiceBlock.innerHTML = '';
-      labels.forEach(label => choiceBlock.appendChild(label));
-    });
-  }
+  // 원래 순서 보기 버튼 클릭
+  resetBtn.addEventListener('click', () => {
+    currentQuestions = [...originalQuestions];
+    if (quizWrapper.classList.contains('page-mode')) {
+      renderQuestions(currentQuestions);
+      showQuestion(0);
+    } else {
+      renderQuestions(currentQuestions);
+    }
+  });
 
-  // 버튼 이벤트 연결
-  document.getElementById('shuffleQuestionsBtn').addEventListener('click', shuffleQuestions);
-  document.getElementById('shuffleChoicesBtn').addEventListener('click', shuffleChoices);
+  // 이전 문제 버튼
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      showQuestion(currentIndex - 1);
+    }
+  });
+
+  // 다음 문제 버튼
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < currentQuestions.length -1) {
+      showQuestion(currentIndex + 1);
+    }
+  });
+
+  // 정답 확인 함수 (버튼에서 호출)
+  function checkAnswer(qid, correctValue) {
+    const form = document.querySelector(`#${qid} form`);
+    if (!form) return;
+    const selected = form.querySelector(`input[name=${qid}]:checked`);
+    const answerDiv = document.getElementById('answer-' + qid);
+    if (!selected) {
+      alert('정답을 선택해 주세요.');
+      return;
+    }
+    if (parseInt(selected.value) === correctValue) {
+      answerDiv.textContent = '정답입니다!';
+      answerDiv.style.color = 'green';
+    } else {
+      answerDiv.textContent = '틀렸습니다. 정답: ' + correctValue;
+      answerDiv.style.color = 'red';
+    }
+    answerDiv.style.display = 'block';
+  }
+  window.checkAnswer = checkAnswer;  // 전역 함수로 노출
+
+  // 초기 로드 시 스크롤형 모드로 렌더링
+  renderQuestions(currentQuestions);
 
 </script>
 
