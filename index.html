@@ -567,18 +567,36 @@
 
   // 보기 번호 업데이트 (①②③④⑤)
   function updateChoiceNumbers() {
-    const questionsArr = questions();
-    questionsArr.forEach(q => {
-      const labels = q.querySelectorAll('.choices label');
-      labels.forEach((label, i) => {
-        // 라벨 텍스트에서 번호 부분을 ①, ② ... 로 변경
-        // 번호는 한글숫자 대신 ①~⑤로 표시
-        label.textContent = label.textContent.replace(/^[①-⑤]\s*/, '');
-        const numChar = String.fromCharCode(9311 + i + 1); // ①(9312)부터 시작
-        label.textContent = numChar + ' ' + label.textContent;
-      });
+  const questionsArr = questions();
+  questionsArr.forEach(q => {
+    const labels = q.querySelectorAll('.choices label');
+    labels.forEach((label, i) => {
+      // input 태그는 놔두고 그 뒤 텍스트만 바꾸기
+      const input = label.querySelector('input');
+      if (!input) return;
+      // label의 텍스트 노드 찾기 (input 다음에 나오는 텍스트 노드)
+      // label.childNodes 중 input 다음 노드가 텍스트 노드인지 체크
+      let textNode = null;
+      for (let node of label.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          textNode = node;
+          break;
+        }
+      }
+      if (textNode) {
+        // 기존 번호(①~⑤) 및 공백 제거
+        textNode.textContent = textNode.textContent.replace(/^[①-⑤]\s*/, '');
+        // 새로운 번호 붙이기 (①=Unicode 9312)
+        const numChar = String.fromCharCode(9312 + i); 
+        textNode.textContent = ' ' + numChar + ' ' + textNode.textContent.trim();
+      } else {
+        // 텍스트 노드가 없으면 그냥 붙임
+        const numChar = String.fromCharCode(9312 + i);
+        label.appendChild(document.createTextNode(' ' + numChar + ' '));
+      }
     });
-  }
+  });
+}
 
   // 문제 번호와 내부 속성 모두 바꾸는 함수
   function updateQuestionNumbers() {
