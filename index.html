@@ -1,97 +1,198 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>객관식 50문제</title>
-  <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 2rem auto; line-height: 1.6; }
-    .question { margin-bottom: 2rem; padding: 1rem; border: 1px solid #ccc; border-radius: 8px; background: #fdfdfd; }
-    .passage { background: #f9f9f9; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; }
-    .options label { display: block; margin-bottom: 0.5rem; cursor: pointer; }
-    .result.correct { color: green; font-weight: bold; }
-    .result.incorrect { color: red; font-weight: bold; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>문제 목록 1~10</title>
+<style>
+  body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f9f9f9; }
+  h1 { text-align: center; margin-bottom: 30px; }
+  .question { background: white; border-radius: 8px; padding: 15px 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+  .qnum { font-weight: bold; font-size: 1.2em; margin-bottom: 10px; }
+  .passage { margin-bottom: 10px; white-space: pre-line; }
+  .problem { margin-bottom: 10px; }
+  .choices { margin-bottom: 10px; padding-left: 20px; }
+  .answer { color: #d6336c; font-weight: bold; margin-bottom: 10px; }
+  .explanation { color: #555; border-top: 1px solid #ddd; padding-top: 10px; font-size: 0.9em; }
+</style>
 </head>
 <body>
-  <h1>객관식 50문제</h1>
-  <div id="quiz-container"></div>
+<h1>문제 목록 1~10</h1>
 
-  <script>
-    const questions = [
-      /* 질문 1~50 JSON번역 */
-      /* 예시 하나만 보여드릴게요 */
-      {
-        id: 1,
-        question: "다음 중 논술전형에 대한 설명으로 옳지 않은 것을 고르시오.",
-        options: [
-          "단국대(천안)는… 적용한다.",
-          "국민대는 올해 약술형 논술을 신설하였으며 수능최저기준을 적용한다.",
-          "수능 이전에 논술고사를 실시하는 대학 중… 9/27(토)에 논술고사를 실시한다.",
-          "논술고사를 실시하는 대학 중… 과학에서도 출제한다.",
-          "성신여대, 서강대, 삼육대는… 2026학년도에는 논술 100으로 선발한다."
-        ],
-        answer: 0
-      },
-      /* ... 2번부터 50번까지 동일한 형식으로 들어갑니다 */
-    ];
+<!-- 문제 1 -->
+<div class="question">
+  <div class="qnum">문제 1</div>
+  <div class="problem">다음 중 논술전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.</li>
+    <li>국민대는 올해 약술형 논술을 신설하였으며, 수능최저기준을 적용한다.</li>
+    <li>수능 이전에 논술고사를 실시하는 대학 중 연세대, 서울시립대(자연), 성신여대(자연)은 9/27(토)에 논술고사를 실시한다.</li>
+    <li>논술고사를 실시하는 대학 중 경희대(의치한약), 아주대(의학), 경북대(의치수)는 논술문제를 과학에서도 출제한다.</li>
+    <li>성신여대, 서강대, 삼육대는 2025학년도에는 논술 100으로 선발하지 않았으나 2026학년도에는 논술 100으로 선발한다.</li>
+  </ol>
+  <div class="answer">정답: 1</div>
+  <div class="explanation">해설: </div>
+</div>
 
-    const container = document.getElementById('quiz-container');
+<!-- 문제 2 -->
+<div class="question">
+  <div class="qnum">문제 2</div>
+  <div class="problem">다음 중 2026학년도 약학과에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>덕성여대는 올해 논술 전형을 신설하였으며, 수능최저기준은 국수영탐(1) 중 수학 포함 3합 6을 적용한다.</li>
+    <li>한양대(에리카) 학생부교과(지역균형선발)전형은 올해 수능최저기준에 대한 필수 응시 과목 제한을 폐지하였다.</li>
+    <li>이화여대 약학전공은 미래인재전형 서류형과 면접형 모두 선발한다.</li>
+    <li>경희대 네오르네상스전형은 수능최저기준을 올해 신설하였다.</li>
+    <li>덕성여대는 2025학년도에는 학생부 100% 전형으로 선발하였으나, 학생부 100%전형이 올해 폐지되어 고교추천전형으로 선발한다.</li>
+  </ol>
+  <div class="answer">정답: 1</div>
+  <div class="explanation">해설: </div>
+</div>
 
-    questions.forEach(q => {
-      const div = document.createElement('div');
-      div.className = 'question';
+<!-- 문제 3 -->
+<div class="question">
+  <div class="qnum">문제 3</div>
+  <div class="passage">
+㉠ 고려대 학교추천전형 수능최저기준은 탐구 2과목 반영에서 1과목 반영으로 변경되었다.  
+㉡ 가톨릭대 약학과 논술전형은 수능최저기준 적용 시 수(미/기), 과탐 응시자만 지원이 가능하다.  
+㉢ 한양대 의예과는 학생부종합(추천형)전형에서 수능최저기준을 탐구 1과목에서 2과목 평균 반영으로 변경하였다.  
+㉣ 서울시립대는 지역균형선발전형에서 수능최저기준을 3개합 7에서 3개합 8로 변경하였다.  
+㉤ 인하대 의예과 논술전형의 경우 사탐 응시자도 지원이 무방하다.  
+㉥ 이화여대 의예과는 논술전형에서 수능최저기준을 3개합 5(탐1)를 적용한다.
+  </div>
+  <div class="problem">다음 &lt;보기&gt;는 2026학년도 수시모집에 대한 설명이다. 옳게 짝지어진 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>㉠, ㉡, ㉢</li>
+    <li>㉠, ㉢, ㉣</li>
+    <li>㉠, ㉢, ㉥</li>
+    <li>㉡, ㉣, ㉤</li>
+    <li>㉡, ㉤, ㉥</li>
+  </ol>
+  <div class="answer">정답: 2</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      const title = document.createElement('h3');
-      title.textContent = `문제 ${q.id}. ${q.question}`;
-      div.appendChild(title);
+<!-- 문제 4 -->
+<div class="question">
+  <div class="qnum">문제 4</div>
+  <div class="problem">다음 중 2026학년도 수의예과 학생부전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>충남대는 수능최저기준 적용 시 2025학년도에는 수영탐을 반영하였으나 올해에는 수능 4개영역 중 상위 3개영역을 반영하는 것으로 변경되었다.</li>
+    <li>전북대 큰사람전형은 2단계 서류 80+면접 20에서 서류 70+면접 30으로 변경되었다.</li>
+    <li>건국대 KU자기추천전형은 2025학년도와 동일한 전형방법으로 학생을 선발한다.</li>
+    <li>경상국립대 종합(일반, 지역인재)전형은 2025학년도에는 수능최저기준을 적용하지 않았으나 2026학년도에는 수능최저기준을 적용한다.</li>
+    <li>제주대는 지역인재 종합전형을 신설하였으며, 수능최저기준은 적용하지 않는다.</li>
+  </ol>
+  <div class="answer">정답: 2</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      if (q.passage) {
-        const p = document.createElement('div');
-        p.className = 'passage';
-        p.innerHTML = q.passage; // HTML표 포함 가능
-        div.appendChild(p);
-      }
+<!-- 문제 5 -->
+<div class="question">
+  <div class="qnum">문제 5</div>
+  <div class="passage">
+여 학생: 선생님! 저는 정시만 생각하고 있습니다.  
+고3 때 수리논술을 같이 준비했었는데 미적분이 너무 어려워서 모두 불합격했거든요.  
+담임T: 그렇군요. 미적분이 취약하군요. 수리논술에서 미적분이 출제 범위에서 제외되는 대학이 있어요.  
+여 학생: 정말요? 어느 대학인데요?  
+담임T: ㉮대학, ㉯대학, ㉰대학 등이 미적분, 기하, 확통이 출제 범위에서 제외됩니다.  
+3개 대학 모두 수능 이후에 논술시험이 있으니 학생이 말한대로 정시 위주로 공부하시고 가채점 결과에 따라 ㉮대학, ㉯대학, ㉰대학 응시 여부를 판단하면 좋을 것 같아요.
+  </div>
+  <div class="problem">다음 대화 내용을 읽고 2026학년도를 기준으로 맥락상 ‘㉮, ㉯, ㉰’에 해당하는 대학을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>경기대, 서울여대, 성신여대</li>
+    <li>경기대, 성신여대, 덕성여대(약학 제외)</li>
+    <li>가톨릭대(의예, 약학 제외), 동덕여대, 서울여대</li>
+    <li>동덕여대, 경기대, 서울여대</li>
+    <li>경기대, 덕성여대(약학 제외), 서울여대</li>
+  </ol>
+  <div class="answer">정답: 5</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      const opts = document.createElement('div');
-      opts.className = 'options';
-      q.options.forEach((opt, idx) => {
-        const label = document.createElement('label');
-        const input = document.createElement('input');
-        input.type = 'radio';
-        input.name = `q${q.id}`;
-        input.value = idx;
-        label.appendChild(input);
-        label.appendChild(document.createTextNode(opt));
-        opts.appendChild(label);
-      });
-      div.appendChild(opts);
+<!-- 문제 6 -->
+<div class="question">
+  <div class="qnum">문제 6</div>
+  <div class="passage">ⓐ 경북대 ⓑ 부산대 ⓒ 덕성여대 ⓓ 고려대(세종) ⓔ 경희대 ⓕ 삼육대</div>
+  <div class="problem">다음 중 2026학년도 약학과 학생부중심전형에서 수능최저기준 충족 요건이 과탐으로 지정되지 않은 대학끼리 묶인 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>ⓐ ,ⓒ ,ⓓ</li>
+    <li>ⓐ ,ⓑ ,ⓔ</li>
+    <li>ⓑ ,ⓓ ,ⓔ</li>
+    <li>ⓐ ,ⓑ ,ⓕ</li>
+    <li>ⓒ ,ⓔ ,ⓕ</li>
+  </ol>
+  <div class="answer">정답: 2</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      const btn = document.createElement('button');
-      btn.textContent = '정답 확인';
-      btn.onclick = () => {
-        const sel = div.querySelector(`input[name="q${q.id}"]:checked`);
-        const result = div.querySelector('.result');
-        if (!sel) {
-          alert("답안을 선택해주세요.");
-          return;
-        }
-        const chosen = parseInt(sel.value, 10);
-        if (chosen === q.answer) {
-          result.textContent = "정답입니다!";
-          result.className = "result correct";
-        } else {
-          result.textContent = `오답입니다. 정답은 "${q.options[q.answer]}"입니다.`;
-          result.className = "result incorrect";
-        }
-      };
-      div.appendChild(btn);
+<!-- 문제 7 -->
+<div class="question">
+  <div class="qnum">문제 7</div>
+  <div class="problem">다음 중 2026학년도 대학별 논술전형과 출제유형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>가천대, 국민대는 약술형 논술고사를 실시한다.</li>
+    <li>국민대와 강남대, 단국대(천안) 의예, 치의예 논술전형이 올해 신설되었다.</li>
+    <li>성신여대는 올해 교과를 반영하지 않고 논술 100%로 선발한다.</li>
+    <li>한양대와 이화여대 의예과는 올해 논술전형을 신설하였으며, 동덕여대는 논술전형으로 약학과 학생들을 선발한다.</li>
+    <li>삼육대는 올해 논술전형에서 교과성적을 반영하지 않는다.</li>
+  </ol>
+  <div class="answer">정답: 4</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      const res = document.createElement('div');
-      res.className = 'result';
-      div.appendChild(res);
+<!-- 문제 8 -->
+<div class="question">
+  <div class="qnum">문제 8</div>
+  <div class="passage">
+㉠ 경희대 지역균형  
+㉡ 건국대 KU지역균형  
+㉢ 서울시립대 지역균형선발  
+㉣ 동국대 DO DREAM  
+㉤ 홍익대 학교장추천  
+㉥ 한양대 종합(면접형)
+  </div>
+  <div class="problem">다음 &lt;보기&gt;에 있는 대학 및 전형 중 2026학년도 기준으로 졸업연도 제한을 두는 것으로 옳게 짝지어진 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>㉠, ㉢, ㉤</li>
+    <li>㉡, ㉣, ㉤</li>
+    <li>㉢, ㉤, ㉥</li>
+    <li>㉡, ㉣, ㉥</li>
+    <li>㉣, ㉤, ㉥</li>
+  </ol>
+  <div class="answer">정답: 1</div>
+  <div class="explanation">해설: </div>
+</div>
 
-      container.appendChild(div);
-    });
-  </script>
+<!-- 문제 9 -->
+<div class="question">
+  <div class="qnum">문제 9</div>
+  <div class="problem">다음 중 2026학년도 의예과에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>성균관대는 탐구형으로 선발하지 않으며, 성균인재전형은 수능 최저학력기준이 없다.</li>
+    <li>건양대는 일반(면접) 전형을 폐지하였다.</li>
+    <li>원광대 교과(지역인재)전형의 수능최저기준은 수학을 포함하여 ‘3개 등급 합 5’로, 과탐은 1과목을 적용한다.</li>
+    <li>을지대 교과(지역의료인재)전형 수능최저기준은 3개 등급 합 5이며, 1개 과목 이상 생명과학Ⅰ 또는 Ⅱ를 반드시 응시해야 한다.</li>
+    <li>순천향대 교과전형 수능최저기준은 작년 대비 과탐 2과목 평균 반영으로 변경되었다.</li>
+  </ol>
+  <div class="answer">정답: 2</div>
+  <div class="explanation">해설: </div>
+</div>
+
+<!-- 문제 10 -->
+<div class="question">
+  <div class="qnum">문제 10</div>
+  <div class="problem">다음 중 2026학년도 약학과 수시모집에서 수능최저기준에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+  <ol class="choices" type="①">
+    <li>덕성여대는 2026학년도에 수능최저기준으로 국어, 수학, 영어, 탐구 중 수학 포함 3개 영역 합 6을 적용한다.</li>
+    <li>경북대 약학과는 학생부중심전형에서 수능최저기준이 탐구로 지정되어 있다.</li>
+    <li>삼육대는 학생부종합전형에서 수능최저기준을 과탐으로 지정하지 않았다.</li>
+    <li>고려대(세종)는 학생부중심전형에서 수능최저기준을 탐구 반영으로 지정하였다.</li>
+    <li>부산대는 학생부중심전형에서 수능최저기준이 과탐 미지정이다.</li>
+  </ol>
+  <div class="answer">정답: 4</div>
+  <div class="explanation">해설: </div>
+</div>
+
 </body>
 </html>
