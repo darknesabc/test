@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>문제 목록 1~10</title>
+<title>문제 목록 1~10 (인터랙티브)</title>
 <style>
   body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; background: #f9f9f9; }
   h1 { text-align: center; margin-bottom: 30px; }
@@ -12,45 +12,50 @@
   .passage { margin-bottom: 10px; white-space: pre-line; }
   .problem { margin-bottom: 10px; }
   .choices { margin-bottom: 10px; padding-left: 20px; }
-  .answer { color: #d6336c; font-weight: bold; margin-bottom: 10px; }
-  .explanation { color: #555; border-top: 1px solid #ddd; padding-top: 10px; font-size: 0.9em; }
+  .answer { color: #d6336c; font-weight: bold; margin-top: 10px; display: none; }
+  button.check-answer { background: #007bff; color: white; border: none; padding: 7px 15px; border-radius: 5px; cursor: pointer; }
+  button.check-answer:hover { background: #0056b3; }
 </style>
 </head>
 <body>
-<h1>문제 목록 1~10</h1>
+<h1>문제 목록 1~10 (인터랙티브)</h1>
 
 <!-- 문제 1 -->
-<div class="question">
+<div class="question" id="q1">
   <div class="qnum">문제 1</div>
   <div class="problem">다음 중 논술전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.</li>
-    <li>국민대는 올해 약술형 논술을 신설하였으며, 수능최저기준을 적용한다.</li>
-    <li>수능 이전에 논술고사를 실시하는 대학 중 연세대, 서울시립대(자연), 성신여대(자연)은 9/27(토)에 논술고사를 실시한다.</li>
-    <li>논술고사를 실시하는 대학 중 경희대(의치한약), 아주대(의학), 경북대(의치수)는 논술문제를 과학에서도 출제한다.</li>
-    <li>성신여대, 서강대, 삼육대는 2025학년도에는 논술 100으로 선발하지 않았으나 2026학년도에는 논술 100으로 선발한다.</li>
-  </ol>
-  <div class="answer">정답: 1</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q1" value="1" /> ① 단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.</label><br />
+      <label><input type="radio" name="q1" value="2" /> ② 국민대는 올해 약술형 논술을 신설하였으며, 수능최저기준을 적용한다.</label><br />
+      <label><input type="radio" name="q1" value="3" /> ③ 수능 이전에 논술고사를 실시하는 대학 중 연세대, 서울시립대(자연), 성신여대(자연)은 9/27(토)에 논술고사를 실시한다.</label><br />
+      <label><input type="radio" name="q1" value="4" /> ④ 논술고사를 실시하는 대학 중 경희대(의치한약), 아주대(의학), 경북대(의치수)는 논술문제를 과학에서도 출제한다.</label><br />
+      <label><input type="radio" name="q1" value="5" /> ⑤ 성신여대, 서강대, 삼육대는 2025학년도에는 논술 100으로 선발하지 않았으나 2026학년도에는 논술 100으로 선발한다.</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q1', 1)">정답 확인</button>
+    <div class="answer" id="answer-q1">정답: ①</div>
+  </form>
 </div>
 
 <!-- 문제 2 -->
-<div class="question">
+<div class="question" id="q2">
   <div class="qnum">문제 2</div>
   <div class="problem">다음 중 2026학년도 약학과에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>덕성여대는 올해 논술 전형을 신설하였으며, 수능최저기준은 국수영탐(1) 중 수학 포함 3합 6을 적용한다.</li>
-    <li>한양대(에리카) 학생부교과(지역균형선발)전형은 올해 수능최저기준에 대한 필수 응시 과목 제한을 폐지하였다.</li>
-    <li>이화여대 약학전공은 미래인재전형 서류형과 면접형 모두 선발한다.</li>
-    <li>경희대 네오르네상스전형은 수능최저기준을 올해 신설하였다.</li>
-    <li>덕성여대는 2025학년도에는 학생부 100% 전형으로 선발하였으나, 학생부 100%전형이 올해 폐지되어 고교추천전형으로 선발한다.</li>
-  </ol>
-  <div class="answer">정답: 1</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q2" value="1" /> ① 덕성여대는 올해 논술 전형을 신설하였으며, 수능최저기준은 국수영탐(1) 중 수학 포함 3합 6을 적용한다.</label><br />
+      <label><input type="radio" name="q2" value="2" /> ② 한양대(에리카) 학생부교과(지역균형선발)전형은 올해 수능최저기준에 대한 필수 응시 과목 제한을 폐지하였다.</label><br />
+      <label><input type="radio" name="q2" value="3" /> ③ 이화여대 약학전공은 미래인재전형 서류형과 면접형 모두 선발한다.</label><br />
+      <label><input type="radio" name="q2" value="4" /> ④ 경희대 네오르네상스전형은 수능최저기준을 올해 신설하였다.</label><br />
+      <label><input type="radio" name="q2" value="5" /> ⑤ 덕성여대는 2025학년도에는 학생부 100% 전형으로 선발하였으나, 학생부 100%전형이 올해 폐지되어 고교추천전형으로 선발한다.</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q2', 1)">정답 확인</button>
+    <div class="answer" id="answer-q2">정답: ①</div>
+  </form>
 </div>
 
 <!-- 문제 3 -->
-<div class="question">
+<div class="question" id="q3">
   <div class="qnum">문제 3</div>
   <div class="passage">
 ㉠ 고려대 학교추천전형 수능최저기준은 탐구 2과목 반영에서 1과목 반영으로 변경되었다.  
@@ -61,88 +66,96 @@
 ㉥ 이화여대 의예과는 논술전형에서 수능최저기준을 3개합 5(탐1)를 적용한다.
   </div>
   <div class="problem">다음 &lt;보기&gt;는 2026학년도 수시모집에 대한 설명이다. 옳게 짝지어진 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>㉠, ㉡, ㉢</li>
-    <li>㉠, ㉢, ㉣</li>
-    <li>㉠, ㉢, ㉥</li>
-    <li>㉡, ㉣, ㉤</li>
-    <li>㉡, ㉤, ㉥</li>
-  </ol>
-  <div class="answer">정답: 2</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q3" value="1" /> ① ㉠, ㉡, ㉢</label><br />
+      <label><input type="radio" name="q3" value="2" /> ② ㉠, ㉢, ㉣</label><br />
+      <label><input type="radio" name="q3" value="3" /> ③ ㉠, ㉢, ㉥</label><br />
+      <label><input type="radio" name="q3" value="4" /> ④ ㉡, ㉣, ㉤</label><br />
+      <label><input type="radio" name="q3" value="5" /> ⑤ ㉡, ㉤, ㉥</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q3', 2)">정답 확인</button>
+    <div class="answer" id="answer-q3">정답: ②</div>
+  </form>
 </div>
 
 <!-- 문제 4 -->
-<div class="question">
+<div class="question" id="q4">
   <div class="qnum">문제 4</div>
   <div class="problem">다음 중 2026학년도 수의예과 학생부전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>충남대는 수능최저기준 적용 시 2025학년도에는 수영탐을 반영하였으나 올해에는 수능 4개영역 중 상위 3개영역을 반영하는 것으로 변경되었다.</li>
-    <li>전북대 큰사람전형은 2단계 서류 80+면접 20에서 서류 70+면접 30으로 변경되었다.</li>
-    <li>건국대 KU자기추천전형은 2025학년도와 동일한 전형방법으로 학생을 선발한다.</li>
-    <li>경상국립대 종합(일반, 지역인재)전형은 2025학년도에는 수능최저기준을 적용하지 않았으나 2026학년도에는 수능최저기준을 적용한다.</li>
-    <li>제주대는 지역인재 종합전형을 신설하였으며, 수능최저기준은 적용하지 않는다.</li>
-  </ol>
-  <div class="answer">정답: 2</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q4" value="1" /> ① 충남대는 수능최저기준 적용 시 2025학년도에는 수영탐을 반영하였으나 올해에는 수능 4개영역 중 상위 3개영역을 반영하는 것으로 변경되었다.</label><br />
+      <label><input type="radio" name="q4" value="2" /> ② 전북대 큰사람전형은 2단계 서류 80+면접 20에서 서류 70+면접 30으로 변경되었다.</label><br />
+      <label><input type="radio" name="q4" value="3" /> ③ 건국대 KU자기추천전형은 2025학년도와 동일한 전형방법으로 학생을 선발한다.</label><br />
+      <label><input type="radio" name="q4" value="4" /> ④ 경상국립대 종합(일반, 지역인재)전형은 2025학년도에는 수능최저기준을 적용하지 않았으나 2026학년도에는 수능최저기준을 적용한다.</label><br />
+      <label><input type="radio" name="q4" value="5" /> ⑤ 제주대는 지역인재 종합전형을 신설하였으며, 수능최저기준은 적용하지 않는다.</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q4', 2)">정답 확인</button>
+    <div class="answer" id="answer-q4">정답: ②</div>
+  </form>
 </div>
 
 <!-- 문제 5 -->
-<div class="question">
+<div class="question" id="q5">
   <div class="qnum">문제 5</div>
   <div class="passage">
 여 학생: 선생님! 저는 정시만 생각하고 있습니다.  
-고3 때 수리논술을 같이 준비했었는데 미적분이 너무 어려워서 모두 불합격했거든요.  
-담임T: 그렇군요. 미적분이 취약하군요. 수리논술에서 미적분이 출제 범위에서 제외되는 대학이 있어요.  
-여 학생: 정말요? 어느 대학인데요?  
-담임T: ㉮대학, ㉯대학, ㉰대학 등이 미적분, 기하, 확통이 출제 범위에서 제외됩니다.  
-3개 대학 모두 수능 이후에 논술시험이 있으니 학생이 말한대로 정시 위주로 공부하시고 가채점 결과에 따라 ㉮대학, ㉯대학, ㉰대학 응시 여부를 판단하면 좋을 것 같아요.
-  </div>
-  <div class="problem">다음 대화 내용을 읽고 2026학년도를 기준으로 맥락상 ‘㉮, ㉯, ㉰’에 해당하는 대학을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>경기대, 서울여대, 성신여대</li>
-    <li>경기대, 성신여대, 덕성여대(약학 제외)</li>
-    <li>가톨릭대(의예, 약학 제외), 동덕여대, 서울여대</li>
-    <li>동덕여대, 경기대, 서울여대</li>
-    <li>경기대, 덕성여대(약학 제외), 서울여대</li>
-  </ol>
-  <div class="answer">정답: 5</div>
-  <div class="explanation">해설: </div>
+고3 때 수리논술을 준비하려고 하는데, 어느 대학에 지원할 수 있을까요?  
+<학생A의 예상 수능 등급>  
+국어 3, 수학 1, 영어 2, 한국지리 1, 세계지리 1  
+</div>
+  <div class="problem">학생A는 수리 논술을 실시하는 논술전형에 지원하려고 한다. 아래 표에 주어진 학생의 성적을 참고하여 지원할 수 없는 대학과 모집단위가 옳게 짝지어진 것을 고르시오.</div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q5" value="1" /> ① 한양대 - 의예과</label><br />
+      <label><input type="radio" name="q5" value="2" /> ② 동국대 - 약학과</label><br />
+      <label><input type="radio" name="q5" value="3" /> ③ 경희대 - 한의예과</label><br />
+      <label><input type="radio" name="q5" value="4" /> ④ 인하대 - 의예과</label><br />
+      <label><input type="radio" name="q5" value="5" /> ⑤ 건국대 - 수의예과</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q5', 4)">정답 확인</button>
+    <div class="answer" id="answer-q5">정답: ④</div>
+  </form>
 </div>
 
 <!-- 문제 6 -->
-<div class="question">
+<div class="question" id="q6">
   <div class="qnum">문제 6</div>
   <div class="passage">ⓐ 경북대 ⓑ 부산대 ⓒ 덕성여대 ⓓ 고려대(세종) ⓔ 경희대 ⓕ 삼육대</div>
   <div class="problem">다음 중 2026학년도 약학과 학생부중심전형에서 수능최저기준 충족 요건이 과탐으로 지정되지 않은 대학끼리 묶인 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>ⓐ ,ⓒ ,ⓓ</li>
-    <li>ⓐ ,ⓑ ,ⓔ</li>
-    <li>ⓑ ,ⓓ ,ⓔ</li>
-    <li>ⓐ ,ⓑ ,ⓕ</li>
-    <li>ⓒ ,ⓔ ,ⓕ</li>
-  </ol>
-  <div class="answer">정답: 2</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q6" value="1" /> ① ⓐ, ⓒ, ⓓ</label><br />
+      <label><input type="radio" name="q6" value="2" /> ② ⓐ, ⓑ, ⓔ</label><br />
+      <label><input type="radio" name="q6" value="3" /> ③ ⓑ, ⓓ, ⓔ</label><br />
+      <label><input type="radio" name="q6" value="4" /> ④ ⓐ, ⓑ, ⓕ</label><br />
+      <label><input type="radio" name="q6" value="5" /> ⑤ ⓒ, ⓔ, ⓕ</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q6', 2)">정답 확인</button>
+    <div class="answer" id="answer-q6">정답: ②</div>
+  </form>
 </div>
 
 <!-- 문제 7 -->
-<div class="question">
+<div class="question" id="q7">
   <div class="qnum">문제 7</div>
   <div class="problem">다음 중 2026학년도 대학별 논술전형과 출제유형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>가천대, 국민대는 약술형 논술고사를 실시한다.</li>
-    <li>국민대와 강남대, 단국대(천안) 의예, 치의예 논술전형이 올해 신설되었다.</li>
-    <li>성신여대는 올해 교과를 반영하지 않고 논술 100%로 선발한다.</li>
-    <li>한양대와 이화여대 의예과는 올해 논술전형을 신설하였으며, 동덕여대는 논술전형으로 약학과 학생들을 선발한다.</li>
-    <li>삼육대는 올해 논술전형에서 교과성적을 반영하지 않는다.</li>
-  </ol>
-  <div class="answer">정답: 4</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q7" value="1" /> ① 가천대, 국민대는 약술형 논술고사를 실시한다.</label><br />
+      <label><input type="radio" name="q7" value="2" /> ② 국민대와 강남대, 단국대(천안) 의예, 치의예 논술전형이 올해 신설되었다.</label><br />
+      <label><input type="radio" name="q7" value="3" /> ③ 성신여대는 올해 교과를 반영하지 않고 논술 100%로 선발한다.</label><br />
+      <label><input type="radio" name="q7" value="4" /> ④ 한양대와 이화여대 의예과는 올해 논술전형을 신설하였으며, 동덕여대는 논술전형으로 약학과 학생들을 선발한다.</label><br />
+      <label><input type="radio" name="q7" value="5" /> ⑤ 삼육대는 올해 논술전형에서 교과성적을 반영하지 않는다.</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q7', 4)">정답 확인</button>
+    <div class="answer" id="answer-q7">정답: ④</div>
+  </form>
 </div>
 
 <!-- 문제 8 -->
-<div class="question">
+<div class="question" id="q8">
   <div class="qnum">문제 8</div>
   <div class="passage">
 ㉠ 경희대 지역균형  
@@ -153,46 +166,77 @@
 ㉥ 한양대 종합(면접형)
   </div>
   <div class="problem">다음 &lt;보기&gt;에 있는 대학 및 전형 중 2026학년도 기준으로 졸업연도 제한을 두는 것으로 옳게 짝지어진 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>㉠, ㉢, ㉤</li>
-    <li>㉡, ㉣, ㉤</li>
-    <li>㉢, ㉤, ㉥</li>
-    <li>㉡, ㉣, ㉥</li>
-    <li>㉣, ㉤, ㉥</li>
-  </ol>
-  <div class="answer">정답: 1</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q8" value="1" /> ① ㉠, ㉢, ㉤</label><br />
+      <label><input type="radio" name="q8" value="2" /> ② ㉡, ㉣, ㉤</label><br />
+      <label><input type="radio" name="q8" value="3" /> ③ ㉢, ㉤, ㉥</label><br />
+      <label><input type="radio" name="q8" value="4" /> ④ ㉡, ㉣, ㉥</label><br />
+      <label><input type="radio" name="q8" value="5" /> ⑤ ㉣, ㉤, ㉥</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q8', 1)">정답 확인</button>
+    <div class="answer" id="answer-q8">정답: ①</div>
+  </form>
 </div>
 
 <!-- 문제 9 -->
-<div class="question">
+<div class="question" id="q9">
   <div class="qnum">문제 9</div>
   <div class="problem">다음 중 2026학년도 의예과에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>성균관대는 탐구형으로 선발하지 않으며, 성균인재전형은 수능 최저학력기준이 없다.</li>
-    <li>건양대는 일반(면접) 전형을 폐지하였다.</li>
-    <li>원광대 교과(지역인재)전형의 수능최저기준은 수학을 포함하여 ‘3개 등급 합 5’로, 과탐은 1과목을 적용한다.</li>
-    <li>을지대 교과(지역의료인재)전형 수능최저기준은 3개 등급 합 5이며, 1개 과목 이상 생명과학Ⅰ 또는 Ⅱ를 반드시 응시해야 한다.</li>
-    <li>순천향대 교과전형 수능최저기준은 작년 대비 과탐 2과목 평균 반영으로 변경되었다.</li>
-  </ol>
-  <div class="answer">정답: 2</div>
-  <div class="explanation">해설: </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q9" value="1" /> ① 성균관대는 탐구형으로 선발하지 않으며, 성균인재전형은 수능 최저학력기준이 없다.</label><br />
+      <label><input type="radio" name="q9" value="2" /> ② 건양대는 일반(면접) 전형을 폐지하였다.</label><br />
+      <label><input type="radio" name="q9" value="3" /> ③ 원광대 교과(지역인재)전형의 수능최저기준은 수학을 포함하여 ‘3개 등급 합 5’로, 과탐은 1과목을 적용한다.</label><br />
+      <label><input type="radio" name="q9" value="4" /> ④ 을지대 교과(지역의료인재)전형 수능최저기준은 3개 등급 합 5이며, 1개 과목 이상 생명과학 Ⅰ 또는 Ⅱ를 필수 포함한다.</label><br />
+      <label><input type="radio" name="q9" value="5" /> ⑤ 아주대는 올해 고교추천전형으로 선발하지 않는다.</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q9', 5)">정답 확인</button>
+    <div class="answer" id="answer-q9">정답: ⑤</div>
+  </form>
 </div>
 
 <!-- 문제 10 -->
-<div class="question">
+<div class="question" id="q10">
   <div class="qnum">문제 10</div>
-  <div class="problem">다음 중 2026학년도 약학과 수시모집에서 수능최저기준에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <ol class="choices" type="①">
-    <li>덕성여대는 2026학년도에 수능최저기준으로 국어, 수학, 영어, 탐구 중 수학 포함 3개 영역 합 6을 적용한다.</li>
-    <li>경북대 약학과는 학생부중심전형에서 수능최저기준이 탐구로 지정되어 있다.</li>
-    <li>삼육대는 학생부종합전형에서 수능최저기준을 과탐으로 지정하지 않았다.</li>
-    <li>고려대(세종)는 학생부중심전형에서 수능최저기준을 탐구 반영으로 지정하였다.</li>
-    <li>부산대는 학생부중심전형에서 수능최저기준이 과탐 미지정이다.</li>
-  </ol>
-  <div class="answer">정답: 4</div>
-  <div class="explanation">해설: </div>
+  <div class="passage">
+&lt;학생A의 예상 수능 등급&gt;<br/>
+과목 국어(화작) 수학(미적) 영어 한국지리 세계지리<br/>
+등급 3 1 2 1 1
+  </div>
+  <div class="problem">학생A는 수리 논술을 실시하는 논술전형에 지원하려고 한다. 아래 표에 주어진 학생의 성적을 참고하여 지원할 수 없는 대학과 모집단위가 옳게 짝지어진 것을 고르시오.</div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q10" value="1" /> ① 한양대 - 의예과</label><br />
+      <label><input type="radio" name="q10" value="2" /> ② 동국대 - 약학과</label><br />
+      <label><input type="radio" name="q10" value="3" /> ③ 경희대 - 한의예과</label><br />
+      <label><input type="radio" name="q10" value="4" /> ④ 인하대 - 의예과</label><br />
+      <label><input type="radio" name="q10" value="5" /> ⑤ 건국대 - 수의예과</label><br />
+    </div>
+    <button type="button" class="check-answer" onclick="checkAnswer('q10', 4)">정답 확인</button>
+    <div class="answer" id="answer-q10">정답: ④</div>
+  </form>
 </div>
+
+<script>
+  function checkAnswer(qid, correct) {
+    const form = document.querySelector(`#${qid} form`);
+    const selected = form.querySelector('input[type=radio]:checked');
+    const answerDiv = document.getElementById('answer-' + qid);
+    if (!selected) {
+      alert('답안을 선택해주세요!');
+      return;
+    }
+    if (parseInt(selected.value) === correct) {
+      answerDiv.style.color = 'green';
+      answerDiv.textContent = '정답입니다! 정답: ' + correct;
+    } else {
+      answerDiv.style.color = 'red';
+      answerDiv.textContent = '틀렸습니다. 정답은 ' + correct + '번입니다.';
+    }
+    answerDiv.style.display = 'block';
+  }
+</script>
 
 </body>
 </html>
