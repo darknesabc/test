@@ -1928,69 +1928,17 @@ function updateChoiceNumbers() {
   </div>
 
   <form>
-  <div class="choices">
-    <label>
-      <input type="radio" name="q72" value="1" />
-      <span class="num">①</span> <span class="text">1개</span>
-    </label>
-    <label>
-      <input type="radio" name="q72" value="2" />
-      <span class="num">②</span> <span class="text">2개</span>
-    </label>
-    <label>
-      <input type="radio" name="q72" value="3" />
-      <span class="num">③</span> <span class="text">3개</span>
-    </label>
-    <label>
-      <input type="radio" name="q72" value="4" />
-      <span class="num">④</span> <span class="text">4개</span>
-    </label>
-    <label>
-      <input type="radio" name="q72" value="5" />
-      <span class="num">⑤</span> <span class="text">5개</span>
-    </label>
-  </div>
-</form>
-
-    <button type="button" class="check-answer" onclick="showAnswer('q72')" style="margin-top:10px;">정답 확인</button>
+    <div class="choices" style="margin-bottom:15px;">
+      <label><input type="radio" name="q72" value="1" /> ① 1개</label>
+      <label><input type="radio" name="q72" value="2" /> ② 2개</label>
+      <label><input type="radio" name="q72" value="3" /> ③ 3개</label>
+      <label><input type="radio" name="q72" value="4" /> ④ 4개</label>
+      <label><input type="radio" name="q72" value="5" /> ⑤ 5개</label>
+    </div>
+    <button type="button" class="check-answer" onclick="showAnswer('q72')">정답 확인</button>
     <div class="answer" id="answer-q72" style="margin-top:10px; display:none;">정답: ③ 3개</div>
   </form>
 </div>
-
-<style>
-  .choices label {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-    margin-bottom: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    user-select: none;
-  }
-
-  .choices label input[type="radio"] {
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-
-  .num {
-    font-weight: bold;
-    width: 1.3em;
-    text-align: center;
-    user-select: none;
-  }
-</style>
-
-<script>
-  function showAnswer(qid) {
-    const ans = document.getElementById('answer-' + qid);
-    if (ans.style.display === 'none' || ans.style.display === '') {
-      ans.style.display = 'block';
-    } else {
-      ans.style.display = 'none';
-    }
-  }
-</script>
 <!-- 문제 73 -->
 <div class="question" id="q73" data-correct-text="경북대, 부산대">
   <div class="qnum" style="font-weight:bold; margin-bottom:10px;">[문제 73]</div>
