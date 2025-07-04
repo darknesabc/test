@@ -610,6 +610,7 @@
 </div> <!-- quiz-wrapper 끝 -->
 
   <button id="scrollTopBtn">↑</button>
+  
 <script>
   // 최상단으로 가는 버튼 표시 및 클릭 이벤트
   window.onscroll = function() {
@@ -647,12 +648,15 @@
 
   // 홈 버튼 클릭 시 새로고침 및 첫 페이지로 이동
   document.getElementById('homeBtn').addEventListener('click', function () {
+    // 새로고침 후 최상단으로 스크롤
     location.reload();  // 페이지 새로 고침
   });
 
   // 페이지 로드 완료 후 첫 페이지로 스크롤
   window.onload = function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });  // 페이지 로드 후 맨 위로 이동
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });  // 페이지 로드 후 맨 위로 이동
+    }, 100);  // 약간의 시간 대기 후 실행
   };
 
   // 문제 섞기 함수
@@ -674,17 +678,16 @@
   function shuffleChoices() {
     document.querySelectorAll('.question').forEach(q => {
       const choiceDiv = q.querySelector('.choices');
-      if (!choiceDiv) return;
       const labels = Array.from(choiceDiv.querySelectorAll('label'));
       shuffleArray(labels);
-      choiceDiv.innerHTML = ''; 
-      labels.forEach(l => choiceDiv.appendChild(l));  
+      choiceDiv.innerHTML = '';
+      labels.forEach(l => choiceDiv.appendChild(l));
     });
   }
 
-  // 문제 섞기 및 보기 섞기 버튼 클릭 이벤트
-  document.getElementById('shuffleQuestionsBtn').addEventListener('click', shuffleQuestions);
-  document.getElementById('shuffleChoicesBtn').addEventListener('click', shuffleChoices);
+  // 버튼 클릭 이벤트
+  document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
+  document.getElementById('shuffleChoicesBtn').onclick = shuffleChoices;
 </script>
 
 </body>
