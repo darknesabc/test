@@ -541,7 +541,6 @@
     return Array.from(quizWrapper.querySelectorAll('.question'));
   }
 
-  // 정답 확인 함수
   function checkAnswer(questionId, correctNum) {
     const question = document.getElementById(questionId);
     const checked = question.querySelector(`input[name=${questionId}]:checked`);
@@ -562,7 +561,6 @@
     answerDiv.style.display = 'block';
   }
 
-  // ✅ 보기 번호 업데이트 (①②③④⑤) – 중복 번호 제거 버전
   function updateChoiceNumbers() {
     const questionsArr = questions();
     questionsArr.forEach(q => {
@@ -630,12 +628,18 @@
     const qs = questions();
     shuffleArray(qs);
     quizWrapper.innerHTML = '';
-    qs.forEach(q => quizWrapper.appendChild(q));
+    qs.forEach(q => {
+      q.classList.remove('active'); // 페이지 모드 초기화
+      quizWrapper.appendChild(q);
+    });
     updateQuestionNumbers();
     updateChoiceNumbers();
     currentIndex = 0;
+
     if (quizWrapper.classList.contains('page-mode')) {
       showQuestion(currentIndex);
+    } else {
+      qs.forEach(q => q.classList.add('active'));
     }
   }
 
@@ -650,7 +654,20 @@
       choicesDiv.innerHTML = '';
       labels.forEach(label => choicesDiv.appendChild(label));
     });
+
     updateChoiceNumbers();
+
+    if (quizWrapper.classList.contains('page-mode')) {
+      showQuestion(currentIndex);
+    }
+  }
+
+  function showQuestion(idx) {
+    const qs = questions();
+    qs.forEach((q, i) => {
+      if (i === idx) q.classList.add('active');
+      else q.classList.remove('active');
+    });
   }
 
   scrollBtn.onclick = () => {
@@ -668,14 +685,6 @@
     currentIndex = 0;
     showQuestion(currentIndex);
   };
-
-  function showQuestion(idx) {
-    const qs = questions();
-    qs.forEach((q, i) => {
-      if (i === idx) q.classList.add('active');
-      else q.classList.remove('active');
-    });
-  }
 
   prevBtn.onclick = () => {
     if (currentIndex > 0) {
