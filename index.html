@@ -73,9 +73,17 @@
     display: none;
   }
 
+  /* 이전/다음 문제 버튼 위치 고정 */
   #page-nav {
-    margin: 20px 0;
-    text-align: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 1000;
   }
 
   #page-nav button {
@@ -102,6 +110,7 @@
     }
   }
 </style>
+
 </head>
 <body>
 
