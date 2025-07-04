@@ -280,27 +280,50 @@
 <!-- 문제 8 -->
 <div class="question" id="q8" data-correct-text="㉠경희대, ㉢서울시립대, ㉤홍익대">
   <div class="qnum">문제 8</div>
+
   <div class="passage">
     ㉠ 경희대 지역균형<br>
     ㉡ 건국대 KU지역균형<br>
     ㉢ 서울시립대 지역균형선발<br>
     ㉣ 동국대 DO DREAM<br>
     ㉤ 홍익대 학교장추천<br>
-    ㉥ 한양대 종합(면접형)</div><br />
+    ㉥ 한양대 종합(면접형)
   </div>
-  <div class="problem">다음 &lt;보기&gt;에 있는 대학 및 전형 중 2026학년도 기준으로 졸업연도 제한을 두는 것으로 옳게 짝지어진 것을 고르시오.</div><br>
+
+  <br />
+
+  <div class="problem">
+    다음 &lt;보기&gt;에 있는 대학 및 전형 중 2026학년도 기준으로 졸업연도 제한을 두는 것으로 옳게 짝지어진 것을 고르시오.
+  </div>
+
+  <br />
+
   <form>
     <div class="choices">
-      <label><input type="radio" name="q8" value="A" /> ① ㉠, ㉢, ㉤</label>
-      <label><input type="radio" name="q8" value="B" /> ② ㉡, ㉣, ㉤</label>
-      <label><input type="radio" name="q8" value="C" /> ③ ㉢, ㉤, ㉥</label>
-      <label><input type="radio" name="q8" value="D" /> ④ ㉡, ㉣, ㉥</label>
+      <label><input type="radio" name="q8" value="A" /> ① ㉠, ㉢, ㉤</label><br>
+      <label><input type="radio" name="q8" value="B" /> ② ㉡, ㉣, ㉤</label><br>
+      <label><input type="radio" name="q8" value="C" /> ③ ㉢, ㉤, ㉥</label><br>
+      <label><input type="radio" name="q8" value="D" /> ④ ㉡, ㉣, ㉥</label><br>
       <label><input type="radio" name="q8" value="E" /> ⑤ ㉣, ㉤, ㉥</label>
     </div>
-    <button type="button" class="check-answer">정답 확인</button>
-    <div class="answer" id="answer-q8">정답: ①</div>
+
+    <button type="button" class="check-answer" onclick="showAnswer('q8')">정답 확인</button>
+    <div class="answer" id="answer-q8"></div>
   </form>
 </div>
+
+<script>
+  function showAnswer(qid) {
+    const qEl = document.getElementById(qid);
+    const answerEl = document.getElementById("answer-" + qid);
+    const correctText = qEl.getAttribute("data-correct-text");
+
+    // 줄바꿈 문자(\n)를 <br>로 바꿔서 출력
+    const formatted = correctText.replace(/\n/g, "<br>");
+    answerEl.innerHTML = "<strong>정답 해설:</strong><br>" + formatted;
+  }
+</script>
+
 
 <!-- 문제 9 -->
 <div class="question" id="q9" data-correct-text="아주대는 올해 고교추천전형으로 선발하지 않는다.">
