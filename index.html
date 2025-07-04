@@ -527,6 +527,8 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
+</div>
+
 <div id="page-nav" style="display:none;">
   <button id="prevBtn" type="button">이전 문제</button>
   <button id="nextBtn" type="button">다음 문제</button>
@@ -691,7 +693,7 @@ nextBtn.onclick = () => {
 window.onload = () => {
   updateQuestionNumbers();
   updateChoiceNumbers();
-  questions().forEach(q => q.classList.add('active')); // 스크롤형 기본
+  questions().forEach(q => q.classList.add('active')); // 기본 스크롤형 모드로 전체 문제 표시
 };
 
 document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
