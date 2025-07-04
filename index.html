@@ -24,12 +24,11 @@
       border-bottom: 1px solid #ddd;  /* 상단에 경계선 추가 */
     }
 
-    /* 홈 버튼 왼쪽 */
+    /* 홈 버튼 왼쪽 배치 */
     .shuffle-controls {
-      margin-left: 20px;
       display: flex;
-      justify-content: left;
-      width: 100%;
+      justify-content: left; /* 왼쪽 정렬 */
+      gap: 20px;
     }
 
     /* 중앙 배치 */
@@ -144,17 +143,18 @@
 </head>
 <body>
 
+<!-- 상단 버튼 영역 -->
 <div class="toggle-buttons">
   <button id="scrollBtn" type="button">스크롤형 보기</button>
   <button id="pageBtn" type="button">페이지형 보기</button>
 </div>
 
-<!-- 홈 버튼을 왼쪽에 배치 -->
+<!-- 홈 버튼 왼쪽에 배치, 문제 섞기 및 보기 섞기는 가운데 -->
 <div class="shuffle-controls">
   <button id="homeBtn" type="button">홈</button> 
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
-</div
+</div>
 
 
   <div id="quiz-wrapper" class="scroll-mode">
@@ -641,6 +641,9 @@
     const quizWrapper = document.getElementById('quiz-wrapper');
     quizWrapper.classList.remove('page-mode');
     quizWrapper.classList.add('scroll-mode');
+    // 페이지형 문제들 모두 보이게
+    document.querySelectorAll('.question').forEach(q => q.classList.add('active'));
+    document.getElementById('page-nav').style.display = 'none';  // 페이지 네비게이션 숨기기
   });
 
   document.getElementById('pageBtn').addEventListener('click', () => {
@@ -651,22 +654,14 @@
     const allQuestions = document.querySelectorAll('.question');
     allQuestions.forEach(q => q.classList.remove('active'));
     if (allQuestions.length > 0) allQuestions[0].classList.add('active');
+    document.getElementById('page-nav').style.display = 'block';  // 페이지 네비게이션 표시
   });
 
-  // 홈 버튼 클릭 시 새로 고침
+  // 홈 버튼 클릭 시 새로고침 및 첫 페이지로 이동
   document.getElementById('homeBtn').addEventListener('click', function () {
     location.reload();  // 페이지 새로 고침
+    window.scrollTo({ top: 0, behavior: 'smooth' });  // 첫 페이지로 스크롤
   });
-
-  // 문제 섞기
-  document.getElementById('shuffleQuestionsBtn').onclick = function() {
-    shuffleQuestions();
-  };
-
-  // 보기 섞기
-  document.getElementById('shuffleChoicesBtn').onclick = function() {
-    shuffleChoices();
-  };
 
   // 문제 섞기 함수
   function shuffleArray(arr) {
@@ -680,8 +675,8 @@
     const questions = Array.from(document.querySelectorAll('.question'));
     shuffleArray(questions);
     const quizWrapper = document.getElementById('quiz-wrapper');
-    quizWrapper.innerHTML = '';
-    questions.forEach(q => quizWrapper.appendChild(q));
+    quizWrapper.innerHTML = '';  // 기존 문제들 제거
+    questions.forEach(q => quizWrapper.appendChild(q));  // 섞인 문제 다시 삽입
   }
 
   function shuffleChoices() {
@@ -690,10 +685,14 @@
       if (!choiceDiv) return;
       const labels = Array.from(choiceDiv.querySelectorAll('label'));
       shuffleArray(labels);
-      choiceDiv.innerHTML = '';
-      labels.forEach(l => choiceDiv.appendChild(l));
+      choiceDiv.innerHTML = '';  // 기존 선택지 제거
+      labels.forEach(l => choiceDiv.appendChild(l));  // 섞인 선택지 다시 삽입
     });
   }
+
+  // 문제 섞기 및 보기 섞기 버튼 클릭 이벤트
+  document.getElementById('shuffleQuestionsBtn').addEventListener('click', shuffleQuestions);
+  document.getElementById('shuffleChoicesBtn').addEventListener('click', shuffleChoices);
 </script>
 
 </body>
