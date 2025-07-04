@@ -12,26 +12,23 @@
       padding: 20px;
     }
 
-    /* 홈, 문제 섞기, 보기 섞기 버튼 고정 */
     .toggle-buttons, .shuffle-controls {
       margin-bottom: 20px;
       text-align: center;
       background-color: white;
-      z-index: 10;  /* 다른 콘텐츠보다 위에 배치 */
-      position: sticky;  /* 스크롤 시 상단에 고정 */
-      top: 0;  /* 화면 상단에 위치 */
+      z-index: 10;
+      position: sticky;
+      top: 0;
       padding: 10px 0;
-      border-bottom: 1px solid #ddd;  /* 상단에 경계선 추가 */
+      border-bottom: 1px solid #ddd;
     }
 
-    /* 홈 버튼 왼쪽 배치 */
     .shuffle-controls {
       display: flex;
-      justify-content: left; /* 왼쪽 정렬 */
+      justify-content: left; 
       gap: 20px;
     }
 
-    /* 중앙 배치 */
     .toggle-buttons button, .shuffle-controls button {
       margin: 0 10px;
       padding: 10px 18px;
@@ -39,7 +36,6 @@
       cursor: pointer;
     }
 
-    /* 문제 및 보기 섞기 버튼 */
     #quiz-wrapper.scroll-mode .question {
       display: block;
     }
@@ -103,7 +99,6 @@
       cursor: pointer;
     }
 
-    /* 최상단으로 가는 버튼 스타일 */
     #scrollTopBtn {
       position: fixed;
       bottom: 20px;
@@ -115,8 +110,7 @@
       border-radius: 50%;
       font-size: 18px;
       cursor: pointer;
-      display: none; /* 기본적으로 숨기기 */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: none;
     }
 
     #scrollTopBtn:hover {
@@ -143,13 +137,11 @@
 </head>
 <body>
 
-<!-- 상단 버튼 영역 -->
 <div class="toggle-buttons">
   <button id="scrollBtn" type="button">스크롤형 보기</button>
   <button id="pageBtn" type="button">페이지형 보기</button>
 </div>
 
-<!-- 홈 버튼 왼쪽에 배치, 문제 섞기 및 보기 섞기는 가운데 -->
 <div class="shuffle-controls">
   <button id="homeBtn" type="button">홈</button> 
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
@@ -611,23 +603,13 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
-<!-- 최상단으로 가는 버튼 -->
-<button id="scrollTopBtn">↑</button>
-
-<!-- 페이지 네비게이션 (이전 / 다음 문제) -->
-<div id="page-nav" style="display:none;">
-  <button id="prevBtn" type="button">이전 문제</button>
-  <button id="nextBtn" type="button">다음 문제</button>
-</div>
-
-<script>
-  // 최상단으로 가는 버튼 표시 및 클릭 이벤트
+ // 최상단으로 가는 버튼 표시 및 클릭 이벤트
   window.onscroll = function() {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      scrollTopBtn.style.display = "block";  // 버튼 표시
+      scrollTopBtn.style.display = "block";
     } else {
-      scrollTopBtn.style.display = "none";  // 버튼 숨김
+      scrollTopBtn.style.display = "none";
     }
   };
 
@@ -641,32 +623,27 @@
     const quizWrapper = document.getElementById('quiz-wrapper');
     quizWrapper.classList.remove('page-mode');
     quizWrapper.classList.add('scroll-mode');
-    // 페이지형 문제들 모두 보이게
     document.querySelectorAll('.question').forEach(q => q.classList.add('active'));
-    document.getElementById('page-nav').style.display = 'none';  // 페이지 네비게이션 숨기기
+    document.getElementById('page-nav').style.display = 'none';  
   });
 
   document.getElementById('pageBtn').addEventListener('click', () => {
     const quizWrapper = document.getElementById('quiz-wrapper');
     quizWrapper.classList.remove('scroll-mode');
     quizWrapper.classList.add('page-mode');
-    // 첫 문제만 보이게
     const allQuestions = document.querySelectorAll('.question');
     allQuestions.forEach(q => q.classList.remove('active'));
     if (allQuestions.length > 0) allQuestions[0].classList.add('active');
-    document.getElementById('page-nav').style.display = 'block';  // 페이지 네비게이션 표시
+    document.getElementById('page-nav').style.display = 'block';  
   });
 
   // 홈 버튼 클릭 시 새로고침 및 첫 페이지로 이동
-document.getElementById('homeBtn').addEventListener('click', function () {
-  // 새로 고침 효과
-  location.reload();
-
-  // 새로고침 후 맨 위로 스크롤
-  setTimeout(function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 100); // 약간의 지연 시간을 둡니다.
-});
+  document.getElementById('homeBtn').addEventListener('click', function () {
+    location.reload();  // 페이지 새로 고침
+    setTimeout(function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);  // 새로고침 후 스크롤 맨 위로 이동
+  });
 
   // 문제 섞기 함수
   function shuffleArray(arr) {
@@ -680,8 +657,8 @@ document.getElementById('homeBtn').addEventListener('click', function () {
     const questions = Array.from(document.querySelectorAll('.question'));
     shuffleArray(questions);
     const quizWrapper = document.getElementById('quiz-wrapper');
-    quizWrapper.innerHTML = '';  // 기존 문제들 제거
-    questions.forEach(q => quizWrapper.appendChild(q));  // 섞인 문제 다시 삽입
+    quizWrapper.innerHTML = '';  
+    questions.forEach(q => quizWrapper.appendChild(q));
   }
 
   function shuffleChoices() {
@@ -690,8 +667,8 @@ document.getElementById('homeBtn').addEventListener('click', function () {
       if (!choiceDiv) return;
       const labels = Array.from(choiceDiv.querySelectorAll('label'));
       shuffleArray(labels);
-      choiceDiv.innerHTML = '';  // 기존 선택지 제거
-      labels.forEach(l => choiceDiv.appendChild(l));  // 섞인 선택지 다시 삽입
+      choiceDiv.innerHTML = ''; 
+      labels.forEach(l => choiceDiv.appendChild(l));  
     });
   }
 
