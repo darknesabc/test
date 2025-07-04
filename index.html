@@ -603,13 +603,15 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
- // 최상단으로 가는 버튼 표시 및 클릭 이벤트
+  <button id="scrollTopBtn">↑</button>
+ <script>
+  // 최상단으로 가는 버튼 표시 및 클릭 이벤트
   window.onscroll = function() {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      scrollTopBtn.style.display = "block";
+      scrollTopBtn.style.display = "block";  // 버튼 표시
     } else {
-      scrollTopBtn.style.display = "none";
+      scrollTopBtn.style.display = "none";  // 버튼 숨김
     }
   };
 
@@ -641,8 +643,8 @@
   document.getElementById('homeBtn').addEventListener('click', function () {
     location.reload();  // 페이지 새로 고침
     setTimeout(function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);  // 새로고침 후 스크롤 맨 위로 이동
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // 새로고침 후 맨 위로 이동
+    }, 100);  // 새로고침 후 잠깐 대기
   });
 
   // 문제 섞기 함수
