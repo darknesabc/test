@@ -1316,7 +1316,7 @@ function questions() {
 function updateChoiceNumbers() {
   questions().forEach(q => {
     const labels = q.querySelectorAll('.choices label');
-    labels.forEach((label, i) => {
+    labels.forEach((label, index) => {
       const input = label.querySelector('input');
       if (!input) return;
 
@@ -1325,8 +1325,9 @@ function updateChoiceNumbers() {
         next = next.nextSibling;
       }
 
-      const numChar = String.fromCharCode(9312 + i); // ①~⑤
-      const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : '';
+      // 문제 내에서 ①~⑤ 번호를 매긴다.
+      const numChar = String.fromCharCode(9312 + index);  // ①~⑤
+      const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : ''; // 기존 번호 제거
       if (next) {
         next.textContent = ' ' + numChar + ' ' + rest.trim();
       } else {
