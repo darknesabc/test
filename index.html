@@ -1325,7 +1325,7 @@ function updateChoiceNumbers() {
         next = next.nextSibling;
       }
 
-      const numChar = String.fromCharCode(9312 + i);
+      const numChar = String.fromCharCode(9312 + i); // ①~⑤
       const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : '';
       if (next) {
         next.textContent = ' ' + numChar + ' ' + rest.trim();
