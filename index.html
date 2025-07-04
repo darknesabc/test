@@ -13,7 +13,31 @@
     }
 
     .toggle-buttons, .shuffle-controls {
-      margin-bottom: 20px;
+      margin-bottom: 20px;// 보기 번호 다시 붙이기 (①~⑤)
+function updateChoiceNumbers() {
+  questions().forEach(q => {
+    const labels = q.querySelectorAll('.choices label');
+    labels.forEach((label, index) => {
+      const input = label.querySelector('input');
+      if (!input) return;
+
+      let next = input.nextSibling;
+      while (next && (next.nodeType !== Node.TEXT_NODE || next.textContent.trim() === '')) {
+        next = next.nextSibling;
+      }
+
+      // 보기 번호를 ①~⑤로 초기화
+      const numChar = String.fromCharCode(9312 + index); // ①~⑤
+      const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : ''; // 기존 번호 제거
+      if (next) {
+        next.textContent = ' ' + numChar + ' ' + rest.trim();
+      } else {
+        label.appendChild(document.createTextNode(' ' + numChar + ' '));
+      }
+    });
+  });
+}
+
       text-align: center;
       background-color: white;
       z-index: 10;
@@ -1325,8 +1349,8 @@ function updateChoiceNumbers() {
         next = next.nextSibling;
       }
 
-      // 문제 내에서 ①~⑤ 번호를 매긴다.
-      const numChar = String.fromCharCode(9312 + index);  // ①~⑤
+      // 보기 번호를 ①~⑤로 초기화
+      const numChar = String.fromCharCode(9312 + index); // ①~⑤
       const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : ''; // 기존 번호 제거
       if (next) {
         next.textContent = ' ' + numChar + ' ' + rest.trim();
