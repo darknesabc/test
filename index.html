@@ -1890,12 +1890,10 @@
 </div>
   <!-- 문제 72 -->
 <div class="question" id="q72" data-correct-text="3개">
-  <div class="qnum" style="font-weight:bold; margin-bottom:10px;">[문제 72]</div>
+  <div class="qnum">[문제 72]</div>
 
-  <div style="font-weight:bold; margin-bottom:15px;">
-    다음은 2026학년도 교육대학 수시에 대한 내용이다. <strong>다음 중 옳지 않은 것은 총 몇 개인지</strong> 고르시오.
-  </div>
   <div class="problem" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9; line-height:1.6;">
+    다음은 2026학년도 교육대학 수시에 대한 내용이다. <strong>다음 중 옳지 않은 것은 총 몇 개인지</strong> 고르시오.<br />
     ㉠ 경인교대 교직적성 전형은 서류 100으로만 선발하며, 별도의 면접이 없다.<br />
     ㉡ 전주교대 교직적성우수전형과 지역인재 전형 모두 면접 반영이 강화되었다.<br />
     ㉢ 춘천교대 교직적성인재전형과 강원교육인재전형은 수능최저학력기준이 모두 변경되었다.<br />
@@ -1916,10 +1914,8 @@
   </form>
 </div>
 
-<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
-
 <script>
-  // 보기 번호를 ①~⑤로 다시 붙이는 함수
+  // 보기 번호 ①~⑤ 다시 붙이기 (숫자+단위 붙어있어도 정상 작동)
   function updateChoiceNumbers() {
     document.querySelectorAll('.question').forEach(q => {
       const labels = q.querySelectorAll('.choices label');
@@ -1932,10 +1928,15 @@
           next = next.nextSibling;
         }
 
-        const numChar = String.fromCharCode(9312 + index); // ①(9312) ~ ⑤
-        const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : '';
+        const numChar = String.fromCharCode(9312 + index); // ①~⑤ 번호 문자
+
+        let rest = next ? next.textContent : '';
+
+        // 기존 번호, 숫자, 공백, 점(.) 제거 + 숫자+단위(예: 1개) 제거
+        rest = rest.replace(/^[①-⑤1-5.\s]+|^\d+개/, '').trim();
+
         if (next) {
-          next.textContent = ' ' + numChar + ' ' + rest.trim();
+          next.textContent = ' ' + numChar + ' ' + rest;
         } else {
           label.appendChild(document.createTextNode(' ' + numChar + ' '));
         }
@@ -1950,22 +1951,7 @@
     answerDiv.style.display = 'block';
   }
 
-  // 스크롤 버튼 보이기/숨기기
-  window.addEventListener('scroll', () => {
-    const btn = document.getElementById('scrollTopBtn');
-    if (window.scrollY > 200) {
-      btn.style.display = 'block';
-    } else {
-      btn.style.display = 'none';
-    }
-  });
-
-  // 맨 위로 스크롤
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // 페이지 로드 후 보기 번호 다시 붙이기 실행
+  // 페이지 로드 시 보기 번호 자동 업데이트
   window.addEventListener('DOMContentLoaded', () => {
     updateChoiceNumbers();
   });
