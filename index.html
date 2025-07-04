@@ -699,6 +699,11 @@ document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
 // 보기 섞기 버튼
 document.getElementById('shuffleChoicesBtn').onclick = shuffleChoices;
 
+// 홈 버튼 - 새로 고침하여 초기 상태로 돌아가기
+document.getElementById('homeBtn').onclick = function() {
+  window.location.reload(); // 페이지 새로 고침
+};
+
 // 답안 체크 및 보기
 document.querySelectorAll('.check-answer').forEach(button => {
   button.addEventListener('click', function() {
@@ -748,8 +753,8 @@ window.addEventListener('scroll', function() {
     scrollTopBtn.style.display = 'none';
   }
 });
-
 </script>
+
 </body>
 </html>
 
