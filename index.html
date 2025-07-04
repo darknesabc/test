@@ -288,22 +288,21 @@ function updateChoiceNumbers() {
 <div class="question" id="q6" data-correct-text="ⓐ, ⓑ, ⓔ">
   <div class="qnum">문제 6</div>
   <div class="problem">
-    다음은 2026학년도 약학과 학생부중심전형 관련 대학 목록이다.  
-    <br />ⓐ 경북대 ⓑ 부산대 ⓒ 덕성여대 ⓓ 고려대(세종) ⓔ 경희대 ⓕ 삼육대
+    다음 중 2026학년도 약학과 학생부중심전형에서 수능최저기준 충족 과탐 미지정 대학끼리 묶인 것을 고르시오.
   </div>
-  <div class="problem">
-    다음 중 2026학년도 약학과 학생부중심전형에서 수능최저기준 충족 요건에 과탐이 지정되지 않은 대학끼리 묶인 것을 고르시오.
+  <div class="problem" style="margin-top:10px;">
+    ⓐ 경북대 ⓑ 부산대 ⓒ 덕성여대 ⓓ 고려대(세종) ⓔ 경희대 ⓕ 삼육대
   </div>
   <form>
-    <div class="choices">
+    <div class="choices" style="margin-top:10px;">
       <label><input type="radio" name="q6" value="1" /> ① ⓐ, ⓒ, ⓓ</label>
       <label><input type="radio" name="q6" value="2" /> ② ⓐ, ⓑ, ⓔ</label>
       <label><input type="radio" name="q6" value="3" /> ③ ⓑ, ⓓ, ⓔ</label>
       <label><input type="radio" name="q6" value="4" /> ④ ⓐ, ⓑ, ⓕ</label>
       <label><input type="radio" name="q6" value="5" /> ⑤ ⓒ, ⓔ, ⓕ</label>
     </div>
-    <button type="button" class="check-answer">정답 확인</button>
-    <div class="answer" id="answer-q6">정답: ②</div>
+    <button type="button" class="check-answer" style="margin-top:10px;">정답 확인</button>
+    <div class="answer" id="answer-q6" style="margin-top:10px;">정답: ②</div>
   </form>
 </div>
 
@@ -327,35 +326,30 @@ function updateChoiceNumbers() {
 <!-- 문제 8 -->
 <div class="question" id="q8" data-correct-text="㉠, ㉢, ㉤">
   <div class="qnum">문제 8</div>
-
-  <div class="passage">
-    ㉠ 경희대 지역균형<br>
-    ㉡ 건국대 KU지역균형<br>
-    ㉢ 서울시립대 지역균형선발<br>
-    ㉣ 동국대 DO DREAM<br>
-    ㉤ 홍익대 학교장추천<br>
-    ㉥ 한양대 종합(면접형)
-  </div>
-
-  <br />
-
+  
   <div class="problem">
     다음 &lt;보기&gt;에 있는 대학 및 전형 중 2026학년도 기준으로 졸업연도 제한을 두는 것으로 옳게 짝지어진 것을 고르시오.
   </div>
 
-  <br />
+  <div class="problem" style="margin-top:10px;">
+    ㉠ 경희대 지역균형<br />
+    ㉡ 건국대 KU지역균형<br />
+    ㉢ 서울시립대 지역균형선발<br />
+    ㉣ 동국대 DO DREAM<br />
+    ㉤ 홍익대 학교장추천<br />
+    ㉥ 한양대 종합(면접형)
+  </div>
 
   <form>
-    <div class="choices">
+    <div class="choices" style="margin-top:10px;">
       <label><input type="radio" name="q8" value="A" /> ① ㉠, ㉢, ㉤</label>
       <label><input type="radio" name="q8" value="B" /> ② ㉡, ㉣, ㉤</label>
       <label><input type="radio" name="q8" value="C" /> ③ ㉢, ㉤, ㉥</label>
       <label><input type="radio" name="q8" value="D" /> ④ ㉡, ㉣, ㉥</label>
       <label><input type="radio" name="q8" value="E" /> ⑤ ㉣, ㉤, ㉥</label>
     </div>
-
-    <button type="button" class="check-answer" onclick="showAnswer('q8')">정답 확인</button>
-    <div class="answer" id="answer-q8"></div>
+    <button type="button" class="check-answer" onclick="showAnswer('q8')" style="margin-top:10px;">정답 확인</button>
+    <div class="answer" id="answer-q8" style="margin-top:10px;"></div>
   </form>
 </div>
 
@@ -370,7 +364,6 @@ function updateChoiceNumbers() {
     answerEl.innerHTML = "<strong>정답 해설:</strong><br>" + formatted;
   }
 </script>
-
 
 <!-- 문제 9 -->
 <div class="question" id="q9" data-correct-text="아주대는 올해 고교추천전형으로 선발하지 않는다.">
@@ -392,9 +385,10 @@ function updateChoiceNumbers() {
 <!-- 문제 10 -->
 <div class="question" id="q10" data-correct-text="인하대 - 의예과">
   <div class="qnum">문제 10</div>
-  <div class="passage">
+  
+  <div class="problem">
     <strong>&lt;학생 A의 예상 수능 등급&gt;</strong><br />
-    <table border="1" cellpadding="5" cellspacing="0">
+    <table border="1" cellpadding="5" cellspacing="0" style="margin-top:10px; margin-bottom:10px;">
       <thead>
         <tr>
           <th>과목</th>
@@ -412,26 +406,37 @@ function updateChoiceNumbers() {
           <td>1</td>
           <td>2</td>
           <td>1</td>
-          <td>1</div><br />
+          <td>1</td>
         </tr>
       </tbody>
     </table>
   </div>
+
   <div class="problem">
     위 수능 성적 기준으로, 수리논술을 실시하는 논술전형에 지원하려는 학생 A가 <strong>지원할 수 없는 대학과 모집단위</strong>가 옳게 짝지어진 것을 고르시오.
   </div>
+
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q10" value="A" /> ① 한양대 - 의예과</label>
-      <label><input type="radio" name="q10" value="B" /> ② 동국대 - 약학과</label>
-      <label><input type="radio" name="q10" value="C" /> ③ 경희대 - 한의예과</label>
-      <label><input type="radio" name="q10" value="D" /> ④ 인하대 - 의예과</label>
+    <div class="choices" style="margin-top:10px;">
+      <label><input type="radio" name="q10" value="A" /> ① 한양대 - 의예과</label><br />
+      <label><input type="radio" name="q10" value="B" /> ② 동국대 - 약학과</label><br />
+      <label><input type="radio" name="q10" value="C" /> ③ 경희대 - 한의예과</label><br />
+      <label><input type="radio" name="q10" value="D" /> ④ 인하대 - 의예과</label><br />
       <label><input type="radio" name="q10" value="E" /> ⑤ 건국대 - 수의예과</label>
     </div>
-    <button type="button" class="check-answer">정답 확인</button>
-    <div class="answer" id="answer-q10">정답: ④</div>
+    <button type="button" class="check-answer" style="margin-top:10px;" onclick="showAnswer('q10')">정답 확인</button>
+    <div class="answer" id="answer-q10" style="margin-top:10px;"></div>
   </form>
 </div>
+
+<script>
+  function showAnswer(qid) {
+    const qEl = document.getElementById(qid);
+    const answerEl = document.getElementById("answer-" + qid);
+    const correctText = qEl.getAttribute("data-correct-text");
+    answerEl.innerHTML = "<strong>정답:</strong> " + correctText;
+  }
+</script>
 
  <!-- 문제 11 -->
 <div class="question" id="q11" data-correct-text="B학생 : 한국외대 학생부종합(면접형)은 납치될 가능성도 고려해봐야겠는걸.">
@@ -599,110 +604,139 @@ function updateChoiceNumbers() {
 <!-- 문제 20 -->
 <div class="question" id="q20" data-correct-text="ⓐ ,ⓔ">
   <div class="qnum">문제 20</div>
+
   <div class="problem">
-  <p><strong>보기</strong></p>
-  <ul style="list-style-type: none;">
-  <li>ⓐ 성균관대 – 과학인재</li>
-  <li>ⓑ 이화여대 – 미래인재 (면접형)</li>
-  <li>ⓒ 한국외대 – 면접형</li>
-  <li>ⓓ 연세대 – 활동우수형</li>
-  <li>ⓔ 광운대 – 광운참빛인재1(면접형)</li>
-</ul>
-  <p>다음 중 2026학년도 학생부종합전형 면접을 실시하는 대학 중 수능고사일 이전에 면접을 실시하는 대학-전형으로 알맞게 짝지어진 것을 고르시오.</p>
-</div>
+    다음 중 2026학년도 학생부종합전형 면접을 실시하는 대학 중 수능고사일 이전에 면접을 실시하는 대학-전형으로 알맞게 짝지어진 것을 고르시오.
+  </div>
+
+  <div class="problem" style="margin-top:10px;">
+    <p><strong>보기</strong></p>
+    <ul style="list-style-type: none; padding-left: 0;">
+      <li>ⓐ 성균관대 – 과학인재</li>
+      <li>ⓑ 이화여대 – 미래인재 (면접형)</li>
+      <li>ⓒ 한국외대 – 면접형</li>
+      <li>ⓓ 연세대 – 활동우수형</li>
+      <li>ⓔ 광운대 – 광운참빛인재1(면접형)</li>
+    </ul>
+  </div>
+  
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q20" value="1" /> ① ⓐ ,ⓑ</label>
-      <label><input type="radio" name="q20" value="2" /> ② ⓑ ,ⓒ</label>
-      <label><input type="radio" name="q20" value="3" /> ③ ⓓ ,ⓔ</label>
-      <label><input type="radio" name="q20" value="4" /> ④ ⓐ ,ⓔ</label>
+    <div class="choices" style="margin-top: 10px;">
+      <label><input type="radio" name="q20" value="1" /> ① ⓐ ,ⓑ</label><br />
+      <label><input type="radio" name="q20" value="2" /> ② ⓑ ,ⓒ</label><br />
+      <label><input type="radio" name="q20" value="3" /> ③ ⓓ ,ⓔ</label><br />
+      <label><input type="radio" name="q20" value="4" /> ④ ⓐ ,ⓔ</label><br />
       <label><input type="radio" name="q20" value="5" /> ⑤ ⓒ ,ⓓ</label>
     </div>
-    <button type="button" class="check-answer" onclick="showAnswer('q20')">정답 확인</button>
-    <div class="answer" id="answer-q20">정답: ④</div>
+    <button type="button" class="check-answer" style="margin-top: 10px;" onclick="showAnswer('q20')">정답 확인</button>
+    <div class="answer" id="answer-q20" style="margin-top: 10px;"></div>
   </form>
 </div>
 
-  <!-- 문제 21 -->
+<script>
+  function showAnswer(qid) {
+    const qEl = document.getElementById(qid);
+    const answerEl = document.getElementById("answer-" + qid);
+    const correctText = qEl.getAttribute("data-correct-text");
+    answerEl.innerHTML = "<strong>정답:</strong> " + correctText;
+  }
+</script>
+
+<!-- 문제 21 -->
 <div class="question" id="q21" data-correct-text="교과 등급보다 수능 예상 성적이 더 좋으므로 수시 납치 가능성을 방지하기 위하여 수능 후 면접이 있는 이화여대 고교추천 전형에 지원을 고려하는 것이 좋겠어.">
   <div class="qnum">문제 21</div>
-  <div class="problem">
-    아래<br />
-    ※교과 등급(3학년 1학기까지 완료): 2.3등급<br />
-    - 진로선택 과목의 성적은 고려하지 않음<br />
-    - 세부능력특기사항의 기재 내용 및 기타 학생부 반영 항목은 고려하지 않음<br />
-    <table border="1" cellpadding="5" cellspacing="0">
-      <thead>
-        <tr>
-          <th>구분</th>
-          <th>한국사</th>
-          <th>국어</th>
-          <th>수학</th>
-          <th>영어</th>
-          <th>탐구</th>
-          <th>제2외국어/한문</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>선택과목</td>
-          <td>한국사</td>
-          <td>화법과작문</td>
-          <td>미적분</td>
-          <td>영어</td>
-          <td>사회문화</td>
-          <td>생명과학1</td>
-          <td>한문</td>
-        </tr>
-        <tr>
-          <td>표준점수</td>
-          <td>-</td>
-          <td>131</td>
-          <td>128</td>
-          <td>-</td>
-          <td>68</td>
-          <td>62</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>백분위</td>
-          <td>-</td>
-          <td>96</td>
-          <td>95</td>
-          <td>-</td>
-          <td>99</td>
-          <td>90</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>등급</td>
-          <td>1</td>
-          <td>1</td>
-          <td>2</td>
-          <td>1</td>
-          <td>1</td>
-          <td>2</td>
-          <td>1</td>
-        </tr>
-      </tbody>
-    </table>
-    - 모의고사의 종류(6평, 9평 등)는 고려하지 않음
-  </div>
-  <div class="problem"> 
+
+  <div class="problem" style="margin-bottom: 10px;">
     2026학년도 수시 전형에 지원하고자 하는 A학생(고3, 여학생)의 교과 등급과 수능예상 성적이 아래와 같을 때 입시담임이 할 수 있는 말로 적절하지 않은 것을 고르시오.
   </div>
+
+  <div class="problem" style="margin-bottom: 15px;">
+    ※교과 등급(3학년 1학기까지 완료): 2.3등급<br />
+    - 진로선택 과목의 성적은 고려하지 않음<br />
+    - 세부능력특기사항의 기재 내용 및 기타 학생부 반영 항목은 고려하지 않음
+  </div>
+
+  <table border="1" cellpadding="5" cellspacing="0" style="margin-bottom: 15px; width: 100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>구분</th>
+        <th>한국사</th>
+        <th>국어</th>
+        <th>수학</th>
+        <th>영어</th>
+        <th>탐구</th>
+        <th>제2외국어/한문</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>선택과목</td>
+        <td>한국사</td>
+        <td>화법과작문</td>
+        <td>미적분</td>
+        <td>영어</td>
+        <td>사회문화</td>
+        <td>생명과학1</td>
+        <td>한문</td>
+      </tr>
+      <tr>
+        <td>표준점수</td>
+        <td>-</td>
+        <td>131</td>
+        <td>128</td>
+        <td>-</td>
+        <td>68</td>
+        <td>62</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>백분위</td>
+        <td>-</td>
+        <td>96</td>
+        <td>95</td>
+        <td>-</td>
+        <td>99</td>
+        <td>90</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>등급</td>
+        <td>1</td>
+        <td>1</td>
+        <td>2</td>
+        <td>1</td>
+        <td>1</td>
+        <td>2</td>
+        <td>1</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="problem" style="margin-bottom: 15px;">
+    - 모의고사의 종류(6평, 9평 등)는 고려하지 않음
+  </div>
+
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q21" value="1" /> ① 논술 전형 지원을 고려한다면 고려대는 꼭 지원을 하는 것이 좋을 것 같아.</label>
-      <label><input type="radio" name="q21" value="2" /> ② 수능이 예상보다 잘 안 나올 수도 있으니 불안하다면 한국외대 학교장추천 전형에 지원을 고려하되 납치될 수 있음을 생각해야 돼.</label>
-      <label><input type="radio" name="q21" value="3" /> ③ 예상 백분위 합이 285.5로 교과 등급으로 지원 가능한 대학보다 높은 레벨의 대학 지원이 정시 가능할 것으로 예상되니 수시 전형은 논술 전형 지원만 고려하는 것이 좋겠어.</label>
-      <label><input type="radio" name="q21" value="4" /> ④ 교과 등급보다 수능 예상 성적이 더 좋으므로 수시 납치 가능성을 방지하기 위하여 수능 후 면접이 있는 이화여대 고교추천 전형에 지원을 고려하는 것이 좋겠어.</label>
+    <div class="choices" style="margin-bottom: 15px;">
+      <label><input type="radio" name="q21" value="1" /> ① 논술 전형 지원을 고려한다면 고려대는 꼭 지원을 하는 것이 좋을 것 같아.</label><br />
+      <label><input type="radio" name="q21" value="2" /> ② 수능이 예상보다 잘 안 나올 수도 있으니 불안하다면 한국외대 학교장추천 전형에 지원을 고려하되 납치될 수 있음을 생각해야 돼.</label><br />
+      <label><input type="radio" name="q21" value="3" /> ③ 예상 백분위 합이 285.5로 교과 등급으로 지원 가능한 대학보다 높은 레벨의 대학 지원이 정시 가능할 것으로 예상되니 수시 전형은 논술 전형 지원만 고려하는 것이 좋겠어.</label><br />
+      <label><input type="radio" name="q21" value="4" /> ④ 교과 등급보다 수능 예상 성적이 더 좋으므로 수시 납치 가능성을 방지하기 위하여 수능 후 면접이 있는 이화여대 고교추천 전형에 지원을 고려하는 것이 좋겠어.</label><br />
       <label><input type="radio" name="q21" value="5" /> ⑤ 성균관대 학교장추천 전형에 지원할 경우 혹시 탐구 과목의 점수가 생각보다 잘 안 나오더라도 제2외국어/한문 과목으로 대체할 수 있으니 너에게는 유리할 수 있지만 합격 가능성이 높지는 않아.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q21')">정답 확인</button>
-    <div class="answer" id="answer-q21">정답: ④</div>
+    <div class="answer" id="answer-q21" style="margin-top:10px;"></div>
   </form>
 </div>
+
+<script>
+  function showAnswer(qid) {
+    const qEl = document.getElementById(qid);
+    const answerEl = document.getElementById("answer-" + qid);
+    const correctText = qEl.getAttribute("data-correct-text");
+    answerEl.innerHTML = "<strong>정답:</strong> " + correctText;
+  }
+</script>
 
   <!-- 문제 22 -->
 <div class="question" id="q22" data-correct-text="성균관대 공학계열은 언어형 지원 시 수능최저기준에 수학을 필수 반영한다.">
@@ -762,29 +796,29 @@ function updateChoiceNumbers() {
 </div>
 
 <!-- 문제 25 -->
-<div class="question" id="q25" data-correct-text="㉠,㉢,㉥">
+<div class="question" id="q25" data-correct-text="㉠, ㉢, ㉥">
   <div class="qnum">문제 25</div>
   <div class="problem">
-    보기<br />
-    ㉠ 성균관대 자유전공, 글로벌융합, 사회과학계열, 경영, 글로벌리더, 글로벌경제, 글로벌경영, 자연과학계열, 전자전기공, 공학계열, 소프트웨어, 건설환경공은 언어형과 수리형 모두 선발한다.</label><br />
+    다음 &lt;보기&gt;의 내용은 2026학년도 논술 전형에 대한 설명이다. 옳게 짝지어진 것을 고르시오.
+  </div>
+  <div class="passage" style="margin-top: 10px;">
+    ㉠ 성균관대 자유전공, 글로벌융합, 사회과학계열, 경영, 글로벌리더, 글로벌경제, 글로벌경영, 자연과학계열, 전자전기공, 공학계열, 소프트웨어, 건설환경공은 언어형과 수리형 모두 선발한다.<br />
     ㉡ 서울여대 수능최저기준은 국, 수, 영 중 1개 3등급이다.<br />
     ㉢ 고려대 경영 수능최저기준은 국, 수, 영, 탐(1) 4개 등급 합 5에서 4개 등급 합 8로 변경되었다.<br />
     ㉣ 국민대, 강남대, 단국대(천안)은 올해 논술전형을 신설하였으며 모두 수능최저기준을 적용한다.<br />
     ㉤ 단국대(죽전) 자연계열은 올해 수능 이후 논술고사를 실시한다.<br />
-    ㉥ 한양대 의예과는 올해 논술전형을 신설하였고 수능최저기준은 국, 수, 영, 탐(2) 중 3개 등급 합 4이다.<br /><br />
-    
-    다음 <보기>의 내용은 2026학년도 논술 전형에 대한 설명이다. 옳게 짝지어진 것을 고르시오
+    ㉥ 한양대 의예과는 올해 논술전형을 신설하였고 수능최저기준은 국, 수, 영, 탐(2) 중 3개 등급 합 4이다.
   </div>
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q25" value="1" /> ① ㉠,㉡,㉢</label>
-      <label><input type="radio" name="q25" value="2" /> ② ㉠,㉢,㉣</label>
-      <label><input type="radio" name="q25" value="3" /> ③ ㉠,㉢,㉥</label>
-      <label><input type="radio" name="q25" value="4" /> ④ ㉡,㉣,㉤</label>
-      <label><input type="radio" name="q25" value="5" /> ⑤ ㉡,㉤,㉥</label>
+    <div class="choices" style="margin-top: 15px;">
+      <label><input type="radio" name="q25" value="1" /> ① ㉠, ㉡, ㉢</label><br />
+      <label><input type="radio" name="q25" value="2" /> ② ㉠, ㉢, ㉣</label><br />
+      <label><input type="radio" name="q25" value="3" /> ③ ㉠, ㉢, ㉥</label><br />
+      <label><input type="radio" name="q25" value="4" /> ④ ㉡, ㉣, ㉤</label><br />
+      <label><input type="radio" name="q25" value="5" /> ⑤ ㉡, ㉤, ㉥</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q25')">정답 확인</button>
-    <div class="answer" id="answer-q25">정답: ③</div>
+    <div class="answer" id="answer-q25" style="margin-top: 10px;">정답: ③</div>
   </form>
 </div>
 
@@ -827,28 +861,29 @@ function updateChoiceNumbers() {
 </div>
 
 <!-- 문제 28 -->
-<div class="question" id="q28" data-correct-text="ㄱ,ㄴ,ㄹ">
+<div class="question" id="q28" data-correct-text="ㄱ, ㄴ, ㄹ">
   <div class="qnum">문제 28</div>
   <div class="problem">
-    보기기<br />
+    다음 &lt;보기&gt;의 전형 중 면접 일정이 수능 이후인 전형으로 옳게 짝지어진 것을 고르시오.
+  </div>
+  <div class="passage" style="margin-top:10px;">
     ㉠ 한국외대 면접형<br />
     ㉡ 서울시립대 면접형<br />
     ㉢ 성균관대 과학인재전형<br />
     ㉣ 이화여대 미래인재 면접형<br />
     ㉤ 성균관대 성균인재(사범)<br />
-    ㉥ 고려대 계열적합형(자연)<br /><br />
-    다음 <보기>의 전형 중 면접 일정이 수능 이후인 전형으로 옳게 짝지어진 것을 고르시오.
+    ㉥ 고려대 계열적합형(자연)
   </div>
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q28" value="1" /> ① ㄴ,ㄷ,ㄹ</label>
-      <label><input type="radio" name="q28" value="2" /> ② ㄱ,ㄷ,ㅂ</label>
-      <label><input type="radio" name="q28" value="3" /> ③ ㄱ,ㄹ,ㅁ</label>
-      <label><input type="radio" name="q28" value="4" /> ④ ㄱ,ㄴ,ㄹ</label>
-      <label><input type="radio" name="q28" value="5" /> ⑤ ㄷ,ㅁ,ㅂ</label>
+    <div class="choices" style="margin-top:15px;">
+      <label><input type="radio" name="q28" value="1" /> ① ㄴ, ㄷ, ㄹ</label><br />
+      <label><input type="radio" name="q28" value="2" /> ② ㄱ, ㄷ, ㅂ</label><br />
+      <label><input type="radio" name="q28" value="3" /> ③ ㄱ, ㄹ, ㅁ</label><br />
+      <label><input type="radio" name="q28" value="4" /> ④ ㄱ, ㄴ, ㄹ</label><br />
+      <label><input type="radio" name="q28" value="5" /> ⑤ ㄷ, ㅁ, ㅂ</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q28')">정답 확인</button>
-    <div class="answer" id="answer-q28">정답: ④</div>
+    <div class="answer" id="answer-q28" style="margin-top:10px;">정답: ④</div>
   </form>
 </div>
 
@@ -969,26 +1004,29 @@ function updateChoiceNumbers() {
 <!-- 문제 35 -->
 <div class="question" id="q35" data-correct-text="한양대, 단국대(천안)">
   <div class="qnum">문제 35</div>
+
   <div class="problem">
+    다음 대화 내용을 읽고 맥락상 학생의 조건에 해당하는 대학들로 바르게 나열된 것을 고르시오.
+  </div>
+
+  <div class="passage" style="margin-top:10px;">
     담임 T  : 학생은 의예과를 목표하고 있는데 입학 전략을 어떻게 세울 예정인가요?<br />
     학생  : 저는 원래 정시만 준비할 생각이었습니다. 그런데 막상 수능이 다가오니 긴장되어 논술전형 지원도 생각하고 있습니다.<br />
     담임 T  : 아 그렇군요~ 학생은 전 과목에서 꾸준히 1등급을 유지해왔으니 수능최저기준 달성은 무리 없을 것 같네요. 수능 선택과목은 미적분, 생 Ⅰ , 화 Ⅰ 맞나요?<br />
     학생  : 네, 그리고 저는 수능최저기준을 4개영역 보다는 3개영역을 적용하는 대학에 지원하고 싶습니다.<br />
     담임 T  : 네, 논술전형에서 의예과는 3개 등급 합 4로 정해진 대학이 많습니다. 올해 의예과에서 논술전형이 신설된 대학들도 있는데 이 중에서 3개 합에 부합하는 대학은 ㉠과 ㉡이 있네요~
   </div>
-  <div class="problem">
-    다음 대화 내용을 읽고 맥락상 학생의 조건에 해당하는 대학들로 바르게 나열된 것을 고르시오.
-  </div>
-  <form>
+
+  <form style="margin-top:15px;">
     <div class="choices">
-      <label><input type="radio" name="q35" value="1" /> ① 경희대, 이화여대</label>
-      <label><input type="radio" name="q35" value="2" /> ② 한양대, 단국대(천안)</label>
-      <label><input type="radio" name="q35" value="3" /> ③ 덕성여대, 경희대</label>
-      <label><input type="radio" name="q35" value="4" /> ④ 한양대, 이화여대</label>
+      <label><input type="radio" name="q35" value="1" /> ① 경희대, 이화여대</label><br />
+      <label><input type="radio" name="q35" value="2" /> ② 한양대, 단국대(천안)</label><br />
+      <label><input type="radio" name="q35" value="3" /> ③ 덕성여대, 경희대</label><br />
+      <label><input type="radio" name="q35" value="4" /> ④ 한양대, 이화여대</label><br />
       <label><input type="radio" name="q35" value="5" /> ⑤ 단국대(천안), 아주대</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q35')">정답 확인</button>
-    <div class="answer" id="answer-q35">정답: 한양대, 단국대(천안)</div>
+    <div class="answer" id="answer-q35" style="margin-top:10px;">정답: 한양대, 단국대(천안)</div>
   </form>
 </div>
 
@@ -1014,31 +1052,32 @@ function updateChoiceNumbers() {
 <!-- 문제 37 -->
 <div class="question" id="q37" data-correct-text="㉠,㉡,㉥">
   <div class="qnum">문제 37</div>
+
   <div class="problem">
-    ㉠가천대 <br />
-    ㉡국민대 <br />
-    ㉢상지대 <br />
-    ㉣세종대 <br />
-    ㉤광운대 <br />
-    ㉥강남대
+    다음 대학 중 약술형 논술고사를 실시하는 대학으로 옳게 짝지어진 것을 고르시오.
   </div>
-  <div class="problem">
-    다음 대학 중 약술형 논술고사를 실시하는 대학으로 옳게 짝지어진 것을 고르시오
+
+  <div class="passage" style="margin-top:10px;">
+    ㉠ 가천대<br />
+    ㉡ 국민대<br />
+    ㉢ 상지대<br />
+    ㉣ 세종대<br />
+    ㉤ 광운대<br />
+    ㉥ 강남대
   </div>
-  <form>
+
+  <form style="margin-top:15px;">
     <div class="choices">
-      <label><input type="radio" name="q37" value="1" /> ① ㉠,㉢,㉤</label>
-      <label><input type="radio" name="q37" value="2" /> ② ㉡,㉣,㉤</label>
-      <label><input type="radio" name="q37" value="3" /> ③ ㉢,㉤,㉥</label>
-      <label><input type="radio" name="q37" value="4" /> ④ ㉠,㉡,㉥</label>
+      <label><input type="radio" name="q37" value="1" /> ① ㉠,㉢,㉤</label><br />
+      <label><input type="radio" name="q37" value="2" /> ② ㉡,㉣,㉤</label><br />
+      <label><input type="radio" name="q37" value="3" /> ③ ㉢,㉤,㉥</label><br />
+      <label><input type="radio" name="q37" value="4" /> ④ ㉠,㉡,㉥</label><br />
       <label><input type="radio" name="q37" value="5" /> ⑤ ㉣,㉤,㉥</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q37')">정답 확인</button>
-    <div class="answer" id="answer-q37">정답: ㉠, ㉡, ㉥</div>
+    <div class="answer" id="answer-q37" style="margin-top:10px;">정답: ㉠, ㉡, ㉥</div>
   </form>
 </div>
-
-
 
 <!-- 문제 38 -->
 <div class="question" id="q38" data-correct-text="고려대 – 계열적합형,  성균관대 – 탐구형">
@@ -1071,7 +1110,8 @@ function updateChoiceNumbers() {
 <!-- 문제 39 -->
 <div class="question" id="q39" data-correct-text="ⓑ ,ⓙ ,ⓚ">
   <div class="qnum">문제 39</div>
-  <div class="problem">
+
+  <div class="problem" style="margin-bottom:10px;">
     담임  : 안녕 OO야. 6월 평가원 이후에 힘들어하는 것 없이 계속 열심히 하고 있어 대견하다.<br />
     학생  : 네, 선생님. 해야죠 머. 6평 때 자잘한 실수가 많이 나와서 긴장을 못 놓겠어요.<br />
     담임  : 그래 이제 수시 이야기도 한번 슬슬 해보려고 불렀어.<br />
@@ -1079,7 +1119,12 @@ function updateChoiceNumbers() {
     담임  : 그래, 선생님도 성적들을 보고 고민이 있을 것 같아 불렀어. 너의 생각도 그렇다 면 수능 이후 면접이 있는 (         ) 을 한번 생각해보면 어떠니?  그 정도면 너의 내신 교과 점수와 생기부 내용상 합격 가능성이 높아 보이긴 해. 근데 너도 알다 시피 종합전형은 변수가 많은 만큼 안정이라 할 수 없는 거는 염두에 두고. 그래도 당초 수시를 거의 버릴 생각이었으니, 보험의 의미로 한, 두장 지원하는 것도 나쁘지 않을 것 같은데 어떠니? 당연히 우리의 목표는 정시에서 좋은 결과로 수시 면접을 안 가는 것이지.<br />
     학생  : 오~ 괜찮은 것 같아요. 집에서 부모님이랑 대화 해볼게요. 선생님 감사합니다.
   </div>
-  <div class="problem">
+
+  <div class="problem" style="margin-bottom:10px;">
+    위의 밑줄 친 문장의 (  )안에 들어갈 대학으로 적합하지 않은 교대들로 짝지어진 것을 고르시오.
+  </div>
+
+  <div class="passage" style="margin-bottom:10px;">
     <p>ⓐ 경인교대</p>
     <p>ⓑ 공주교대</p>
     <p>ⓒ 광주교대</p>
@@ -1094,19 +1139,17 @@ function updateChoiceNumbers() {
     <p>ⓛ 한국교원대</p>
     <p>ⓜ 제주대</p>
   </div>
-  <div class="problem">
-    위의 밑줄 친 문장의 (  )안에 들어갈 대학으로 적합하지 않은 교대들로 짝지어진 것을 고르시오
-  </div>
+
   <form>
-    <div class="choices">
-      <label><input type="radio" name="q39" value="1" /> ① ⓐ ,ⓑ ,ⓒ</label>
-      <label><input type="radio" name="q39" value="2" /> ② ⓑ ,ⓙ ,ⓚ</label>
-      <label><input type="radio" name="q39" value="3" /> ③ ⓖ ,ⓗ ,ⓘ</label>
-      <label><input type="radio" name="q39" value="4" /> ④ ⓙ ,ⓚ ,ⓛ</label>
+    <div class="choices" style="margin-bottom:15px;">
+      <label><input type="radio" name="q39" value="1" /> ① ⓐ ,ⓑ ,ⓒ</label><br />
+      <label><input type="radio" name="q39" value="2" /> ② ⓑ ,ⓙ ,ⓚ</label><br />
+      <label><input type="radio" name="q39" value="3" /> ③ ⓖ ,ⓗ ,ⓘ</label><br />
+      <label><input type="radio" name="q39" value="4" /> ④ ⓙ ,ⓚ ,ⓛ</label><br />
       <label><input type="radio" name="q39" value="5" /> ⑤ ⓒ ,ⓖ ,ⓜ</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q39')">정답 확인</button>
-    <div class="answer" id="answer-q39">정답: ② ⓑ ,ⓙ ,ⓚ</div>
+    <div class="answer" id="answer-q39" style="margin-top:10px;">정답: ② ⓑ ,ⓙ ,ⓚ</div>
   </form>
 </div>
 
