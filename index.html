@@ -13,31 +13,7 @@
     }
 
     .toggle-buttons, .shuffle-controls {
-      margin-bottom: 20px;// 보기 번호 다시 붙이기 (①~⑤)
-function updateChoiceNumbers() {
-  questions().forEach(q => {
-    const labels = q.querySelectorAll('.choices label');
-    labels.forEach((label, index) => {
-      const input = label.querySelector('input');
-      if (!input) return;
-
-      let next = input.nextSibling;
-      while (next && (next.nodeType !== Node.TEXT_NODE || next.textContent.trim() === '')) {
-        next = next.nextSibling;
-      }
-
-      // 보기 번호를 ①~⑤로 초기화
-      const numChar = String.fromCharCode(9312 + index); // ①~⑤
-      const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : ''; // 기존 번호 제거
-      if (next) {
-        next.textContent = ' ' + numChar + ' ' + rest.trim();
-      } else {
-        label.appendChild(document.createTextNode(' ' + numChar + ' '));
-      }
-    });
-  });
-}
-
+      margin-bottom: 20px;
       text-align: center;
       background-color: white;
       z-index: 10;
@@ -51,6 +27,7 @@ function updateChoiceNumbers() {
       display: flex;
       justify-content: left; 
       gap: 20px;
+      padding-left: 10px;
     }
 
     .toggle-buttons button, .shuffle-controls button {
@@ -171,7 +148,6 @@ function updateChoiceNumbers() {
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
   
-  <!-- 문제 수 입력란 -->
   <label for="randomQuestionCountInput">랜덤 문제 수 입력: </label>
   <input type="number" id="randomQuestionCountInput" min="1" placeholder="문제 수 입력" />
   
@@ -1929,16 +1905,74 @@ function updateChoiceNumbers() {
 
   <form>
     <div class="choices" style="margin-bottom:15px;">
-      <label><input type="radio" name="q72" value="1" /> ① 1개</label>
-      <label><input type="radio" name="q72" value="2" /> ② 2개</label>
-      <label><input type="radio" name="q72" value="3" /> ③ 3개</label>
-      <label><input type="radio" name="q72" value="4" /> ④ 4개</label>
-      <label><input type="radio" name="q72" value="5" /> ⑤ 5개</label>
+      <label><input type="radio" name="q72" value="1" /> 1개</label>
+      <label><input type="radio" name="q72" value="2" /> 2개</label>
+      <label><input type="radio" name="q72" value="3" /> 3개</label>
+      <label><input type="radio" name="q72" value="4" /> 4개</label>
+      <label><input type="radio" name="q72" value="5" /> 5개</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q72')">정답 확인</button>
-    <div class="answer" id="answer-q72" style="margin-top:10px; display:none;">정답: ③ 3개</div>
+    <div class="answer" id="answer-q72">정답: ③ 3개</div>
   </form>
 </div>
+
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+  // 보기 번호를 ①~⑤로 다시 붙이는 함수
+  function updateChoiceNumbers() {
+    document.querySelectorAll('.question').forEach(q => {
+      const labels = q.querySelectorAll('.choices label');
+      labels.forEach((label, index) => {
+        const input = label.querySelector('input');
+        if (!input) return;
+
+        let next = input.nextSibling;
+        while (next && (next.nodeType !== Node.TEXT_NODE || next.textContent.trim() === '')) {
+          next = next.nextSibling;
+        }
+
+        const numChar = String.fromCharCode(9312 + index); // ①(9312) ~ ⑤
+        const rest = next ? next.textContent.replace(/^[①-⑤1-5.\s]+/, '') : '';
+        if (next) {
+          next.textContent = ' ' + numChar + ' ' + rest.trim();
+        } else {
+          label.appendChild(document.createTextNode(' ' + numChar + ' '));
+        }
+      });
+    });
+  }
+
+  // 정답 확인 버튼 클릭 시 정답 보이기
+  function showAnswer(qid) {
+    const answerDiv = document.getElementById('answer-' + qid);
+    if (!answerDiv) return;
+    answerDiv.style.display = 'block';
+  }
+
+  // 스크롤 버튼 보이기/숨기기
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTopBtn');
+    if (window.scrollY > 200) {
+      btn.style.display = 'block';
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+
+  // 맨 위로 스크롤
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 페이지 로드 후 보기 번호 다시 붙이기 실행
+  window.addEventListener('DOMContentLoaded', () => {
+    updateChoiceNumbers();
+  });
+</script>
+
+</body>
+</html>
   <!-- 문제 73 -->
 <div class="question" id="q73" data-correct-text="경북대, 부산대">
   <div class="qnum" style="font-weight:bold; margin-bottom:10px;">[문제 73]</div>
