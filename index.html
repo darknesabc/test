@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>2026학년도 수시모집 문제</title>
   <style>
-    /* 스타일은 동일하게 유지 */
     body {
       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 돋움, Dotum, sans-serif;
       max-width: 720px;
@@ -135,7 +134,20 @@
   <button id="homeBtn" type="button">홈</button> 
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
+  <label for="numOfQuestions">랜덤 문제 개수:</label>
+  <input type="number" id="numOfQuestions" value="10" min="1" max="101" />
   <button id="loadRandomQuestionsBtn" type="button">랜덤 문제 불러오기</button>
+</div>
+
+<div id="quiz-wrapper" class="scroll-mode">
+  <!-- 문제들 (여기서 문제가 랜덤으로 출력됩니다) -->
+</div>
+
+<button id="scrollTopBtn">↑</button>
+
+<div id="page-nav" style="display:none;">
+  <button id="prevBtn" type="button">이전 문제</button>
+  <button id="nextBtn" type="button">다음 문제</button>
 </div>
 
   <div id="quiz-wrapper" class="scroll-mode">
@@ -599,7 +611,9 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
-   // 문제를 랜덤으로 뽑아와서 화면에 표시
+  <button id="scrollTopBtn">↑</button>
+  
+ // 문제를 랜덤으로 뽑아와서 화면에 표시
   function getRandomQuestions(count) {
     const shuffled = [...allQuestions];
     shuffleArray(shuffled);
@@ -641,27 +655,44 @@
 
   // 랜덤 문제 불러오기 버튼 클릭 시 동작
   document.getElementById('loadRandomQuestionsBtn').addEventListener('click', () => {
-    const randomQuestions = getRandomQuestions(10);  // 예시: 10개의 문제만 랜덤으로 뽑기
+    const numOfQuestions = parseInt(document.getElementById('numOfQuestions').value);
+    if (isNaN(numOfQuestions) || numOfQuestions < 1 || numOfQuestions > 101) {
+      alert("1부터 101 사이의 숫자를 입력해주세요.");
+      return;
+    }
+    const randomQuestions = getRandomQuestions(numOfQuestions);  // 사용자가 입력한 개수만큼 랜덤으로 문제 뽑기
     displayQuestions(randomQuestions);
   });
 
-  <button id="scrollTopBtn">↑</button>
-  
-<script>
-  // 최상단으로 가는 버튼 표시 및 클릭 이벤트
+  // 최상단으로 가는 버튼
   window.onscroll = function() {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-      scrollTopBtn.style.display = "block";  // 버튼 표시
+      scrollTopBtn.style.display = "block";
     } else {
-      scrollTopBtn.style.display = "none";  // 버튼 숨김
+      scrollTopBtn.style.display = "none";
     }
   };
 
-  // 최상단으로 가는 버튼 클릭 시
-  document.getElementById('scrollTopBtn').addEventListener('click', function () {
+  document.getElementById('scrollTopBtn').addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  // 홈 버튼 클릭 시 새로 고침
+  document.getElementById('homeBtn').addEventListener('click', () => {
+    location.reload();
+  });
+
+  // 페이지 로드 후 스크롤 최상단으로
+  window.onload = function() {
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+</script>
+
+</body>
+</html>
 
   // 예시: 페이지형 / 스크롤형 전환 (기본 기능)
   document.getElementById('scrollBtn').addEventListener('click', () => {
@@ -681,19 +712,6 @@
     if (allQuestions.length > 0) allQuestions[0].classList.add('active');
     document.getElementById('page-nav').style.display = 'block';  
   });
-
-  // 홈 버튼 클릭 시 새로고침 및 첫 페이지로 이동
-  document.getElementById('homeBtn').addEventListener('click', function () {
-    // 새로고침 후 최상단으로 스크롤
-    location.reload();  // 페이지 새로 고침
-  });
-
-  // 페이지 로드 완료 후 첫 페이지로 스크롤
-  window.onload = function() {
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });  // 페이지 로드 후 맨 위로 이동
-    }, 100);  // 약간의 시간 대기 후 실행
-  };
 
   // 문제 섞기 함수
   function shuffleArray(arr) {
