@@ -1121,16 +1121,32 @@
   </form>
 </div>
 
-<script>
-  function showAnswer(questionId) {
-    var answerElement = document.getElementById('answer-' + questionId);
-    var explanationElement = document.getElementById('explanation-' + questionId);
-    var displayStyle = answerElement.style.display === 'none' ? 'block' : 'none';
-    answerElement.style.display = displayStyle;
-    explanationElement.style.display = displayStyle;
-  }
-</script>
-
+  <!-- 문제 41 -->
+<div class="question" id="q41" data-correct-text="㉠, ㉤, ㉥">
+  <div class="qnum">문제 41</div>
+  <div class="problem">
+    다음 <보기>는 2026학년도 수시모집 의예과(지역인재)전형에 대한 설명이다. 이중 옳지 않은 것으로 짝지어진 것을 고르시오.
+  </div>
+  <div class="passage">
+    <p>㉠  연세대(미래) 강원인재전형은 단계별전형으로 선발하며 2단계 면접 비중은 50%를 적용한다. 또한, 수능최저기준은 적용하지 않는다.</p>
+    <p>㉡  순천향대 종합(지역인재)전형은 충남, 충청형 모두 수능최저기준을 적용하지 않으며, 서류 100으로 선발한다.</p>
+    <p>㉢  인제대 교과(지역인재 Ⅰ )전형은 단계별전형으로 진행하며, 수능최저기준은 과탐 1과목만 반영한다.</p>
+    <p>㉣  단국대(천안) 교과(지역메디바이오인재)전형은 수능최저기준 반영영역에 수학을 포함하여 3개영역을 반영한다.</p>
+    <p>㉤  조선대 교과(지역인재)전형의 수능최저기준은 국, 수, 영, 탐 중 3개 합 5이며, 과학 탐구는 2과목 평균을 반영한다.</p>
+    <p>㉥  가톨릭관동대 종합(지역인재)전형은 올해 신설되었으며, 단계별전형으로 선발하고, 수능최저기준은 국, 수(미/기), 영, 과(1) 중 3개 합 6이다.</p>
+  </div>
+  <form>
+    <div class="choices">
+      <label><input type="radio" name="q41" value="1" /> ① ㉠, ㉡, ㉢</label>
+      <label><input type="radio" name="q41" value="2" /> ② ㉠, ㉢, ㉣</label>
+      <label><input type="radio" name="q41" value="3" /> ③ ㉠, ㉤, ㉥</label>
+      <label><input type="radio" name="q41" value="4" /> ④ ㉡, ㉣, ㉤</label>
+      <label><input type="radio" name="q41" value="5" /> ⑤ ㉡, ㉤, ㉥</label>
+    </div>
+    <button type="button" class="check-answer" onclick="showAnswer('q41')">정답 확인</button>
+    <div class="answer" id="answer-q41" style="display:none;">정답: ③</div>
+  </form>
+</div>
 
 
 </div> <!-- quiz-wrapper 끝 -->
