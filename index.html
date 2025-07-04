@@ -384,90 +384,100 @@
   </form>
 </div>
 
-  <!-- 문제 11 -->
-<div class="question" id="q11">
+ <!-- 문제 11 -->
+<div class="question" id="q11" data-correct-text="B학생 : 한국외대 학생부종합(면접형)은 납치될 가능성도 고려해봐야겠는걸.">
   <div class="qnum">문제 11</div>
   <div class="problem">다음은 OO메가스터디학원에 재원 중인 학생들이다. 2026학년도 교과, 종합전형에 대한 내용 중 옳지 않게 설명한 학생을 고르시오.</div>
   <form>
     <div class="choices">
-      <label><input type="radio" name="q11" value="1" /> ① A학생 : 올해에는 사탐을 응시해도 고려대 학업우수형으로 자연계열 모집단위에 지원이 가능하겠군.</label><br />
-      <label><input type="radio" name="q11" value="2" /> ② B학생 : 한국외대 학생부종합(면접형)은 납치될 가능성도 고려해봐야겠는걸.</label><br />
-      <label><input type="radio" name="q11" value="3" /> ③ C학생 : 경기대 교과성적우수자전형 수능최저기준과 중앙대(서울) 지역균형 수능최저 기준에서 영어 2등급에 대한 반영 방식이 똑같구만.</label><br />
-      <label><input type="radio" name="q11" value="4" /> ④ D학생 : 이화여대는 미래인재 면접형이 신설되고, 특기자 전형은 폐지되었구나.</label><br />
-      <label><input type="radio" name="q11" value="5" /> ⑤ E학생 : 가톨릭대 의예과는 수능최저기준에서 과탐 2과목 평균 소수점을 절사하는데, 경희대 의예과는 소수점 버림 없이 그대로 반영하네.</label><br />
+      <label><input type="radio" name="q11" value="1" /> ① A학생 : 올해에는 사탐을 응시해도 고려대 학업우수형으로 자연계열 모집단위에 지원이 가능하겠군.</label>
+      <label><input type="radio" name="q11" value="2" /> ② B학생 : 한국외대 학생부종합(면접형)은 납치될 가능성도 고려해봐야겠는걸.</label>
+      <label><input type="radio" name="q11" value="3" /> ③ C학생 : 경기대 교과성적우수자전형 수능최저기준과 중앙대(서울) 지역균형 수능최저 기준에서 영어 2등급에 대한 반영 방식이 똑같구만.</label>
+      <label><input type="radio" name="q11" value="4" /> ④ D학생 : 이화여대는 미래인재 면접형이 신설되고, 특기자 전형은 폐지되었구나.</label>
+      <label><input type="radio" name="q11" value="5" /> ⑤ E학생 : 가톨릭대 의예과는 수능최저기준에서 과탐 2과목 평균 소수점을 절사하는데, 경희대 의예과는 소수점 버림 없이 그대로 반영하네.</label>
     </div>
-    <button type="button" class="check-answer" onclick="checkAnswer('q11', 2)">정답 확인</button>
+    <button type="button" class="check-answer" onclick="showAnswer('q11')">정답 확인</button>
     <div class="answer" id="answer-q11">정답: ②</div>
   </form>
 </div>
 
-  <!-- 문제 12 -->
-<div class="question" id="q12">
+<!-- 문제 12 -->
+<div class="question" id="q12" data-correct-text="부산대 약학부 종합(지역인재)전형 수능최저기준은 국,수,영,탐(2) 중 수학 포함 3합 5이 내로 완화되었다.">
   <div class="qnum">문제 12</div>
   <div class="problem">다음 중 2026학년도 지방 거점 국립대학의 수시전형 변경사항으로 옳지 않은 것을 고르시오.</div>
   <form>
     <div class="choices">
-      <label><input type="radio" name="q12" value="1" /> ① 경북대 치의예과 모집 전형 중 종합(지역인재 학교장추천) 전형의 신설된 수능 최저는 국,수,영,탐(2) 중 탐구 포함 3개 등급 합 4이다.</label><br />
-      <label><input type="radio" name="q12" value="2" /> ② 경북대 학생부교과전형 지원 자격(졸업연도 제한)은 폐지되었다.</label><br />
-      <label><input type="radio" name="q12" value="3" /> ③ 부산대 약학부 종합(지역인재)전형 수능최저기준은 국,수,영,탐(2) 중 수학 포함 3합 5이 내로 완화되었다.</label><br />
-      <label><input type="radio" name="q12" value="4" /> ④ 부산대 자연계열 논술 출제범위는 기하를 제외한 수학, 수1, 수2, 미적분까지이다. * 논술(지역인재)전형: 약학부, 의예과, 한의학전문대학원 제외</label><br />
-      <label><input type="radio" name="q12" value="5" /> ⑤ 경북대는 학교폭력 8~9호에 준하는 학생은 부적격 처리로 조치하여 반영하고 있다.</label><br />
+      <label><input type="radio" name="q12" value="1" /> ① 경북대 치의예과 모집 전형 중 종합(지역인재 학교장추천) 전형의 신설된 수능 최저는 국,수,영,탐(2) 중 탐구 포함 3개 등급 합 4이다.</label>
+      <label><input type="radio" name="q12" value="2" /> ② 경북대 학생부교과전형 지원 자격(졸업연도 제한)은 폐지되었다.</label>
+      <label><input type="radio" name="q12" value="3" /> ③ 부산대 약학부 종합(지역인재)전형 수능최저기준은 국,수,영,탐(2) 중 수학 포함 3합 5이 내로 완화되었다.</label>
+      <label><input type="radio" name="q12" value="4" /> ④ 부산대 자연계열 논술 출제범위는 기하를 제외한 수학, 수1, 수2, 미적분까지이다. * 논술(지역인재)전형: 약학부, 의예과, 한의학전문대학원 제외</label>
+      <label><input type="radio" name="q12" value="5" /> ⑤ 경북대는 학교폭력 8~9호에 준하는 학생은 부적격 처리로 조치하여 반영하고 있다.</label>
     </div>
-    <button type="button" class="check-answer" onclick="checkAnswer('q12', 3)">정답 확인</button>
+    <button type="button" class="check-answer" onclick="showAnswer('q12')">정답 확인</button>
     <div class="answer" id="answer-q12">정답: ③</div>
   </form>
 </div>
 
 <!-- 문제 13 -->
-<div class="question" id="q13">
+<div class="question" id="q13" data-correct-text="이화여대">
   <div class="qnum">문제 13</div>
   <div class="problem">다음 중 2026학년도 수시 모집에서 학생부교과전형의 수능최저기준을 완화한 대학으로 옳지 않은 것을 고르시오.</div>
   <form>
     <div class="choices">
-      <label><input type="radio" name="q13" value="1" /> ① 고려대</label><br />
-      <label><input type="radio" name="q13" value="2" /> ② 서울시립대</label><br />
-      <label><input type="radio" name="q13" value="3" /> ③ 경인교대</label><br />
-      <label><input type="radio" name="q13" value="4" /> ④ 이화여대</label><br />
-      <label><input type="radio" name="q13" value="5" /> ⑤ 숭실대</label><br />
+      <label><input type="radio" name="q13" value="1" /> ① 고려대</label>
+      <label><input type="radio" name="q13" value="2" /> ② 서울시립대</label>
+      <label><input type="radio" name="q13" value="3" /> ③ 경인교대</label>
+      <label><input type="radio" name="q13" value="4" /> ④ 이화여대</label>
+      <label><input type="radio" name="q13" value="5" /> ⑤ 숭실대</label>
     </div>
-    <button type="button" class="check-answer" onclick="checkAnswer('q13', 4)">정답 확인</button>
+    <button type="button" class="check-answer" onclick="showAnswer('q13')">정답 확인</button>
     <div class="answer" id="answer-q13">정답: ④</div>
   </form>
 </div>
 
 <!-- 문제 14 -->
-<div class="question" id="q14">
+<div class="question" id="q14" data-correct-text="계명대 수시전형에는 교과(면접형) 전형이 신설되었다.">
   <div class="qnum">문제 14</div>
   <div class="problem">다음 중 2026학년도 의예과 수시모집 관련 변경사항으로 옳지 않은 것을 고르시오.</div>
   <form>
     <div class="choices">
-      <label><input type="radio" name="q14" value="1" /> ① 경북대 수시전형 최저학력기준은 국,수(미/기),영,과(2) 중 과탐 포함 3개 등급 합 4에서 국,수,영,탐(2) 중 탐구 포함 3개 등급 합 4로 변경되었다.</label><br />
-      <label><input type="radio" name="q14" value="2" /> ② 영남대 수시전형에는 종합(지역인재의약) 전형이 신설되어 10명을 모집한다.</label><br />
-      <label><input type="radio" name="q14" value="3" /> ③ 계명대 수시전형에는 교과(면접형) 전형이 신설되었다.</label><br />
-      <label><input type="radio" name="q14" value="4" /> ④ 대구가톨릭대 수시전형 1단계 모집은 10배수를 선발한다.</label><br />
-      <label><input type="radio" name="q14" value="5" /> ⑤ 경북대 종합(지역)전형과 대구가톨릭대 교과전형의 면접일은 11/15(토)로 동일하다.</label><br />
+      <label><input type="radio" name="q14" value="1" /> ① 경북대 수시전형 최저학력기준은 국,수(미/기),영,과(2) 중 과탐 포함 3개 등급 합 4에서 국,수,영,탐(2) 중 탐구 포함 3개 등급 합 4로 변경되었다.</label>
+      <label><input type="radio" name="q14" value="2" /> ② 영남대 수시전형에는 종합(지역인재의약) 전형이 신설되어 10명을 모집한다.</label>
+      <label><input type="radio" name="q14" value="3" /> ③ 계명대 수시전형에는 교과(면접형) 전형이 신설되었다.</label>
+      <label><input type="radio" name="q14" value="4" /> ④ 대구가톨릭대 수시전형 1단계 모집은 10배수를 선발한다.</label>
+      <label><input type="radio" name="q14" value="5" /> ⑤ 경북대 종합(지역)전형과 대구가톨릭대 교과전형의 면접일은 11/15(토)로 동일하다.</label>
     </div>
-    <button type="button" class="check-answer" onclick="checkAnswer('q14', 3)">정답 확인</button>
+    <button type="button" class="check-answer" onclick="showAnswer('q14')">정답 확인</button>
     <div class="answer" id="answer-q14">정답: ③</div>
   </form>
 </div>
 
 <!-- 문제 15 -->
-<div class="question" id="q15">
+<div class="question" id="q15" data-correct-text="학교폭력 조치사항이 모든 전형에서 의무적으로 반영된다.">
   <div class="qnum">문제 15</div>
   <div class="problem">2026학년도 수시전형에서 대부분의 대학에 공통적으로 적용되는 주요 변경사항으로 가장 적절한 것을 고르시오.</div>
   <form>
     <div class="choices">
-      <label><input type="radio" name="q15" value="1" /> ① 학생부교과전형에서 면접을 폐지하는 대학이 대폭 증가한다.</label><br />
-      <label><input type="radio" name="q15" value="2" /> ② 논술전형에서 수능 최저학력기준이 전면 폐지된다.</label><br />
-      <label><input type="radio" name="q15" value="3" /> ③ 의학계열 모집에서 지역균형선발전형을 의무적으로 도입한다.</label><br />
-      <label><input type="radio" name="q15" value="4" /> ④ 학교폭력 조치사항이 모든 전형에서 의무적으로 반영된다.</label><br />
-      <label><input type="radio" name="q15" value="5" /> ⑤ 수시전형에서 수능 최저학력기준이 모든 대학에서 완화된다.</label><br />
+      <label><input type="radio" name="q15" value="1" /> ① 학생부교과전형에서 면접을 폐지하는 대학이 대폭 증가한다.</label>
+      <label><input type="radio" name="q15" value="2" /> ② 논술전형에서 수능 최저학력기준이 전면 폐지된다.</label>
+      <label><input type="radio" name="q15" value="3" /> ③ 의학계열 모집에서 지역균형선발전형을 의무적으로 도입한다.</label>
+      <label><input type="radio" name="q15" value="4" /> ④ 학교폭력 조치사항이 모든 전형에서 의무적으로 반영된다.</label>
+      <label><input type="radio" name="q15" value="5" /> ⑤ 수시전형에서 수능 최저학력기준이 모든 대학에서 완화된다.</label>
     </div>
-    <button type="button" class="check-answer" onclick="checkAnswer('q15', 4)">정답 확인</button>
+    <button type="button" class="check-answer" onclick="showAnswer('q15')">정답 확인</button>
     <div class="answer" id="answer-q15">정답: ④</div>
   </form>
 </div>
+
+<script>
+  function showAnswer(qid) {
+    const qEl = document.getElementById(qid);
+    const answerEl = document.getElementById("answer-" + qid);
+    const correctText = qEl.getAttribute("data-correct-text");
+    answerEl.innerHTML = "<strong>정답 해설:</strong> " + correctText;
+  }
+</script>
+
 
  <!-- 문제 16 -->
 <div class="question" id="q16">
