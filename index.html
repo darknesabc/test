@@ -73,17 +73,9 @@
     display: none;
   }
 
-  /* 이전/다음 문제 버튼 위치 고정 */
   #page-nav {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    z-index: 1000;
+    margin: 20px 0;
+    text-align: center;
   }
 
   #page-nav button {
@@ -110,13 +102,17 @@
     }
   }
 </style>
-
 </head>
 <body>
 
 <div class="toggle-buttons">
   <button id="scrollBtn" type="button">스크롤형 보기</button>
   <button id="pageBtn" type="button">페이지형 보기</button>
+</div>
+
+<div class="shuffle-controls">
+  <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
+  <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
 </div>
 
 <div class="shuffle-controls">
