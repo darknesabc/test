@@ -1340,6 +1340,8 @@ function questions() {
 function updateChoiceNumbers() {
   questions().forEach(q => {
     const labels = q.querySelectorAll('.choices label');
+    
+    // 각 문제에서 보기를 ①~⑤로 순차적으로 붙이기
     labels.forEach((label, index) => {
       const input = label.querySelector('input');
       if (!input) return;
@@ -1360,6 +1362,7 @@ function updateChoiceNumbers() {
     });
   });
 }
+
 
 function updateQuestionNumbers() {
   questions().forEach((q, idx) => {
