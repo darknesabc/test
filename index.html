@@ -1697,21 +1697,22 @@ function updateChoiceNumbers() {
     다음 &lt;보기&gt;는 2026학년도 수시모집 수의예과에 대한 설명이다. 옳은 것으로 짝지어진 것을 고르시오.
   </div>
   <form>
-    <div class="choices" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
-      ㉠ 경북대학교 일반(종합)전형은 서류 100%로 선발하며, 수능 최저학력기준은 국어, 수학, 영어, 탐구(2과목) 중 탐구 포함 3개 영역 합 5 이내이며, 탐구는 2과목 평균을 소수점 절사하여 반영한다.<br />
-      ㉡ 제주대학교는 2025학년도에 이어 종합전형에서 지역인재 전형을 운영하며, 수능 최저학력기준은 국어, 수학(미적분/기하), 영어, 과학탐구(2과목) 중 수학 포함 3합 7 이내이다.<br />
-      ㉢ 경북대학교는 논술전형에서 논술 70%, 교과 30%로 선발하며, 수능 최저학력기준에서 수학, 과학탐구 지정과목을 폐지하였다.<br />
-      ㉣ 경상국립대학교는 종합전형(일반)에서 수능 최저학력기준을 신설하였고, 기준은 국어, 수학, 영어, 과학탐구(2과목) 중 수학 포함 3합 7 이내, 과탐은 2과목 평균 소수점 절사로 반영한다.<br />
-      ㉤ 충남대학교 교과 일반전형은 1단계에서 교과 100%로 선발한 뒤, 1단계 성적 70%, 면접 30%로 최종 선발하며, 수능 최저학력기준에서 수학, 과학탐구 지정 과목을 폐지하였다.<br />
-      ㉥ 충북대학교는 종합전형을 1전형과 2전형으로 구분하여 선발하며, 두 전형 모두 수능 최저학력기준은 국어, 수학, 영어, 과학탐구(1과목) 중 3합 8 이내이다.
-    </div>
-    <div class="choices">
-      <label><input type="radio" name="q63" value="1" /> ① ㉠,㉡,㉢</label>
-      <label><input type="radio" name="q63" value="2" /> ② ㉠,㉢,㉣</label>
-      <label><input type="radio" name="q63" value="3" /> ③ ㉠,㉢,㉥</label>
-      <label><input type="radio" name="q63" value="4" /> ④ ㉡,㉣,㉤</label>
-      <label><input type="radio" name="q63" value="5" /> ⑤ ㉡,㉤,㉥</label>
-    </div>
+  <div class="choices" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
+    <label><input type="checkbox" name="q63_view" value="㉠" /> ㉠ 경북대학교 일반(종합)전형은 서류 100%로 선발하며, 수능 최저학력기준은 ...</label><br />
+    <label><input type="checkbox" name="q63_view" value="㉡" /> ㉡ 제주대학교는 2025학년도에 이어 종합전형에서 지역인재 전형을 운영하며...</label><br />
+    <label><input type="checkbox" name="q63_view" value="㉢" /> ㉢ 경북대학교는 논술전형에서 논술 70%, 교과 30%로 선발하며...</label><br />
+    <label><input type="checkbox" name="q63_view" value="㉣" /> ㉣ 경상국립대학교는 종합전형(일반)에서 수능 최저학력기준을 신설하였고...</label><br />
+    <label><input type="checkbox" name="q63_view" value="㉤" /> ㉤ 충남대학교 교과 일반전형은 1단계에서 교과 100%로 선발한 뒤...</label><br />
+    <label><input type="checkbox" name="q63_view" value="㉥" /> ㉥ 충북대학교는 종합전형을 1전형과 2전형으로 구분하여 선발하며...</label>
+  </div>
+  <!-- 아래 선택지 그대로 유지 -->
+  <div class="choices">
+    <label><input type="radio" name="q63" value="1" /> ① ㉠,㉡,㉢</label>
+    <label><input type="radio" name="q63" value="2" /> ② ㉠,㉢,㉣</label>
+    <label><input type="radio" name="q63" value="3" /> ③ ㉠,㉢,㉥</label>
+    <label><input type="radio" name="q63" value="4" /> ④ ㉡,㉣,㉤</label>
+    <label><input type="radio" name="q63" value="5" /> ⑤ ㉡,㉤,㉥</label>
+  </div>
     <button type="button" class="check-answer">정답 확인</button>
     <div class="answer" id="answer-q63">정답: ① ㉠,㉡,㉢</div>
   </form>
