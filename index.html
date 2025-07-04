@@ -2592,7 +2592,7 @@ N수생 : 그렇군요.. 그러면
 </div>
 
 <script>
-// 문제 배열 셔플 함수
+// 문제 셔플 함수
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -2687,7 +2687,7 @@ function shuffleChoices() {
   updateChoiceNumbers();
 }
 
-// 개별 문제 답 체크
+// 개별 문제 정답 확인
 function checkAnswer(questionId) {
   const question = document.getElementById(questionId);
   const checked = question.querySelector(`input[name=${questionId}]:checked`);
@@ -2712,7 +2712,7 @@ function checkAnswer(questionId) {
   answerDiv.style.display = 'block';
 }
 
-// 모든 문제 정답 확인 기능 추가
+// 모든 문제 정답 확인
 function checkAllAnswers() {
   const allQuestions = questions();
   let unanswered = 0;
@@ -2749,7 +2749,7 @@ function checkAllAnswers() {
   }
 }
 
-// 페이지 네비게이션 및 표시 관련 함수
+// 페이지 네비게이션 및 표시 관련
 let currentIndex = 0;
 const quizWrapper = document.getElementById('quiz-wrapper');
 const scrollBtn = document.getElementById('scrollBtn');
@@ -2795,13 +2795,52 @@ nextBtn.onclick = () => {
   }
 };
 
+// ** 핵심: 원본 문제 리스트 복사 **
+const originalQuestions = Array.from(document.querySelectorAll('.question'));
+
+// 랜덤 문제 뽑기 함수
+function getRandomQuestions(allQuestions, numQuestions) {
+  const shuffled = [...allQuestions];
+  shuffleArray(shuffled);
+  return shuffled.slice(0, numQuestions);
+}
+
+document.getElementById('selectRandomQuestions').addEventListener('click', function() {
+  const input = document.getElementById('randomQuestionCountInput');
+  const numQuestions = parseInt(input.value, 10);
+
+  if (isNaN(numQuestions) || numQuestions < 1) {
+    alert("유효한 문제 수를 입력하세요.");
+    return;
+  }
+
+  if (numQuestions > originalQuestions.length) {
+    alert(`최대 문제 수는 ${originalQuestions.length}개 입니다.`);
+    return;
+  }
+
+  const randomQuestions = getRandomQuestions(originalQuestions, numQuestions);
+
+  quizWrapper.innerHTML = '';
+  randomQuestions.forEach(q => quizWrapper.appendChild(q));
+
+  updateQuestionNumbers();
+  updateChoiceNumbers();
+
+  // 페이지 모드일 경우 첫 문제만 표시
+  if (quizWrapper.classList.contains('page-mode')) {
+    currentIndex = 0;
+    showQuestion(currentIndex);
+  }
+});
+
 window.onload = () => {
   updateQuestionNumbers();
   updateChoiceNumbers();
   questions().forEach(q => q.classList.add('active')); // 기본 스크롤 모드 활성화
 };
 
-// 이벤트 연결
+// 버튼 이벤트 연결
 document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
 document.getElementById('shuffleChoicesBtn').onclick = shuffleChoices;
 document.getElementById('checkAllAnswersBtn').onclick = checkAllAnswers;
