@@ -12,7 +12,12 @@
       padding: 20px;
     }
 
+    /* 토글버튼 및 셔플컨트롤 컨테이너 */
     .toggle-buttons, .shuffle-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
       margin-bottom: 20px;
       text-align: center;
       background-color: white;
@@ -23,21 +28,26 @@
       border-bottom: 1px solid #ddd;
     }
 
-    .shuffle-controls {
-      display: flex;
-      justify-content: left; 
-      gap: 20px;
-      flex-wrap: wrap;
+    /* 버튼 공통 스타일 */
+    .toggle-buttons button, .shuffle-controls button {
+      margin: 0;
+      padding: 8px 14px;
+      font-size: 15px;
+      cursor: pointer;
+      min-width: 90px;
+      max-width: 150px;
+      flex: 1 1 auto;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+      transition: background-color 0.3s ease;
+    }
+    .toggle-buttons button:hover, .shuffle-controls button:hover {
+      background-color: #ddd;
     }
 
-    <style>
-  .toggle-buttons button, .shuffle-controls button {
-    margin: 4px 6px;
-    padding: 6px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    min-width: 80px;
-  }
+    /* 문제 표시 방식 */
     #quiz-wrapper.scroll-mode .question {
       display: block;
     }
@@ -50,6 +60,7 @@
       display: block;
     }
 
+    /* 문제 박스 */
     .question {
       border: 1px solid #ddd;
       padding: 15px;
@@ -81,6 +92,13 @@
       padding: 8px 14px;
       font-size: 15px;
       cursor: pointer;
+      border: 1px solid #999;
+      background-color: #eee;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    button.check-answer:hover {
+      background-color: #ddd;
     }
 
     .answer {
@@ -113,26 +131,61 @@
       font-size: 18px;
       cursor: pointer;
       display: none;
+      transition: background-color 0.3s ease;
     }
 
     #scrollTopBtn:hover {
       background-color: #0056b3;
     }
 
+    /* 반응형 - 모바일: 600px 이하 */
     @media (max-width: 600px) {
       body {
         padding: 10px;
       }
-      .toggle-buttons button, .shuffle-controls button, #page-nav button {
-        font-size: 14px;
-        padding: 8px 12px;
-        margin: 5px 6px;
+      .toggle-buttons button, .shuffle-controls button {
+        font-size: 13px;
+        padding: 6px 10px;
+        min-width: 70px;
+        max-width: 120px;
+      }
+      .toggle-buttons, .shuffle-controls {
+        gap: 6px;
+        padding: 8px 0;
       }
       .qnum {
         font-size: 16px;
       }
       .problem, .choices label {
         font-size: 14px;
+      }
+      button.check-answer {
+        font-size: 13px;
+        padding: 6px 10px;
+      }
+    }
+
+    /* 반응형 - 태블릿: 601px ~ 900px */
+    @media (max-width: 900px) and (min-width: 601px) {
+      .toggle-buttons button, .shuffle-controls button {
+        font-size: 14px;
+        padding: 7px 12px;
+        min-width: 80px;
+        max-width: 140px;
+      }
+      .toggle-buttons, .shuffle-controls {
+        gap: 7px;
+        padding: 9px 0;
+      }
+      .qnum {
+        font-size: 17px;
+      }
+      .problem, .choices label {
+        font-size: 15px;
+      }
+      button.check-answer {
+        font-size: 14px;
+        padding: 7px 12px;
       }
     }
   </style>
@@ -149,13 +202,11 @@
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
   
-  <!-- 문제 수 입력란 -->
   <label for="randomQuestionCountInput">랜덤 문제 수 입력: </label>
-  <input type="number" id="randomQuestionCountInput" min="1" placeholder="문제 수 입력" />
+  <input type="number" id="randomQuestionCountInput" min="1" placeholder="문제 수 입력" style="width:80px; padding:5px; font-size:14px;" />
   
   <button id="selectRandomQuestions" type="button">랜덤 문제 뽑기</button>
 
-  <!-- 전체 정답 확인 버튼 추가 -->
   <button id="checkAllAnswersBtn" type="button">모든 문제 정답 확인</button>
 </div>
   
@@ -2796,7 +2847,7 @@ nextBtn.onclick = () => {
   }
 };
 
-// ** 핵심: 원본 문제 리스트 복사 **
+// 원본 문제 복사 (초기 로드 시)
 const originalQuestions = Array.from(document.querySelectorAll('.question'));
 
 // 랜덤 문제 뽑기 함수
@@ -2828,7 +2879,6 @@ document.getElementById('selectRandomQuestions').addEventListener('click', funct
   updateQuestionNumbers();
   updateChoiceNumbers();
 
-  // 페이지 모드일 경우 첫 문제만 표시
   if (quizWrapper.classList.contains('page-mode')) {
     currentIndex = 0;
     showQuestion(currentIndex);
