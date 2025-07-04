@@ -121,7 +121,7 @@
         font-size: 14px;
       }
     }
-  </style>
+ </style>
 </head>
 <body>
 
@@ -140,7 +140,7 @@
 </div>
 
 <div id="quiz-wrapper" class="scroll-mode">
-  <!-- 문제들 (여기서 문제가 랜덤으로 출력됩니다) -->
+  <!-- 문제들 -->
 </div>
 
 <button id="scrollTopBtn">↑</button>
@@ -149,7 +149,7 @@
   <button id="prevBtn" type="button">이전 문제</button>
   <button id="nextBtn" type="button">다음 문제</button>
 </div>
-
+  
   <div id="quiz-wrapper" class="scroll-mode">
   <!-- 문제 1 -->
   <div class="question" id="q1" data-correct-text="단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.">
@@ -613,7 +613,7 @@
 
   <button id="scrollTopBtn">↑</button>
   
- // 문제를 랜덤으로 뽑아와서 화면에 표시
+// 문제를 랜덤으로 뽑아와서 화면에 표시
   function getRandomQuestions(count) {
     const shuffled = [...allQuestions];
     shuffleArray(shuffled);
@@ -683,18 +683,7 @@
     location.reload();
   });
 
-  // 페이지 로드 후 스크롤 최상단으로
-  window.onload = function() {
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 100);
-  };
-</script>
-
-</body>
-</html>
-
-  // 예시: 페이지형 / 스크롤형 전환 (기본 기능)
+  // 페이지형/스크롤형 보기 전환
   document.getElementById('scrollBtn').addEventListener('click', () => {
     const quizWrapper = document.getElementById('quiz-wrapper');
     quizWrapper.classList.remove('page-mode');
@@ -713,14 +702,7 @@
     document.getElementById('page-nav').style.display = 'block';  
   });
 
-  // 문제 섞기 함수
-  function shuffleArray(arr) {
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-  }
-
+  // 문제 섞기
   function shuffleQuestions() {
     const questions = Array.from(document.querySelectorAll('.question'));
     shuffleArray(questions);
@@ -729,6 +711,7 @@
     questions.forEach(q => quizWrapper.appendChild(q));
   }
 
+  // 보기 섞기
   function shuffleChoices() {
     document.querySelectorAll('.question').forEach(q => {
       const choiceDiv = q.querySelector('.choices');
@@ -739,7 +722,7 @@
     });
   }
 
-  // 버튼 클릭 이벤트
+  // 문제 섞기, 보기 섞기 버튼 클릭 이벤트
   document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
   document.getElementById('shuffleChoicesBtn').onclick = shuffleChoices;
 </script>
