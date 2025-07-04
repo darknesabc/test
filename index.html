@@ -174,10 +174,10 @@
 
   <form>
     <div class="choices">
-      <label><input type="radio" name="q3" value="A" /> ① ㉠, ㉡, ㉢</label><br />
-      <label><input type="radio" name="q3" value="B" /> ② ㉠, ㉢, ㉣</label><br />
-      <label><input type="radio" name="q3" value="C" /> ③ ㉠, ㉢, ㉥</label><br />
-      <label><input type="radio" name="q3" value="D" /> ④ ㉡, ㉣, ㉤</label><br />
+      <label><input type="radio" name="q3" value="A" /> ① ㉠, ㉡, ㉢</label>
+      <label><input type="radio" name="q3" value="B" /> ② ㉠, ㉢, ㉣</label>
+      <label><input type="radio" name="q3" value="C" /> ③ ㉠, ㉢, ㉥</label>
+      <label><input type="radio" name="q3" value="D" /> ④ ㉡, ㉣, ㉤</label>
       <label><input type="radio" name="q3" value="E" /> ⑤ ㉡, ㉤, ㉥</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q3')">정답 확인</button>
@@ -190,11 +190,12 @@
     const qEl = document.getElementById(qid);
     const answerEl = document.getElementById("answer-" + qid);
     const correctText = qEl.getAttribute("data-correct-text");
-    answerEl.innerHTML = "정답 해설:<br>" + correctText.replace(/\n/g, "<br>");
+
+    // 줄바꿈 문자(\n)를 <br>로 바꿔서 출력
+    const formatted = correctText.replace(/\n/g, "<br>");
+    answerEl.innerHTML = "<strong>정답 해설:</strong><br>" + formatted;
   }
 </script>
-
-
 
 <!-- 문제 4 -->
 <div class="question" id="q4" data-correct-text="전북대 큰사람전형은 2단계 서류 80+면접 20에서 서류 70+면접 30으로 변경되었다.">
