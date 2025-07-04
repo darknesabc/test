@@ -1707,10 +1707,10 @@ function updateChoiceNumbers() {
   </div>
   <form>
     <div class="choices" style="margin-bottom:15px;">
-      <label><input type="radio" name="q63" value="1" /> ① ㉠,㉡,㉢</label><br />
-      <label><input type="radio" name="q63" value="2" /> ② ㉠,㉢,㉣</label><br />
-      <label><input type="radio" name="q63" value="3" /> ③ ㉠,㉢,㉥</label><br />
-      <label><input type="radio" name="q63" value="4" /> ④ ㉡,㉣,㉤</label><br />
+      <label><input type="radio" name="q63" value="1" /> ① ㉠,㉡,㉢</label>
+      <label><input type="radio" name="q63" value="2" /> ② ㉠,㉢,㉣</label>
+      <label><input type="radio" name="q63" value="3" /> ③ ㉠,㉢,㉥</label>
+      <label><input type="radio" name="q63" value="4" /> ④ ㉡,㉣,㉤</label>
       <label><input type="radio" name="q63" value="5" /> ⑤ ㉡,㉤,㉥</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q63')">정답 확인</button>
@@ -1735,54 +1735,56 @@ function updateChoiceNumbers() {
 </div>
     <!-- 문제 65 -->
 <div class="question" id="q65" data-correct-text="㉠, ㉥">
-  <div class="qnum">문제 65</div>
-  <div class="problem">
+  <div class="qnum" style="font-weight:bold; margin-bottom:10px;">[문제 65]</div>
+
+  <div style="font-weight:bold; margin-bottom:15px;">
     다음 전형 중 2026학년도에 수능 최저학력기준이 신설된 전형으로 옳게 짝지어진 것을 고르시오.
   </div>
+  <div class="problem" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
+    ㉠ 이화여대 고교추천<br />
+    ㉡ 숙명여대 지역균형선발<br />
+    ㉢ 상명대 고교추천<br />
+    ㉣ 한양대 교과(추천형)<br />
+    ㉤ 연세대 추천형<br />
+    ㉥ 덕성여대 고교추천
+  </div>
   <form>
-    <div class="choices" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
-      ㉠ 이화여대 고교추천<br />
-      ㉡ 숙명여대 지역균형선발<br />
-      ㉢ 상명대 고교추천<br />
-      ㉣ 한양대 교과(추천형)<br />
-      ㉤ 연세대 추천형<br />
-      ㉥ 덕성여대 고교추천
-    </div>
-    <div class="choices">
+    <div class="choices" style="margin-bottom:15px;">
       <label><input type="radio" name="q65" value="1" /> ① ㉠, ㉡</label>
       <label><input type="radio" name="q65" value="2" /> ② ㉠, ㉥</label>
       <label><input type="radio" name="q65" value="3" /> ③ ㉡, ㉥</label>
       <label><input type="radio" name="q65" value="4" /> ④ ㉢, ㉣</label>
       <label><input type="radio" name="q65" value="5" /> ⑤ ㉢, ㉤</label>
     </div>
-    <button type="button" class="check-answer">정답 확인</button>
-    <div class="answer" id="answer-q65">정답: ② ㉠, ㉥</div>
+    <button type="button" class="check-answer" onclick="showAnswer('q65')">정답 확인</button>
+    <div class="answer" id="answer-q65" style="margin-top:10px;">정답: ② ㉠, ㉥</div>
   </form>
 </div>
 <!-- 문제 66 -->
 <div class="question" id="q66" data-correct-text="㉠, ㉢, ㉤">
-  <div class="qnum">문제 66</div>
-  <div class="problem">
-    다음 &lt;보기&gt;에서 2026학년도 수시 모집 전형 중 수능 이전에 면접이 진행되는 대학과 모집단위가 짝지어진 것을 고르시오.
+  <div class="qnum" style="font-weight:bold; margin-bottom:10px;">[문제 66]</div>
+
+  <div style="font-weight:bold; margin-bottom:15px;">
+    다음 <strong>보기</strong>에서 2026학년도 수시 모집 전형 중 수능 이전에 면접이 진행되는 대학과 모집단위가 짝지어진 것을 고르시오.
+  </div>
+  <div class="problem" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
+    ㉠ 고려대 계열적합형 전기전자공학부<br />
+    ㉡ 성균관대 성균인재 자유전공<br />
+    ㉢ 성균관대 성균인재 교육학과<br />
+    ㉣ 한양대 종합(면접형) 인터칼리지<br />
+    ㉤ 영남대 의학창의인재 의예과<br />
+    ㉥ 중앙대 CAU융합형 의학부
   </div>
   <form>
-    <div class="choices" style="margin-bottom:15px; padding:15px; border:2px solid #444; border-radius:8px; background-color:#f9f9f9;">
-      ㉠ 고려대 계열적합형 전기전자공학부<br />
-      ㉡ 성균관대 성균인재 자유전공<br />
-      ㉢ 성균관대 성균인재 교육학과<br />
-      ㉣ 한양대 종합(면접형) 인터칼리지<br />
-      ㉤ 영남대 의학창의인재 의예과<br />
-      ㉥ 중앙대 CAU융합형 의학부
-    </div>
-    <div class="choices">
-      <label><input type="radio" name="q66" value="1" /> ① ㉠, ㉢, ㉤</label>
-      <label><input type="radio" name="q66" value="2" /> ② ㉡, ㉣, ㉤</label>
-      <label><input type="radio" name="q66" value="3" /> ③ ㉢, ㉤, ㉥</label>
-      <label><input type="radio" name="q66" value="4" /> ④ ㉡, ㉣, ㉥</label>
+    <div class="choices" style="margin-bottom:15px;">
+      <label><input type="radio" name="q66" value="1" /> ① ㉠, ㉢, ㉤</label><br />
+      <label><input type="radio" name="q66" value="2" /> ② ㉡, ㉣, ㉤</label><br />
+      <label><input type="radio" name="q66" value="3" /> ③ ㉢, ㉤, ㉥</label><br />
+      <label><input type="radio" name="q66" value="4" /> ④ ㉡, ㉣, ㉥</label><br />
       <label><input type="radio" name="q66" value="5" /> ⑤ ㉣, ㉤, ㉥</label>
     </div>
-    <button type="button" class="check-answer">정답 확인</button>
-    <div class="answer" id="answer-q66">정답: ① ㉠, ㉢, ㉤</div>
+    <button type="button" class="check-answer" onclick="showAnswer('q66')">정답 확인</button>
+    <div class="answer" id="answer-q66" style="margin-top:10px;">정답: ① ㉠, ㉢, ㉤</div>
   </form>
 </div>
 <!-- 문제 67 -->
