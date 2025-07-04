@@ -123,23 +123,23 @@
 
 <div id="quiz-wrapper" class="scroll-mode">
 
-<!-- 문제 1 -->
-<div class="question" id="q1">
-  <div class="qnum">문제 1</div>
-  <div class="problem">다음 중 논술전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
-  <form>
-    <div class="choices">
-      <label><input type="radio" name="q1" value="1" /> ① 단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.</label><br />
-      <label><input type="radio" name="q1" value="2" /> ② 국민대는 올해 약술형 논술을 신설하였으며, 수능최저기준을 적용한다.</label><br />
-      <label><input type="radio" name="q1" value="3" /> ③ 수능 이전에 논술고사를 실시하는 대학 중 연세대, 서울시립대(자연), 성신여대(자연)은 9/27(토)에 논술고사를 실시한다.</label><br />
-      <label><input type="radio" name="q1" value="4" /> ④ 논술고사를 실시하는 대학 중 경희대(의치한약), 아주대(의학), 경북대(의치수)는 논술문제를 과학에서도 출제한다.</label><br />
-      <label><input type="radio" name="q1" value="5" /> ⑤ 성신여대, 서강대, 삼육대는 2025학년도에는 논술 100으로 선발하지 않았으나 2026학년도에는 논술 100으로 선발한다.</label><br />
-    </div>
-    <button type="button" class="check-answer" data-correct="1">정답 확인</button>
-    <div class="answer" id="answer-q1">정답: ①</div>
-  </form>
-</div>
-
+  <!-- 문제 1 예시 -->
+  <div class="question" id="q1">
+    <div class="qnum">문제 1</div>
+    <div class="problem">다음 중 논술전형에 대한 설명으로 옳지 않은 것을 고르시오.</div>
+    <form>
+      <div class="choices">
+        <label><input type="radio" name="q1" value="A" /> ① 단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며...</label>
+        <label><input type="radio" name="q1" value="B" /> ② 국민대는 올해 약술형 논술을 신설하였으며, 수능최저기준을 적용한다.</label>
+        <label><input type="radio" name="q1" value="C" /> ③ 수능 이전에 논술고사를 실시하는 대학 중 연세대...</label>
+        <label><input type="radio" name="q1" value="D" /> ④ 논술고사를 실시하는 대학 중 경희대...</label>
+        <label><input type="radio" name="q1" value="E" /> ⑤ 성신여대, 서강대, 삼육대는 2025학년도에는 논술 100으로 선발하지 않았으나 2026학년도에는 논술 100으로 선발한다.</label>
+      </div>
+      <button type="button" class="check-answer" data-correct="A">정답 확인</button>
+      <div class="answer" id="answer-q1">정답: ①</div>
+    </form>
+  </div>
+  
 <!-- 문제 2 -->
 <div class="question" id="q2">
   <div class="qnum">문제 2</div>
@@ -527,8 +527,6 @@
 
 </div> <!-- quiz-wrapper 끝 -->
 
-</div>
-
 <div id="page-nav" style="display:none;">
   <button id="prevBtn" type="button">이전 문제</button>
   <button id="nextBtn" type="button">다음 문제</button>
@@ -633,21 +631,21 @@ function shuffleChoices() {
   updateChoiceNumbers();
 }
 
-function checkAnswer(questionId, correctNum) {
+function checkAnswer(questionId, correctValue) {
   const question = document.getElementById(questionId);
   const checked = question.querySelector(`input[name=${questionId}]:checked`);
   const answerDiv = question.querySelector('.answer');
+
   if (!checked) {
     alert('보기를 선택해 주세요.');
     return;
   }
-  const selected = Number(checked.value);
-  const correct = Number(correctNum);
-  if (selected === correct) {
+  const selectedValue = checked.value;
+  if (selectedValue === correctValue) {
     answerDiv.textContent = '정답입니다!';
     answerDiv.style.color = 'green';
   } else {
-    answerDiv.textContent = `틀렸습니다. 정답은 ${correct}번입니다.`;
+    answerDiv.textContent = `틀렸습니다. 정답은 ${correctValue}번입니다.`;
     answerDiv.style.color = 'red';
   }
   answerDiv.style.display = 'block';
@@ -693,7 +691,7 @@ nextBtn.onclick = () => {
 window.onload = () => {
   updateQuestionNumbers();
   updateChoiceNumbers();
-  questions().forEach(q => q.classList.add('active')); // 기본 스크롤형 모드로 전체 문제 표시
+  questions().forEach(q => q.classList.add('active')); // 스크롤형 기본 활성화
 };
 
 document.getElementById('shuffleQuestionsBtn').onclick = shuffleQuestions;
