@@ -148,7 +148,6 @@
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
 </div>
 
-
   <div id="quiz-wrapper" class="scroll-mode">
   <!-- 문제 1 -->
   <div class="question" id="q1" data-correct-text="단국대(천안)는 의예과, 치의예과 논술을 2026학년도에 신설하였으며, 수능최저기준은 의예과 국수(미/기)영과(2) 중 수학 포함 3합 5, 치의예과 국수(미/기)영과(2) 중 수학 포함 3합 6을 적용한다.">
@@ -642,10 +641,12 @@
   // 홈 버튼 클릭 시 새로고침 및 첫 페이지로 이동
   document.getElementById('homeBtn').addEventListener('click', function () {
     location.reload();  // 페이지 새로 고침
-    setTimeout(function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // 새로고침 후 맨 위로 이동
-    }, 100);  // 새로고침 후 잠깐 대기
   });
+
+  // 페이지 로드 완료 후 첫 페이지로 스크롤
+  window.onload = function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });  // 페이지 로드 후 맨 위로 이동
+  };
 
   // 문제 섞기 함수
   function shuffleArray(arr) {
