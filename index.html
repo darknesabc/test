@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>2026학년도 수시모집 문제</title>
   <style>
+    /* 스타일은 동일하게 유지 */
     body {
       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 돋움, Dotum, sans-serif;
       max-width: 720px;
@@ -34,18 +35,6 @@
       padding: 10px 18px;
       font-size: 16px;
       cursor: pointer;
-    }
-
-    #quiz-wrapper.scroll-mode .question {
-      display: block;
-    }
-
-    #quiz-wrapper.page-mode .question {
-      display: none;
-    }
-
-    #quiz-wrapper.page-mode .question.active {
-      display: block;
     }
 
     .question {
@@ -87,18 +76,6 @@
       display: none;
     }
 
-    #page-nav {
-      margin: 20px 0;
-      text-align: center;
-    }
-
-    #page-nav button {
-      margin: 0 10px;
-      padding: 8px 14px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
     #scrollTopBtn {
       position: fixed;
       bottom: 20px;
@@ -115,6 +92,18 @@
 
     #scrollTopBtn:hover {
       background-color: #0056b3;
+    }
+
+    #page-nav {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    #page-nav button {
+      margin: 0 10px;
+      padding: 8px 14px;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
@@ -146,6 +135,7 @@
   <button id="homeBtn" type="button">홈</button> 
   <button id="shuffleQuestionsBtn" type="button">문제 섞기</button>
   <button id="shuffleChoicesBtn" type="button">보기 섞기</button>
+  <button id="loadRandomQuestionsBtn" type="button">랜덤 문제 불러오기</button>
 </div>
 
   <div id="quiz-wrapper" class="scroll-mode">
@@ -608,6 +598,52 @@
 
 
 </div> <!-- quiz-wrapper 끝 -->
+
+   // 문제를 랜덤으로 뽑아와서 화면에 표시
+  function getRandomQuestions(count) {
+    const shuffled = [...allQuestions];
+    shuffleArray(shuffled);
+    return shuffled.slice(0, count); // 랜덤으로 선택된 문제들을 반환
+  }
+
+  // 문제를 화면에 표시
+  function displayQuestions(questions) {
+    const quizWrapper = document.getElementById('quiz-wrapper');
+    quizWrapper.innerHTML = '';  // 이전 문제들 초기화
+
+    questions.forEach((question, index) => {
+      const questionDiv = document.createElement('div');
+      questionDiv.classList.add('question');
+      
+      questionDiv.innerHTML = `
+        <div class="qnum">문제 ${index + 1}</div>
+        <div class="problem">${question.problem}</div>
+        <div class="choices">
+          ${question.choices.map((choice, i) => `
+            <label><input type="radio" name="q${index + 1}" /> ${choice}</label>
+          `).join('')}
+        </div>
+        <button class="check-answer">정답 확인</button>
+        <div class="answer">정답은 "${question.correct}"입니다.</div>
+      `;
+      
+      quizWrapper.appendChild(questionDiv);
+    });
+  }
+
+  // 배열을 랜덤하게 섞기 위한 함수
+  function shuffleArray(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+  }
+
+  // 랜덤 문제 불러오기 버튼 클릭 시 동작
+  document.getElementById('loadRandomQuestionsBtn').addEventListener('click', () => {
+    const randomQuestions = getRandomQuestions(10);  // 예시: 10개의 문제만 랜덤으로 뽑기
+    displayQuestions(randomQuestions);
+  });
 
   <button id="scrollTopBtn">↑</button>
   
