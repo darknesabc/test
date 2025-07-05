@@ -750,8 +750,9 @@
 </div>
 
 <!-- 문제 21 -->
-<div class="question" id="q21" data-correct-text="교과 등급보다 수능 예상 성적이 더 좋으므로 수시 납치 가능성을 방지하기 위하여 수능 후 면접이 있는 이화여대 고교추천 전형에 지원을 고려하는 것이 좋겠어.">
-   data-explanation="이화여대 고교추천전형은 면접 없음">
+<div class="question" id="q21"
+     data-correct-text="교과 등급보다 수능 예상 성적이 더 좋으므로 수시 납치 가능성을 방지하기 위하여 수능 후 면접이 있는 이화여대 고교추천 전형에 지원을 고려하는 것이 좋겠어."
+     data-explanation="이화여대 고교추천전형은 면접 없음">
   <div class="qnum">문제 21</div>
 
   <div class="problem" style="margin-bottom: 10px;">
@@ -837,17 +838,10 @@
   </form>
 </div>
 
-<script>
-  function showAnswer(qid) {
-    const qEl = document.getElementById(qid);
-    const answerEl = document.getElementById("answer-" + qid);
-    const correctText = qEl.getAttribute("data-correct-text");
-    answerEl.innerHTML = "<strong>정답:</strong> " + correctText;
-  }
-</script>
-
   <!-- 문제 22 -->
-<div class="question" id="q22" data-correct-text="성균관대 공학계열은 언어형 지원 시 수능최저기준에 수학을 필수 반영한다.">
+<div class="question" id="q22"
+     data-correct-text="성균관대 공학계열은 언어형 지원 시 수능최저기준에 수학을 필수 반영한다."
+     data-explanation="한양대 논술전형은 최저학력기준 신설<br>아주대와 경북대 의예과 논술 전형에서는 생명과학 1/2과목<br>홍익대 자연계열 수능최저기준 탐구영역은 탐구 1과목을 응시<br>서울시립대 인문계열 논술 모집 안함">
   <div class="qnum">문제 22</div>
   <div class="problem">
     다음 중 2026학년도 논술전형에 대한 설명으로 올바른 것을 고르시오
@@ -861,12 +855,12 @@
       <label><input type="radio" name="q22" value="5" /> ⑤ 서울시립대 인문계열 학과는 교과 비중을 20으로 낮추는 대신 수능최저기준을 신설하였다.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q22')">정답 확인</button>
-    <div class="answer" id="answer-q22">정답: ④</div>
+    <div class="answer" id="answer-q22" style="margin-top:10px;"></div>
   </form>
 </div>
 
 <!-- 문제 23 -->
-<div class="question" id="q23" data-correct-text="무전공 모집단위인 학부대학은 교과(학교추천)전형에서도 모집을 실시한다.">
+<div class="question" id="q23" data-correct-text="무전공 모집단위인 학부대학은 교과(학교추천)전형에서도 모집을 실시한다." data-explanation="무전공 모집단위인 학부대학은 학업우수형, 논술전형만 모집">
   <div class="qnum">문제 23</div>
   <div class="problem">
     다음 중 2026학년도 고려대 수시전형 주요 변경사항으로 옳지 않은 것을 고르시오
@@ -880,12 +874,12 @@
       <label><input type="radio" name="q23" value="5" /> ⑤ 무전공 모집단위인 학부대학은 교과(학교추천)전형에서도 모집을 실시한다.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q23')">정답 확인</button>
-    <div class="answer" id="answer-q23">정답: ⑤</div>
+    <div class="answer" id="answer-q23" style="margin-top:10px;"></div>
   </form>
 </div>
 
 <!-- 문제 24 -->
-<div class="question" id="q24" data-correct-text="이화여대는 단계별전형을 폐지하였으며, 교과 80% + 면접 20%으로 선발한다.">
+<div class="question" id="q24" data-correct-text="이화여대는 단계별전형을 폐지하였으며, 교과 80% + 면접 20%으로 선발한다." data-explanation="이화여대는 교과 100으로 선발">
   <div class="qnum">문제 24</div>
   <div class="problem">
     다음 중 2026학년도 학생부교과 전형에 대한 변경사항으로 옳지 않은 것을 고르시오
@@ -899,12 +893,12 @@
       <label><input type="radio" name="q24" value="5" /> ⑤ 이화여대는 단계별전형을 폐지하였으며, 교과 80% + 면접 20%으로 선발한다.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q24')">정답 확인</button>
-    <div class="answer" id="answer-q24">정답: ⑤</div>
+    <div class="answer" id="answer-q24" style="margin-top:10px;"></div>
   </form>
 </div>
 
 <!-- 문제 25 -->
-<div class="question" id="q25" data-correct-text="㉠, ㉢, ㉥">
+<div class="question" id="q25" data-correct-text="㉠, ㉢, ㉥" data-explanation="서울여대 최저 없음<br>강남대 최저 없음<br>단국대(죽전) 논술은 수능 전 응시">
   <div class="qnum">문제 25</div>
   <div class="problem">
     다음 &lt;보기&gt;의 내용은 2026학년도 논술 전형에 대한 설명이다. 옳게 짝지어진 것을 고르시오.
@@ -934,12 +928,12 @@
       <label><input type="radio" name="q25" value="5" /> ⑤ ㉡, ㉤, ㉥</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q25')">정답 확인</button>
-    <div class="answer" id="answer-q25" style="margin-top: 10px;">정답: ③</div>
+    <div class="answer" id="answer-q25" style="margin-top: 10px;"></div>
   </form>
 </div>
 
   <!-- 문제 26 -->
-<div class="question" id="q26" data-correct-text="강남대, 국민대">
+<div class="question" id="q26" data-correct-text="강남대, 국민대" data-explanation="논술전형 신설 대학<br>국민대<br>강남대<br>단국대(천안)">
   <div class="qnum">문제 26</div>
   <div class="problem">
     2026학년도에 논술전형을 신설한 대학으로 옳게 짝지어진 것을 고르시오
@@ -953,7 +947,7 @@
       <label><input type="radio" name="q26" value="5" /> ⑤ 중앙대, 경희대</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q26')">정답 확인</button>
-    <div class="answer" id="answer-q26">정답: ①</div>
+    <div class="answer" id="answer-q26"></div>
   </form>
 </div>
 
@@ -977,27 +971,34 @@
 </div>
 
 <!-- 문제 28 -->
-<div class="question" id="q28" data-correct-text="ㄱ, ㄴ, ㄹ">
+<div class="question" id="q28" data-correct-text="ㄱ, ㄴ, ㄹ" data-explanation="
+한국외대 면접형 11월 15일<br>
+서울시립대 면접형 11월 22~23일<br>
+성균관대 과학인재 10월 26일<br>
+이화여대 미래인재 면접 11월 16일<br>
+성균관대 성균인재(사범) 11월 2일<br>
+고려대 계열적합형(자연) 11월 2일
+">
   <div class="qnum">문제 28</div>
   <div class="problem">
     다음 &lt;보기&gt;의 전형 중 면접 일정이 수능 이후인 전형으로 옳게 짝지어진 것을 고르시오.
   </div>
   <div class="passage-box" style="
-  border: 1px solid #ccc;
-  padding: 12px;
-  border-radius: 6px;
-  background-color: #f9f9f9;
-  margin-top: 10px;
-  font-size: 14px;
-  line-height: 1.6;
-">
-  ㉠ 한국외대 면접형<br />
-  ㉡ 서울시립대 면접형<br />
-  ㉢ 성균관대 과학인재전형<br />
-  ㉣ 이화여대 미래인재 면접형<br />
-  ㉤ 성균관대 성균인재(사범)<br />
-  ㉥ 고려대 계열적합형(자연)
-</div>
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+  ">
+    ㉠ 한국외대 면접형<br />
+    ㉡ 서울시립대 면접형<br />
+    ㉢ 성균관대 과학인재전형<br />
+    ㉣ 이화여대 미래인재 면접형<br />
+    ㉤ 성균관대 성균인재(사범)<br />
+    ㉥ 고려대 계열적합형(자연)
+  </div>
   <form>
     <div class="choices" style="margin-top:15px;">
       <label><input type="radio" name="q28" value="1" /> ① ㄴ, ㄷ, ㄹ</label>
@@ -1007,12 +1008,12 @@
       <label><input type="radio" name="q28" value="5" /> ⑤ ㄷ, ㅁ, ㅂ</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q28')">정답 확인</button>
-    <div class="answer" id="answer-q28" style="margin-top:10px;">정답: ④</div>
+    <div class="answer" id="answer-q28" style="margin-top:10px;"></div>
   </form>
 </div>
 
 <!-- 문제 29 -->
-<div class="question" id="q29" data-correct-text="서강대는 SK하이닉스와 계약을 맺고 반도체공학과를 신설하였다.">
+<div class="question" id="q29" data-correct-text="서강대는 SK하이닉스와 계약을 맺고 반도체공학과를 신설하였다." data-explanation="서강대 반도체공학과는 신설학과는 맞으나 비계약학과입니다.">
   <div class="qnum">문제 29</div>
   <div class="problem">
     다음 중 2026학년도 서울 주요 15개 대학의 학과/학부 신설에 대한 설명으로 옳지 않은 것을 고르시오.
@@ -1026,12 +1027,12 @@
       <label><input type="radio" name="q29" value="5" /> ⑤ 세종대는 양자지능정보학과와 국방AI로봇융합공학과를 신설하였다.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q29')">정답 확인</button>
-    <div class="answer" id="answer-q29">정답: ②</div>
-  </form>
+    <div class="answer" id="answer-q29" style="margin-top:10px;"></div>
+  </form>  
 </div>
-
+    
 <!-- 문제 30 -->
-<div class="question" id="q30" data-correct-text="숙명여대는 지역균형선발전형에서 공통/일반과목 80%, 진로선택과목(상위 3과목) 20% 반영한다.">
+<div class="question" id="q30" data-correct-text="숙명여대는 지역균형선발전형에서 공통/일반과목 80%, 진로선택과목(상위 3과목) 20% 반영한다." data-explanation="숙명여대는 지역균형선발전형에서 공통/일반과목 80%, 진로선택과목 20% 반영한다.">
   <div class="qnum">문제 30</div>
   <div class="problem">
     2026학년도 여대의 수시전형에 관한 설명 중 옳지 않은 것을 고르시오.
@@ -1045,7 +1046,7 @@
       <label><input type="radio" name="q30" value="5" /> ⑤ 서울여대는 논술우수자전형 수능최저학력기준을 폐지한다.</label>
     </div>
     <button type="button" class="check-answer" onclick="showAnswer('q30')">정답 확인</button>
-    <div class="answer" id="answer-q30">정답: ③</div>
+    <div class="answer" id="answer-q30" style="margin-top:10px;"></div>
   </form>
 </div>
 
