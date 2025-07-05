@@ -2774,6 +2774,7 @@ function checkAllAnswers() {
     const questionId = q.id;
     const checked = q.querySelector(`input[name=${questionId}]:checked`);
     const answerDiv = q.querySelector('.answer');
+    const explanationText = q.dataset.explanation || '';
 
     if (!checked) {
       unanswered++;
@@ -2788,11 +2789,9 @@ function checkAllAnswers() {
     const correctText = q.dataset.correctText.trim();
 
     if (selectedText === correctText) {
-      answerDiv.textContent = '정답입니다!';
-      answerDiv.style.color = 'green';
+      answerDiv.innerHTML = `<span style="color:green;">정답입니다!</span><br><em>${explanationText}</em>`;
     } else {
-      answerDiv.textContent = `틀렸습니다. 정답은 "${correctText}"입니다.`;
-      answerDiv.style.color = 'red';
+      answerDiv.innerHTML = `<span style="color:red;">틀렸습니다. 정답은 "${correctText}"입니다.</span>`;
     }
     answerDiv.style.display = 'block';
   });
