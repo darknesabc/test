@@ -204,10 +204,9 @@
   
   <label for="randomQuestionCountInput">랜덤 문제 수 입력: </label>
   <input type="number" id="randomQuestionCountInput" min="1" placeholder="문제 수 입력" style="width:80px; padding:5px; font-size:14px;" />
-  
   <button id="selectRandomQuestions" type="button">랜덤 문제 뽑기</button>
-
   <button id="checkAllAnswersBtn" type="button">모든 문제 정답 확인</button>
+  <button id="retryWrongQuestionsBtn" type="button">틀린 문제 다시 풀기</button>
 </div>
   
   <div id="quiz-wrapper" class="scroll-mode">
@@ -3053,6 +3052,68 @@ window.addEventListener('scroll', function() {
   } else {
     scrollTopBtn.style.display = 'none';
   }
+});
+  document.getElementById('retryWrongQuestionsBtn').addEventListener('click', () => {
+  const allQuestions = questions();
+  const wrongQuestions = [];
+
+  allQuestions.forEach(q => {
+    const questionId = q.id;
+    const checked = q.querySelector(`input[name=${questionId}]:checked`);
+    const correctText = q.dataset.correctText.trim();
+
+    if (!checked) return;
+
+    const selectedLabel = checked.parentElement;
+    const selectedText = selectedLabel.textContent.trim().replace(/^[①-⑤1-5.\s]+/, '');
+
+    if (selectedText !== correctText) {
+      const cloned = q.cloneNode(true);
+
+      // 선택 해제
+      cloned.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+
+      // 정답 영역 초기화
+      const answerDiv = cloned.querySelector('.answer');
+      if (answerDiv) {
+        answerDiv.style.display = 'none';
+        answerDiv.innerHTML = '';
+      }
+
+      // 정답 버튼 연결 다시 설정
+      const btn = cloned.querySelector('.check-answer');
+      const newId = 'q' + (wrongQuestions.length + 1);
+      cloned.id = newId;
+      btn.onclick = () => checkAnswer(newId);
+
+      cloned.querySelectorAll('input[type=radio]').forEach(radio => {
+        radio.name = newId;
+      });
+
+      const qnum = cloned.querySelector('.qnum');
+      if (qnum) qnum.textContent = `틀린 문제 ${wrongQuestions.length + 1}`;
+
+      wrongQuestions.push(cloned);
+    }
+  });
+
+  if (wrongQuestions.length === 0) {
+    alert('틀린 문제가 없습니다.');
+    return;
+  }
+
+  // 문제 다시 보여주기
+  quizWrapper.innerHTML = '';
+  wrongQuestions.forEach(q => quizWrapper.appendChild(q));
+
+  updateChoiceNumbers();
+
+  if (quizWrapper.classList.contains('page-mode')) {
+    currentIndex = 0;
+    showQuestion(currentIndex);
+  }
+
+  alert(`${wrongQuestions.length}개의 틀린 문제를 다시 풀 수 있도록 준비했습니다.`);
 });
 </script>
 
